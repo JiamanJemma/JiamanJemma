@@ -1,0 +1,31 @@
+name: Update README with Latest Content
+
+on:
+  schedule:
+    # 每天 UTC 00:00 执行一次 (北京时间早上 8:00)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 允许你随时在 Actions 页面手动触发
+
+permissions:
+  contents: write # 允许脚本写入重写 README
+
+jobs:
+  update-readme:
+    name: Update this repo's README
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Fetch latest YouTube Videos
+        uses: gautamkrishnar/blog-post-workflow@v1
+        with:
+          comment_tag_name: "YOUTUBE"
+          feed_list: "https://www.youtube.com/feeds/videos.xml?channel_id=UCSrk3Zvkt5pP2I04WfQVxsw"
+          max_post_count: 5
+
+      - name: Fetch latest Blog Posts
+        uses: gautamkrishnar/blog-post-workflow@v1
+        with:
+          comment_tag_name: "BLOG-POST-LIST"
+          feed_list: "https://jiamanjemma.com/feed"
+          max_post_count: 5
