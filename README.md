@@ -4,7 +4,7 @@ I'm a content creator and tech explorer.
 分享 AI 效率工具、自动化工作流以及一人公司（One-Person Business）探索心得。
 
 📺 **YouTube:** [佳蔓Jemma](https://youtube.com/channel/UCSrk3Zvkt5pP2I04WfQVxsw/)
-📝 **个人网站:** [jiamanjemma.com](https://https://jiamanjemma.com)
+📝 **个人网站:** [jiamanjemma.com](https://jiamanjemma.com)
 
 ---
 
