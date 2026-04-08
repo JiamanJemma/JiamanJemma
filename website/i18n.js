@@ -1,0 +1,464 @@
+/**
+ * 国际化模块 — 简体中文 / 繁體中文 / English / 日本語
+ * 通过 data-i18n 属性匹配翻译 key，切换时替换 innerHTML
+ */
+(function () {
+  'use strict';
+
+  var translations = {
+    zh: {
+      // 导航
+      nav_home: '首页',
+      nav_projects: '作品',
+      nav_videos: '视频',
+      nav_articles: '文章',
+      nav_contact: '联系',
+      nav_resources: '资源',
+      nav_community: '社区',
+      mobile_nav: '导航',
+      mobile_social: '社交平台',
+      // 社交
+      social_bilibili: 'B站',
+      social_xiaohongshu: '小红书',
+      social_douyin: '抖音',
+      // Hero
+      hero_title: 'Hi~ 我是<span class="gradient-text">佳蔓 Jemma</span>',
+      hero_subtitle: '毕业于鲁迅美术学院 & 日本文化服装学院。<br>现在是一名 2 岁宝贝的全职妈妈。<br>持续学习，伴 AI 生出多维之花。',
+      // 项目
+      projects_title: '作品 & 项目',
+      project_1_name: '易卜卜',
+      project_1_desc: '基于易经的 AI 打卦小程序，结合传统文化与现代 AI 技术，提供拍照起卦和传统摇卦两种方式。',
+      project_2_name: 'AI 视频创作',
+      project_2_desc: '探索 AI 工具在视频创作中的应用，用 Remotion、Runway 等工具制作创意短视频。',
+      project_3_desc: '赛博兔子 IP 形象设计，探索 AI 辅助角色设计与动画制作的可能性。',
+      tag_miniapp: '微信小程序',
+      tag_yijing: '易经',
+      tag_aivideo: 'AI 视频',
+      tag_ipdesign: 'IP 设计',
+      tag_aiart: 'AI 艺术',
+      // 视频
+      videos_title: '最新视频',
+      view_all: '查看全部 &rarr;',
+      latest_release: '最新发布',
+      latest_video: '最新视频',
+      loading: '加载中…',
+      goto_youtube: '前往 YouTube 频道',
+      // 文章
+      articles_title: '文章 & 思考',
+      view_all_articles: '查看全部 &rarr;',
+      cat_philosophy: '哲思',
+      cat_fate: '命运',
+      cat_journal: '日志',
+      cat_vibecoding: 'Vibe Coding',
+      article_08_title: '#08 开源自媒体管线：用 Prompt 构筑护城河',
+      article_08_excerpt: '别去写代码了。与其把生命消耗在死磕脆弱的爬虫上，不如花一天时间，写一套永远听命于你的自动化指令。',
+      article_03_title: '#03 我想做自动化，最后做了一个 skill',
+      article_03_excerpt: '大多数人对"自动化"都有一个误解——觉得搭好系统，就能一劳永逸。我也这么想过。',
+      article_02_title: '#02 我做了一个叫紫甲的小程序',
+      article_02_excerpt: '一个设计师妈妈的第一款产品，和她对「求神问卦」这件事的一点理解。',
+      article_0_title: '#01 不会写代码，但我把网站做出来了',
+      article_0_excerpt: '在 AI 时代，建网站不再是编程能力的考验，而是表达能力的体现。',
+      article_1_title: '数字化时代的哲学家与构建者',
+      article_1_excerpt: '新手如何通过写作成为数字构建者，涵盖个人知识库建设等核心技能。',
+      article_2_title: 'Fate Is Not Written in the Stars',
+      article_2_excerpt: '通过《了凡四训》、量子力学和「正念语言」来探讨命运的算法。',
+      article_3_title: 'A New Beginning',
+      article_3_excerpt: '一个全新的开始——终于完成设置，是时候开始更新了。',
+      read_more: '阅读更多 &rarr;',
+      // 联系
+      contact_title: '联系我',
+      contact_subtitle: '期待与你交流',
+      contact_email: '邮箱联系',
+      contact_wechat: '微信: L-jiaman',
+      // InspiraTodo
+      inspiratodo_name: 'InspiraTodo',
+      inspiratodo_desc: '灵感捕捉 × 四象限待办。语音随手记，AI 自动分类，让每一个闪念都不被辜负。',
+      inspiratodo_hint: '即将上架 App Store',
+      tag_productivity: '效率工具',
+      click_detail: '查看详情 →',
+      // 紫甲
+      zijia_name: '紫甲',
+      zijia_desc: '全新上线极具东方美学的随机决定辅助工具，通过沉浸式的抛掷交互，帮助用户在犹豫不决时倾听内心声音，获取灵感参考。仅供娱乐与辅助参考。',
+      zijia_hint: '已上线，微信搜索「紫甲」即可使用',
+      click_preview: '点击预览',
+      zijia_preview_hint: '小程序首页预览',
+      // 资源
+      resources_title: '资源下载',
+      res_ai_tools: 'AI 工具清单',
+      res_ai_tools_desc: '我常用的 AI 工具整理',
+      res_prompts: 'Prompt 模板',
+      res_prompts_desc: '视频中提到的提示词模板',
+      expand: '展开',
+      link: '\u2197',
+      download: '下载',
+      backup: '备用',
+      my_vpn: '我的🪜',
+      vpn_note: '推荐 Chrome 浏览器访问，安装后填写 ID: 346936139 可多得3天会员',
+      prompt_video: 'AI 视频提示词',
+      prompt_general: '通用提示词模板',
+      prompt_writing: '写作助手模板',
+      coming_soon: '即将上线',
+      resources_note: '* 更多资源持续更新中，关注视频获取最新分享',
+      // 社区
+      community_title: '加入社区',
+      community_desc: '和我一起探索 AI，分享学习心得，交流创作经验',
+      join_discord: '加入 Discord 社区',
+      // 社交平台
+      social_channels: '视频号',
+      qr_title: '微信扫码关注视频号',
+      qr_hint: '打开微信扫一扫',
+      // Footer
+      footer_copy: '&copy; 2026 佳蔓 Jemma. Made with AI & Love'
+    },
+
+    en: {
+      nav_home: 'Home',
+      nav_projects: 'Projects',
+      nav_videos: 'Videos',
+      nav_articles: 'Articles',
+      nav_contact: 'Contact',
+      nav_resources: 'Resources',
+      nav_community: 'Community',
+      mobile_nav: 'Menu',
+      mobile_social: 'Social',
+      social_bilibili: 'Bilibili',
+      social_xiaohongshu: 'Xiaohongshu',
+      social_douyin: 'TikTok',
+      hero_title: 'Hi~ I\'m <span class="gradient-text">Jemma</span>',
+      hero_subtitle: 'Graduate of Lu Xun Academy of Fine Arts & Bunka Fashion College, Japan.<br>Now a full-time mom to a 2-year-old.<br>Continuously learning, blooming multidimensional flowers with AI.',
+      projects_title: 'Projects',
+      project_1_name: 'YiBuBu',
+      project_1_desc: 'An AI-powered I Ching divination mini-program that blends traditional culture with modern AI, offering photo-based and traditional casting methods.',
+      project_2_name: 'AI Video Creation',
+      project_2_desc: 'Exploring AI tools for video creation, making creative short videos with Remotion, Runway and more.',
+      project_3_desc: 'CyberBunny IP character design, exploring AI-assisted character design and animation possibilities.',
+      tag_miniapp: 'WeChat Mini',
+      tag_yijing: 'I Ching',
+      tag_aivideo: 'AI Video',
+      tag_ipdesign: 'IP Design',
+      tag_aiart: 'AI Art',
+      videos_title: 'Latest Videos',
+      view_all: 'View All &rarr;',
+      latest_release: 'Latest Release',
+      latest_video: 'Latest Video',
+      loading: 'Loading…',
+      goto_youtube: 'Go to YouTube Channel',
+      articles_title: 'Articles & Thoughts',
+      view_all_articles: 'View All &rarr;',
+      cat_philosophy: 'Philosophy',
+      cat_fate: 'Fate',
+      cat_journal: 'Journal',
+      cat_vibecoding: 'Vibe Coding',
+      article_08_title: '#08 Open-Sourcing My Creator Pipeline: Prompt as a Moat',
+      article_08_excerpt: 'Stop coding. Instead of wasting life fighting fragile web scrapers, spend a day writing a set of automated prompts that always obey you.',
+      article_03_title: '#03 Why I Quit Automation for AI Skills',
+      article_03_excerpt: 'Most people misunderstand "automation" — they think once you build the system, you\'re set for life. I thought so too.',
+      article_02_title: '#02 I Made a Mini Program Called Zijia',
+      article_02_excerpt: 'A designer mom\'s first product, and her thoughts on "seeking divine guidance".',
+      article_0_title: '#01 I Built a Website Without Knowing How to Code',
+      article_0_excerpt: 'In the AI era, building websites is no longer about coding skill but expression ability.',
+      article_1_title: 'Philosophers & Builders in the Digital Age',
+      article_1_excerpt: 'How beginners can become digital builders through writing, including core skills like personal knowledge base construction.',
+      article_2_title: 'Fate Is Not Written in the Stars',
+      article_2_excerpt: 'Exploring the algorithm of fate through "Liao-Fan\'s Four Lessons", quantum mechanics, and the art of mindful language.',
+      article_3_title: 'A New Beginning',
+      article_3_excerpt: 'A fresh start — finally set up and ready to share.',
+      read_more: 'Read More &rarr;',
+      contact_title: 'Contact',
+      contact_subtitle: 'Looking forward to connecting',
+      contact_email: 'Email Me',
+      contact_wechat: 'WeChat: L-jiaman',
+      // InspiraTodo
+      inspiratodo_name: 'InspiraTodo',
+      inspiratodo_desc: 'Capture inspirations × Quadrant to-do. Voice notes, AI auto-classify — never let a spark slip away.',
+      inspiratodo_hint: 'Coming to App Store',
+      tag_productivity: 'Productivity',
+      click_detail: 'View Details →',
+      // 紫甲
+      zijia_name: 'Zijia',
+      zijia_desc: 'A newly launched random decision assistant with Eastern aesthetics. Through immersive tossing interactions, it helps users listen to their inner voice when hesitating. For entertainment and reference only.',
+      zijia_hint: 'Now live! Search "Zijia" on WeChat',
+      click_preview: 'Click to preview',
+      zijia_preview_hint: 'Mini Program Preview',
+      // Resources
+      resources_title: 'Resources',
+      res_ai_tools: 'AI Tools List',
+      res_ai_tools_desc: 'My favorite AI tools',
+      res_prompts: 'Prompt Templates',
+      res_prompts_desc: 'Prompts mentioned in my videos',
+      expand: 'Expand',
+      link: '\u2197',
+      download: 'Download',
+      backup: 'Backup',
+      my_vpn: 'My VPN',
+      vpn_note: 'Recommended to use Chrome. Enter ID: 346936139 after install for 3 extra days',
+      prompt_video: 'AI Video Prompts',
+      prompt_general: 'General Prompt Template',
+      prompt_writing: 'Writing Assistant Template',
+      coming_soon: 'Coming Soon',
+      resources_note: '* More resources coming soon, follow my videos for updates',
+      // Community
+      community_title: 'Join Community',
+      community_desc: 'Explore AI together, share insights, and exchange creative experiences',
+      join_discord: 'Join Discord Community',
+      // Social
+      social_channels: 'WeChat Channel',
+      qr_title: 'Scan to follow WeChat Channel',
+      qr_hint: 'Open WeChat and scan',
+      footer_copy: '&copy; 2026 Jemma. Made with AI & Love'
+    },
+
+    'zh-TW': {
+      // 導航
+      nav_home: '首頁',
+      nav_projects: '作品',
+      nav_videos: '影片',
+      nav_articles: '文章',
+      nav_contact: '聯繫',
+      nav_resources: '資源',
+      nav_community: '社群',
+      mobile_nav: '導航',
+      mobile_social: '社群平台',
+      // 社交
+      social_bilibili: 'B站',
+      social_xiaohongshu: '小紅書',
+      social_douyin: '抖音',
+      // Hero
+      hero_title: 'Hi~ 我是<span class="gradient-text">佳蔓 Jemma</span>',
+      hero_subtitle: '畢業於魯迅美術學院 & 日本文化服裝學院。<br>現在是一名 2 歲寶貝的全職媽媽。<br>持續學習，伴 AI 生出多維之花。',
+      // 項目
+      projects_title: '作品 & 專案',
+      project_1_name: '易卜卜',
+      project_1_desc: '基於易經的 AI 占卦小程式，結合傳統文化與現代 AI 技術，提供拍照起卦和傳統搖卦兩種方式。',
+      project_2_name: 'AI 影片創作',
+      project_2_desc: '探索 AI 工具在影片創作中的應用，用 Remotion、Runway 等工具製作創意短影片。',
+      project_3_desc: '賽博兔子 IP 形象設計，探索 AI 輔助角色設計與動畫製作的可能性。',
+      tag_miniapp: '微信小程式',
+      tag_yijing: '易經',
+      tag_aivideo: 'AI 影片',
+      tag_ipdesign: 'IP 設計',
+      tag_aiart: 'AI 藝術',
+      // 影片
+      videos_title: '最新影片',
+      view_all: '查看全部 &rarr;',
+      latest_release: '最新發布',
+      latest_video: '最新影片',
+      loading: '載入中…',
+      goto_youtube: '前往 YouTube 頻道',
+      // 文章
+      articles_title: '文章 & 思考',
+      view_all_articles: '查看全部 &rarr;',
+      cat_philosophy: '哲思',
+      cat_fate: '命運',
+      cat_journal: '日誌',
+      cat_vibecoding: 'Vibe Coding',
+      article_08_title: '#08 開源自媒體管線：用 Prompt 構築護城河',
+      article_08_excerpt: '別去寫程式了。與其把生命消耗在死磕脆弱的爬蟲上，不如花一天時間，寫一套永遠聽命於你的自動化指令。',
+      article_03_title: '#03 我想做自動化，最後做了一個 skill',
+      article_03_excerpt: '大多數人對「自動化」都有一個誤解——覺得搭好系統，就能一勞永逸。我也這麼想過。',
+      article_02_title: '#02 我做了一個叫紫甲的小程式',
+      article_02_excerpt: '一個設計師媽媽的第一款產品，和她對「求神問卦」這件事的一點理解。',
+      article_0_title: '#01 不會寫程式，但我把網站做出來了',
+      article_0_excerpt: '在 AI 時代，建網站不再是程式能力的考驗，而是表達能力的體現。',
+      article_1_title: '數位時代的哲學家與建構者',
+      article_1_excerpt: '新手如何透過寫作成為數位建構者，涵蓋個人知識庫建設等核心技能。',
+      article_2_title: 'Fate Is Not Written in the Stars',
+      article_2_excerpt: '透過《了凡四訓》、量子力學和「正念語言」來探討命運的演算法。',
+      article_3_title: 'A New Beginning',
+      article_3_excerpt: '一個全新的開始——終於完成設置，是時候開始更新了。',
+      read_more: '閱讀更多 &rarr;',
+      // 聯繫
+      contact_title: '聯繫我',
+      contact_subtitle: '期待與你交流',
+      contact_email: '郵件聯繫',
+      contact_wechat: '微信: L-jiaman',
+      // InspiraTodo
+      inspiratodo_name: 'InspiraTodo',
+      inspiratodo_desc: '靈感捕捉 × 四象限待辦。語音隨手記，AI 自動分類，讓每一個閃念都不被辜負。',
+      inspiratodo_hint: '即將上架 App Store',
+      tag_productivity: '效率工具',
+      click_detail: '查看詳情 →',
+      // 紫甲
+      zijia_name: '紫甲',
+      zijia_desc: '全新上線極具東方美學的隨機決定輔助工具，透過沉浸式的拋擲互動，幫助使用者在猶豫不決時傾聽內心聲音，獲取靈感參考。僅供娛樂與輔助參考。',
+      zijia_hint: '已上線，微信搜尋「紫甲」即可使用',
+      click_preview: '點擊預覽',
+      zijia_preview_hint: '小程式首頁預覽',
+      // 資源
+      resources_title: '資源下載',
+      res_ai_tools: 'AI 工具清單',
+      res_ai_tools_desc: '我常用的 AI 工具整理',
+      res_prompts: 'Prompt 模板',
+      res_prompts_desc: '影片中提到的提示詞模板',
+      expand: '展開',
+      link: '\u2197',
+      download: '下載',
+      backup: '備用',
+      my_vpn: '我的🪜',
+      vpn_note: '推薦 Chrome 瀏覽器訪問，安裝後填寫 ID: 346936139 可多得3天會員',
+      prompt_video: 'AI 影片提示詞',
+      prompt_general: '通用提示詞模板',
+      prompt_writing: '寫作助手模板',
+      coming_soon: '即將上線',
+      resources_note: '* 更多資源持續更新中，關注影片獲取最新分享',
+      // 社群
+      community_title: '加入社群',
+      community_desc: '和我一起探索 AI，分享學習心得，交流創作經驗',
+      join_discord: '加入 Discord 社群',
+      // 社群平台
+      social_channels: '視頻號',
+      qr_title: '微信掃碼關注視頻號',
+      qr_hint: '打開微信掃一掃',
+      // Footer
+      footer_copy: '&copy; 2026 佳蔓 Jemma. Made with AI & Love'
+    },
+
+    ja: {
+      nav_home: 'ホーム',
+      nav_projects: '作品',
+      nav_videos: '動画',
+      nav_articles: '記事',
+      nav_contact: 'お問合せ',
+      nav_resources: 'リソース',
+      nav_community: 'コミュニティ',
+      mobile_nav: 'メニュー',
+      mobile_social: 'SNS',
+      social_bilibili: 'Bilibili',
+      social_xiaohongshu: '小紅書',
+      social_douyin: 'TikTok',
+      hero_title: 'Hi~ <span class="gradient-text">佳蔓 Jemma</span> です',
+      hero_subtitle: '魯迅美術学院 & 日本文化服装学院卒。<br>現在は2歳児のフルタイムママ。<br>学び続け、AIと共に多次元の花を咲かせる。',
+      projects_title: '作品 & プロジェクト',
+      project_1_name: '易卜卜',
+      project_1_desc: '易経に基づくAI占いミニプログラム。伝統文化と現代AIを融合し、写真撮影と伝統的な方法の2つの卦の立て方を提供。',
+      project_2_name: 'AI 動画制作',
+      project_2_desc: 'Remotion、Runwayなどのツールを使い、AI動画制作の可能性を探求。',
+      project_3_desc: 'サイバーバニーIPキャラクターデザイン。AI支援によるキャラクターデザインとアニメーション制作の可能性を探求。',
+      tag_miniapp: 'WeChatミニ',
+      tag_yijing: '易経',
+      tag_aivideo: 'AI動画',
+      tag_ipdesign: 'IPデザイン',
+      tag_aiart: 'AIアート',
+      videos_title: '最新動画',
+      view_all: 'すべて見る &rarr;',
+      latest_release: '最新公開',
+      latest_video: '最新動画',
+      loading: '読み込み中…',
+      goto_youtube: 'YouTube チャンネルへ',
+      articles_title: '記事 & 考察',
+      view_all_articles: 'すべて見る &rarr;',
+      cat_philosophy: '哲学',
+      cat_fate: '運命',
+      cat_journal: '日記',
+      cat_vibecoding: 'Vibe Coding',
+      article_08_title: '#08 クリエイターパイプラインのオープンソース化：プロンプトの城壁',
+      article_08_excerpt: 'コーディングはやめよう。脆弱なスクレイパーと戦うために人生を浪費するより、自分に常に従う自動化プロンプトを書くために1日を費やそう。',
+      article_03_title: '#03 自動化をやめて、skillを一つ作った',
+      article_03_excerpt: '多くの人が「自動化」を誤解している——システムを構築すれば一生安泰だと。私もそう思っていた。',
+      article_02_title: '#02 紫甲というミニプログラムを作った',
+      article_02_excerpt: 'デザイナーママの初プロダクト、「占い」についての考え。',
+      article_0_title: '#01 コードが書けなくても、ウェブサイトを作れた',
+      article_0_excerpt: 'AI時代、ウェブサイト構築はコーディング能力ではなく、表現力の問題になった。',
+      article_1_title: 'デジタル時代の哲学者と構築者',
+      article_1_excerpt: '初心者がライティングを通じてデジタルビルダーになる方法。個人ナレッジベースの構築などのコアスキルを網羅。',
+      article_2_title: 'Fate Is Not Written in the Stars',
+      article_2_excerpt: '「了凡四訓」、量子力学、マインドフルネスの言語を通じて運命のアルゴリズムを探る。',
+      article_3_title: 'A New Beginning',
+      article_3_excerpt: '新たなスタート——準備が整い、いよいよ更新開始。',
+      read_more: '続きを読む &rarr;',
+      contact_title: 'お問い合わせ',
+      contact_subtitle: '交流を楽しみにしています',
+      contact_email: 'メール',
+      contact_wechat: 'WeChat: L-jiaman',
+      // InspiraTodo
+      inspiratodo_name: 'InspiraTodo',
+      inspiratodo_desc: 'ひらめきキャプチャ × 四象限ToDoリスト。音声メモ、AI自動分類 — ひらめきを逃さない。',
+      inspiratodo_hint: 'App Store 近日公開',
+      tag_productivity: '生産性',
+      click_detail: '詳細を見る →',
+      // 紫甲
+      zijia_name: '紫甲',
+      zijia_desc: '東洋美学を持つランダム決定アシスタント。没入型のインタラクションで、迷った時に内なる声を聴く手助けをします。娯楽・参考用。',
+      zijia_hint: '公開中！WeChatで「紫甲」を検索',
+      click_preview: 'プレビュー',
+      zijia_preview_hint: 'ミニプログラムプレビュー',
+      // リソース
+      resources_title: 'リソース',
+      res_ai_tools: 'AIツールリスト',
+      res_ai_tools_desc: '私のお気に入りAIツール',
+      res_prompts: 'プロンプトテンプレート',
+      res_prompts_desc: '動画で紹介したプロンプト',
+      expand: '展開',
+      link: 'リンク',
+      download: 'ダウンロード',
+      backup: '予備',
+      my_vpn: '私のVPN',
+      vpn_note: 'Chrome推奨。インストール後ID: 346936139を入力で3日間追加',
+      prompt_video: 'AI動画プロンプト',
+      prompt_general: '汎用プロンプトテンプレート',
+      prompt_writing: 'ライティングアシスタント',
+      coming_soon: '近日公開',
+      resources_note: '* 更新中、動画をフォローして最新情報をゲット',
+      // コミュニティ
+      community_title: 'コミュニティに参加',
+      community_desc: '一緒にAIを探求し、学びを共有し、クリエイティブな経験を交換しましょう',
+      join_discord: 'Discordコミュニティに参加',
+      // ソーシャル
+      social_channels: '動画アカウント',
+      qr_title: 'WeChatでスキャンしてフォロー',
+      qr_hint: 'WeChatを開いてスキャン',
+      footer_copy: '&copy; 2026 佳蔓 Jemma. Made with AI & Love'
+    }
+  };
+
+  // 当前语言
+  var currentLang = localStorage.getItem('lang') || 'zh';
+
+  // 应用翻译
+  function applyLang(lang) {
+    var dict = translations[lang];
+    if (!dict) return;
+
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+
+    // 更新 html lang 属性
+    var langMap = { zh: 'zh-CN', 'zh-TW': 'zh-Hant', en: 'en', ja: 'ja' };
+    document.documentElement.lang = langMap[lang] || lang;
+
+    // 更新 title
+    var titles = {
+      zh: '佳蔓 Jemma — AI 探索者 & 创意妈妈',
+      'zh-TW': '佳蔓 Jemma — AI 探索者 & 創意媽媽',
+      en: 'Jemma — AI Explorer & Creative Mom',
+      ja: '佳蔓 Jemma — AI探求者 & クリエイティブママ'
+    };
+    document.title = titles[lang] || titles.zh;
+
+    // 遍历所有 data-i18n 元素
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) {
+        el.innerHTML = dict[key];
+      }
+    });
+
+    // 更新语言切换器活动状态
+    document.querySelectorAll('.lang-option').forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+  }
+
+  // 暴露给其他模块
+  window.i18n = {
+    apply: applyLang,
+    get: function () { return currentLang; },
+    t: function (key) {
+      var dict = translations[currentLang];
+      return (dict && dict[key]) || key;
+    }
+  };
+
+  // 初始化
+  applyLang(currentLang);
+})();

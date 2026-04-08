@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>佳蔓 Jemma — AI 探索者 & 创意妈妈 | 用 AI 开启全职妈妈的自我重塑实验</title>
+  <meta name="description" content="佳蔓 Jemma 的个人网站。毕业于鲁迅美术学院 & 日本文化服装学院，全职妈妈，正在用 AI 探索创作、艺术与自我重塑。分享 YouTube 视频、长文、开源项目与创作工具资源。">
+  <meta name="author" content="佳蔓 Jemma">
+  <meta name="keywords" content="Jemma, 佳蔓, AI, 创作者, YouTuber, 艺术, 设计, 鲁迅美术学院, 日本文化服装学院">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="佳蔓 Jemma — AI 探索者 & 创意妈妈 | 用 AI 开启全职妈妈的自我重塑实验">
+  <meta property="og:description" content="毕业于鲁迅美术学院 & 日本文化服装学院，现在是一名全职妈妈，正在用 AI 开启自我重塑的硬核实验。">
+  <meta property="og:url" content="https://jiamanjemma.com">
+  <meta property="og:image" content="https://jiamanjemma.com/og-image.png">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:locale:alternate" content="zh_TW">
+  <meta property="og:locale:alternate" content="ja_JP">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@JiamanJemma">
+  <meta name="twitter:title" content="佳蔓 Jemma — AI 探索者 & 创意妈妈 | 用 AI 开启全职妈妈的自我重塑实验">
+  <meta name="twitter:description" content="毕业于鲁迅美术学院 & 日本文化服装学院，正在用 AI 开启自我重塑的硬核实验。">
+  <meta name="twitter:image" content="https://jiamanjemma.com/og-image.png">
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <!-- Canonical -->
+  <link rel="canonical" href="https://jiamanjemma.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20260314a">
+  <!-- 结构化数据 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "佳蔓 Jemma",
+    "url": "https://jiamanjemma.com",
+    "description": "AI 探索者 & 创意妈妈，毕业于鲁迅美术学院 & 日本文化服装学院",
+    "email": "jiamanjemma@gmail.com",
+    "sameAs": [
+      "https://www.youtube.com/channel/UCSrk3Zvkt5pP2I04WfQVxsw",
+      "https://b23.tv/XIVg9b7",
+      "https://x.com/JiamanJemma",
+      "https://www.instagram.com/jiamanjemma/",
+      "https://jemma747318.substack.com"
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- 背景效果（暗色模式下显示） -->
+  <div class="bg-gradient"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- ========== 导航栏 ========== -->
+  <nav class="nav">
+    <div class="nav-content container">
+      <div class="nav-left">
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="菜单">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <a href="#home" class="logo paper-logo">Jemma</a>
+      </div>
+      <div class="nav-links paper-nav">
+        <a href="#videos" class="paper-link paper-pink" data-i18n="nav_videos">视频</a>
+        <a href="#articles" class="paper-link paper-yellow" data-i18n="nav_articles">文章</a>
+        <a href="#projects" class="paper-link paper-blue" data-i18n="nav_projects">作品</a>
+        <a href="#resources" class="paper-link paper-green" data-i18n="nav_resources">资源</a>
+        <!-- <a href="fishtank.html" class="paper-link paper-purple" style="display:flex;align-items:center;gap:4px;">🐟 鱼缸</a> -->
+        <a href="#community" class="paper-link paper-purple" data-i18n="nav_community">社区</a>
+        <a href="#contact" class="paper-link paper-orange" data-i18n="nav_contact">联系</a>
+      </div>
+      <div class="nav-right">
+        <!-- 语言切换器 -->
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="icon-btn lang-btn" id="langBtn" aria-label="切换语言">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <button class="lang-option active" data-lang="zh">简体中文</button>
+            <button class="lang-option" data-lang="zh-TW">繁體中文</button>
+            <button class="lang-option" data-lang="en">English</button>
+            <button class="lang-option" data-lang="ja">日本語</button>
+          </div>
+        </div>
+        <!-- 主题切换 -->
+        <button class="icon-btn theme-toggle" id="themeToggle" aria-label="切换主题">
+          <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== 移动端侧边菜单 ========== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <span class="mobile-menu-title" data-i18n="mobile_nav">导航</span>
+      <button class="icon-btn" id="mobileMenuClose" aria-label="关闭菜单">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu-nav">
+      <a href="#home" class="mobile-menu-link" data-i18n="nav_home">首页</a>
+      <a href="#videos" class="mobile-menu-link" data-i18n="nav_videos">视频</a>
+      <a href="#articles" class="mobile-menu-link" data-i18n="nav_articles">文章</a>
+      <a href="#projects" class="mobile-menu-link" data-i18n="nav_projects">作品</a>
+      <a href="#resources" class="mobile-menu-link" data-i18n="nav_resources">资源</a>
+      <!-- <a href="fishtank.html" class="mobile-menu-link">🐟 鱼缸</a> -->
+      <a href="#community" class="mobile-menu-link" data-i18n="nav_community">社区</a>
+      <a href="#contact" class="mobile-menu-link" data-i18n="nav_contact">联系</a>
+      <div class="mobile-menu-divider"></div>
+      <div class="mobile-menu-section-title" data-i18n="mobile_social">社交平台</div>
+      <a href="https://www.youtube.com/channel/UCSrk3Zvkt5pP2I04WfQVxsw" target="_blank" rel="noopener noreferrer" class="mobile-menu-social">YouTube</a>
+      <a href="https://b23.tv/XIVg9b7" target="_blank" rel="noopener noreferrer" class="mobile-menu-social" data-i18n="social_bilibili">B 站</a>
+      <a href="https://x.com/JiamanJemma" target="_blank" rel="noopener noreferrer" class="mobile-menu-social">X</a>
+      <a href="https://www.instagram.com/jiamanjemma/" target="_blank" rel="noopener noreferrer" class="mobile-menu-social">Instagram</a>
+      <a href="https://xhslink.com/m/9QNp44sSymy" target="_blank" rel="noopener noreferrer" class="mobile-menu-social" data-i18n="social_xiaohongshu">小红书</a>
+      <a href="https://v.douyin.com/OgGq-_UAts8/" target="_blank" rel="noopener noreferrer" class="mobile-menu-social" data-i18n="social_douyin">抖音</a>
+      <a href="https://github.com/JiamanJemma" target="_blank" rel="noopener noreferrer" class="mobile-menu-social">GitHub</a>
+      <a href="https://jemma747318.substack.com" target="_blank" rel="noopener noreferrer" class="mobile-menu-social">Newsletter</a>
+    </div>
+  </div>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+  <!-- Skip link -->
+  <a href="#main-content" class="sr-only" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">跳转到主要内容</a>
+
+  <main id="main-content">
+  <!-- ========== Hero 区 ========== -->
+  <section class="hero" id="home">
+    <div class="container hero-container">
+      <div class="hero-top-row">
+      <div class="hero-content">
+      <h1 class="hero-title" data-i18n="hero_title">Hi~ 我是<span class="gradient-text">佳蔓 Jemma</span></h1>
+      <p class="hero-subtitle" data-i18n="hero_subtitle">
+        毕业于鲁迅美术学院 &amp; 日本文化服装学院。<br>
+        现在是一名 2 岁宝贝的全职妈妈。<br>
+        持续学习，伴 AI 生出多维之花。
+      </p>
+      <!-- 频道描述已隐藏 -->
+
+      </div>
+      <!-- 泥塑角色 + 动画光球 -->
+      <div class="hero-visual">
+        <img src="ip_rabbit_hero.png" alt="佳蔓 Jemma 兔子 IP" class="hero-character" loading="eager">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+      </div>
+      </div>
+      <div class="hero-bottom-row">
+      <!-- 社交链接 -->
+      <div class="social-links">
+        <a href="https://www.youtube.com/channel/UCSrk3Zvkt5pP2I04WfQVxsw" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          YouTube
+        </a>
+        <a href="https://b23.tv/XIVg9b7" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="#00A1D6"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.659.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/></svg>
+          <span data-i18n="social_bilibili">B站</span>
+        </a>
+        <a href="https://xhslink.com/m/9QNp44sSymy" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="#FE2C55"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span data-i18n="social_xiaohongshu">小红书</span>
+        </a>
+        <a href="https://v.douyin.com/OgGq-_UAts8/" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          <span data-i18n="social_douyin">抖音</span>
+        </a>
+        <a href="https://x.com/JiamanJemma" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X
+        </a>
+        <a href="https://www.instagram.com/jiamanjemma/" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="url(#ig-grad)">
+            <defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#FFDC80"/><stop offset="25%" style="stop-color:#F77737"/><stop offset="50%" style="stop-color:#E1306C"/><stop offset="75%" style="stop-color:#C13584"/><stop offset="100%" style="stop-color:#833AB4"/></linearGradient></defs>
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          Instagram
+        </a>
+        <a href="https://github.com/JiamanJemma" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://jemma747318.substack.com" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="#FF6719"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24l9.54-5.56L20.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+          Newsletter
+        </a>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 视频区 ========== -->
+  <section class="section" id="videos">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2 class="section-title" data-i18n="videos_title">最新视频</h2>
+          <img src="ip_videos.png" alt="佳蔓 IP - 视频" class="section-rabbit" loading="lazy">
+        </div>
+        <a href="https://www.youtube.com/channel/UCSrk3Zvkt5pP2I04WfQVxsw" target="_blank" rel="noopener noreferrer" class="view-all" data-i18n="view_all">查看全部 &rarr;</a>
+      </div>
+
+      <!-- 最新视频特色卡片 -->
+      <div id="latest-video-wrap" class="latest-video-wrap" style="display:none;">
+        <a id="latest-video-card" class="latest-video-card loading" href="#" target="_blank" rel="noopener noreferrer">
+          <div class="latest-video-thumb-wrap">
+            <div id="latest-video-thumb" class="skeleton skeleton-thumb"></div>
+            <div class="play-overlay">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+          </div>
+          <div class="latest-video-info">
+            <span class="latest-video-label" data-i18n="latest_release">最新发布</span>
+            <div id="latest-video-title" class="latest-video-title skeleton skeleton-text" data-i18n="loading">加载中…</div>
+            <div id="latest-video-meta" class="latest-video-meta" data-i18n="latest_video">最新视频</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- 视频网格 -->
+      <div class="videos-grid" id="videos-container">
+        <div class="video-fallback">
+          <p data-i18n="loading">加载中…</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========== 文章 & 思考 ========== -->
+  <section class="section articles" id="articles">
+    <div class="container">
+      <div class="section-header" style="flex-wrap: wrap; gap: 20px;">
+        <div class="section-title-wrap">
+          <h2 class="section-title" data-i18n="articles_title">文章 &amp; 思考</h2>
+          <img src="ip_articles.png" alt="佳蔓 IP - 文章" class="section-rabbit" loading="lazy">
+        </div>
+        <div class="subscribe-actions">
+          <a href="https://jemma747318.substack.com" target="_blank" rel="noopener noreferrer" class="subscribe-btn btn-substack">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24l9.54-5.56L20.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+            Substack
+          </a>
+          <a href="https://jemma747318.substack.com" target="_blank" rel="noopener noreferrer" class="subscribe-btn btn-newsletter">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            Newsletter
+          </a>
+          <div class="subscribe-btn btn-wechat" title="微信搜一搜：佳蔓Jemma">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05a6.127 6.127 0 0 1-.253-1.726c0-3.573 3.27-6.47 7.3-6.47.258 0 .51.013.76.034C16.543 4.97 12.945 2.188 8.691 2.188zm10.809 6.17c-3.484 0-6.3 2.504-6.3 5.593 0 3.09 2.816 5.594 6.3 5.594.652 0 1.28-.086 1.873-.242a.72.72 0 0 1 .596.08l1.266.74a.272.272 0 0 0 .14.046.217.217 0 0 0 .241-.246c0-.06-.024-.119-.04-.178l-.259-.98a.49.49 0 0 1 .177-.554C21.833 17.353 22.9 15.67 22.9 13.95c0-3.09-2.816-5.593-6.3-5.593z"/></svg>
+            <span>公众号: 佳蔓Jemma</span>
+          </div>
+        </div>
+      </div>
+      <div class="articles-grid">
+        <a href="article.html?id=08" class="article-card">
+          <div class="article-meta">
+            <span class="article-category" data-i18n="cat_vibecoding">Vibe Coding</span>
+            <span class="article-date">2026.04.08</span>
+          </div>
+          <h3 class="article-title" data-i18n="article_08_title">#08 开源自媒体管线：用 Prompt 构筑护城河</h3>
+          <p class="article-excerpt" data-i18n="article_08_excerpt">别去写代码了。与其把生命消耗在死磕脆弱的爬虫上，不如花一天时间，写一套永远听命于你的自动化指令。</p>
+          <span class="article-link" data-i18n="read_more">阅读更多 &rarr;</span>
+        </a>
+        <a href="article.html?id=06" class="article-card">
+          <div class="article-meta">
+            <span class="article-category" data-i18n="cat_vibecoding">Vibe Coding</span>
+            <span class="article-date">2026.03.31</span>
+          </div>
+          <h3 class="article-title" data-i18n="article_06_title">#06 效率尽头：我把 NotebookLM 搬进了终端</h3>
+          <p class="article-excerpt" data-i18n="article_06_excerpt">切网页这个动作本身，就是一种极大的损耗。所以我把整个 NotebookLM 塞进了黑框框的终端里。</p>
+          <span class="article-link" data-i18n="read_more">阅读更多 &rarr;</span>
+        </a>
+        <a href="article.html?id=05" class="article-card">
+          <div class="article-meta">
+            <span class="article-category" data-i18n="cat_vibecoding">Vibe Coding</span>
+            <span class="article-date">2026.03.25</span>
+          </div>
+          <h3 class="article-title" data-i18n="article_05_title">#05 从黑框到精装房，我搬家了</h3>
+          <p class="article-excerpt" data-i18n="article_05_excerpt">$200 → $40，体验还更好了。最贵的工具不一定最好，最适合目前的创作节奏的才是。</p>
+          <span class="article-link" data-i18n="read_more">阅读更多 &rarr;</span>
+        </a>
+        <a href="article.html?id=04" class="article-card">
+          <div class="article-meta">
+            <span class="article-category" data-i18n="cat_vibecoding">Vibe Coding</span>
+            <span class="article-date">2026.03.18</span>
+          </div>
+          <h3 class="article-title" data-i18n="article_04_title">#04 $200 逼我开始了 vibe coding</h3>
+          <p class="article-excerpt" data-i18n="article_04_excerpt">复杂的不是 AI，是开始之前的自己。我是怎么被 $200 的冲动消费逼到开始做产品的。</p>
+          <span class="article-link" data-i18n="read_more">阅读更多 &rarr;</span>
+        </a>
+        <a href="article.html?id=03" class="article-card">
+          <div class="article-meta">
+            <span class="article-category" data-i18n="cat_vibecoding">Vibe Coding</span>
+            <span class="article-date">2026.03.08</span>
+          </div>
+          <h3 class="article-title" data-i18n="article_03_title">#03 我想做自动化，最后做了一个 skill</h3>
+          <p class="article-excerpt" data-i18n="article_03_excerpt">大多数人对"自动化"都有一个误解——觉得搭好系统，就能一劳永逸。我也这么想过。</p>
+          <span class="article-link" data-i18n="read_more">阅读更多 &rarr;</span>
+        </a>
+        <a href="article.html?id=02" class="article-card">
+          <div class="article-meta">
+            <span class="article-category" data-i18n="cat_vibecoding">Vibe Coding</span>
+            <span class="article-date">2026.02.27</span>
+          </div>
+          <h3 class="article-title" data-i18n="article_02_title">#02 我做了一个叫紫甲的小程序</h3>
+          <p class="article-excerpt" data-i18n="article_02_excerpt">一个设计师妈妈的第一款产品，和她对「求神问卦」这件事的一点理解。</p>
+          <span class="article-link" data-i18n="read_more">阅读更多 &rarr;</span>
+        </a>
+        <a href="article.html?id=01" class="article-card">
+          <div class="article-meta">
+            <span class="article-category" data-i18n="cat_vibecoding">Vibe Coding</span>
+            <span class="article-date">2026.02.24</span>
+          </div>
+          <h3 class="article-title" data-i18n="article_0_title">#01 不会写代码，但我把网站做出来了</h3>
+          <p class="article-excerpt" data-i18n="article_0_excerpt">在 AI 时代，建网站不再是编程能力的考验，而是表达能力的体现。</p>
+          <span class="article-link" data-i18n="read_more">阅读更多 &rarr;</span>
+        </a>
+        <a href="article.html?id=fe1" class="article-card">
+          <div class="article-meta">
+            <span class="article-category" data-i18n="cat_philosophy">哲思</span>
+            <span class="article-date">2026.02.14</span>
+          </div>
+          <h3 class="article-title" data-i18n="article_1_title">数字化时代的哲学家与构建者</h3>
+          <p class="article-excerpt" data-i18n="article_1_excerpt">新手如何通过写作成为数字构建者，涵盖个人知识库建设等核心技能。</p>
+          <span class="article-link" data-i18n="read_more">阅读更多 &rarr;</span>
+        </a>
+        <a href="article.html?id=fate" class="article-card">
+          <div class="article-meta">
+            <span class="article-category" data-i18n="cat_fate">命运</span>
+            <span class="article-date">2025.11.30</span>
+          </div>
+          <h3 class="article-title" data-i18n="article_2_title">Fate Is Not Written in the Stars</h3>
+          <p class="article-excerpt" data-i18n="article_2_excerpt">通过《了凡四训》、量子力学和「正念语言」来探讨命运的算法。</p>
+          <span class="article-link" data-i18n="read_more">阅读更多 &rarr;</span>
+        </a>
+        <a href="article.html?id=beginning" class="article-card">
+          <div class="article-meta">
+            <span class="article-category" data-i18n="cat_journal">日志</span>
+            <span class="article-date">2025.11.01</span>
+          </div>
+          <h3 class="article-title" data-i18n="article_3_title">A New Beginning</h3>
+          <p class="article-excerpt" data-i18n="article_3_excerpt">一个全新的开始——终于完成设置，是时候开始更新了。</p>
+          <span class="article-link" data-i18n="read_more">阅读更多 &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 作品 & 项目 ========== -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2 class="section-title" data-i18n="projects_title">作品 &amp; 项目</h2>
+          <img src="ip_projects.png" alt="佳蔓 IP - 项目" class="section-rabbit" loading="lazy">
+        </div>
+      </div>
+      <!-- ===== 📱 App ===== -->
+      <div class="project-category">
+        <div class="project-category-header">
+          <span class="project-category-icon">📱</span>
+          <div>
+            <h3 class="project-category-title">App</h3>
+            <p class="project-category-desc">独立设计与开发的移动应用</p>
+          </div>
+        </div>
+        <div class="projects-grid projects-single">
+          <a href="inspiratodo" class="project-card project-card-large project-card-clickable">
+            <div class="project-icon-img">
+              <img src="inspiratodo-icon.png" alt="InspiraTodo" style="width:100%;height:100%;object-fit:contain;">
+            </div>
+            <h3 class="project-name" data-i18n="inspiratodo_name">InspiraTodo</h3>
+            <p class="project-desc" data-i18n="inspiratodo_desc">灵感捕捉 × 四象限待办。语音随手记，AI 自动分类，让每一个闪念都不被辜负。</p>
+            <div class="project-tags">
+              <span class="project-tag">iOS</span>
+              <span class="project-tag">AI</span>
+              <span class="project-tag" data-i18n="tag_productivity">效率工具</span>
+            </div>
+            <p class="project-hint" data-i18n="inspiratodo_hint">即将上架 App Store</p>
+            <span class="project-preview-hint" data-i18n="click_detail">查看详情 →</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ===== 🟢 小程序 ===== -->
+      <div class="project-category">
+        <div class="project-category-header">
+          <span class="project-category-icon">🟢</span>
+          <div>
+            <h3 class="project-category-title">小程序</h3>
+            <p class="project-category-desc">微信生态内的轻量应用</p>
+          </div>
+        </div>
+        <div class="projects-grid projects-single">
+          <a href="zijia" class="project-card project-card-large project-card-clickable">
+            <div class="project-icon-img">
+              <img src="easybu-logo.png" alt="紫甲" class="spinning-logo" width="200" height="200">
+            </div>
+            <h3 class="project-name" data-i18n="zijia_name">紫甲</h3>
+            <p class="project-desc" data-i18n="zijia_desc">全新上线极具东方美学的随机决定辅助工具，通过沉浸式的抛掷交互，帮助用户在犹豫不决时倾听内心声音，获取灵感参考。仅供娱乐与辅助参考。</p>
+            <div class="project-tags">
+              <span class="project-tag" data-i18n="tag_miniapp">微信小程序</span>
+              <span class="project-tag">AI</span>
+              <span class="project-tag" data-i18n="tag_yijing">易经</span>
+            </div>
+            <p class="project-hint" data-i18n="zijia_hint">已上线，微信搜索「紫甲」即可使用</p>
+            <span class="project-preview-hint" data-i18n="click_detail">查看详情 →</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ===== 🐙 GitHub 开源 ===== -->
+      <div class="project-category">
+        <div class="project-category-header">
+          <span class="project-category-icon">🐙</span>
+          <div>
+            <h3 class="project-category-title">GitHub 开源</h3>
+            <p class="project-category-desc">开源的 Claude Code 外挂技能，拷贝即用</p>
+          </div>
+        </div>
+        <div class="projects-grid projects-trio">
+          <!-- Ask Right -->
+          <div class="project-card project-card-github">
+            <div>
+              <div class="project-icon" style="font-size:2.5rem; margin-bottom:12px;">🎯</div>
+              <h3 class="project-name">问对了 Ask Right</h3>
+              <p class="project-desc" style="font-size:0.9rem;">不教 Prompt 技巧——用「问诊式对话」诊断你的真实需求，匹配思维框架，帮你重新组织问题。让普通人也能跟 AI 高效沟通。</p>
+              <div class="project-tags">
+                <span class="project-tag">Claude Code Skill</span>
+                <span class="project-tag">思维框架</span>
+                <span class="project-tag">开源</span>
+              </div>
+            </div>
+            <a href="https://github.com/JiamanJemma/ask-right-skill" target="_blank" rel="noopener noreferrer" class="github-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              GitHub →
+            </a>
+          </div>
+          <!-- Creator-Playbooks -->
+          <div class="project-card project-card-github">
+            <div>
+              <div class="project-icon" style="font-size:2.5rem; margin-bottom:12px;">📡</div>
+              <h3 class="project-name">Creator-Playbooks</h3>
+              <p class="project-desc" style="font-size:0.9rem;">全平台内容分发指令集——防呆排版、48h 海外错峰、Apple 原生提醒联动。把搬砖式填表外包给 AI，你只负责创作。</p>
+              <div class="project-tags">
+                <span class="project-tag">Claude Code Skill</span>
+                <span class="project-tag">内容分发</span>
+                <span class="project-tag">开源</span>
+              </div>
+            </div>
+            <a href="https://github.com/JiamanJemma/Creator-Playbooks" target="_blank" rel="noopener noreferrer" class="github-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              GitHub →
+            </a>
+          </div>
+          <!-- Social Creator Toolkit -->
+          <div class="project-card project-card-github">
+            <div>
+              <div class="project-icon" style="font-size:2.5rem; margin-bottom:12px;">🚀</div>
+              <h3 class="project-name">Social Creator Toolkit</h3>
+              <p class="project-desc" style="font-size:0.9rem;">全平台内容发布工具包——文案生成 + 封面提示词 + 发布策略 + 数据分析。联动 social-auto-upload，⭐ 14 Stars。</p>
+              <div class="project-tags">
+                <span class="project-tag">Claude Code Skill</span>
+                <span class="project-tag">自动发布</span>
+                <span class="project-tag">开源</span>
+              </div>
+            </div>
+            <a href="https://github.com/JiamanJemma/social-creator-toolkit" target="_blank" rel="noopener noreferrer" class="github-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              GitHub →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 资源下载 ========== -->
+  <section class="section" id="resources">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <h2 class="section-title" data-i18n="resources_title">资源下载</h2>
+          <img src="ip_resources.png" alt="佳蔓 IP - 资源" class="section-rabbit" loading="lazy">
+        </div>
+      </div>
+      <div class="resources-search">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <label for="resourceSearch" class="sr-only">搜索工具和资源</label>
+          <input type="text" id="resourceSearch" class="resource-search-input" placeholder="快捷搜索工具、链接、资源..." oninput="filterResources(this.value)">
+        </div>
+      </div>
+      <div class="resources-grid">
+        <div class="resource-card expandable">
+          <div class="resource-header">
+            <div class="resource-icon">📄</div>
+            <div class="resource-info">
+              <h3 class="resource-name" data-i18n="res_ai_tools">AI 工具清单</h3>
+              <p class="resource-desc" data-i18n="res_ai_tools_desc">我常用的 AI 工具整理</p>
+            </div>
+            <span class="resource-toggle" data-i18n="expand">展开</span>
+          </div>
+          <div class="resource-content">
+            <ul class="tool-list">
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/anthropic" alt="Anthropic" loading="lazy">Claude</span>
+                <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://cdn.simpleicons.org/googlegemini/4285F4" alt="Gemini" loading="lazy">Gemini</span>
+                <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://chat.openai.com&size=64" alt="ChatGPT" loading="lazy">ChatGPT</span>
+                <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/cursor" alt="Cursor" loading="lazy">Cursor</span>
+                <a href="https://cursor.com" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://midjourney.com&size=64" alt="Midjourney" loading="lazy">Midjourney</span>
+                <a href="https://midjourney.com" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item tool-item-special">
+                <div class="tool-name-block">
+                  <span class="tool-name" data-i18n="my_vpn">我的🪜</span>
+                  <span class="tool-note" data-i18n="vpn_note">推荐 Chrome 浏览器访问，安装后填写 ID: 346936139 可多得3天会员</span>
+                </div>
+                <div class="tool-links">
+                  <a href="https://github.com/LetsgoNetwork/LetsGo_2/blob/main/README.md" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="download">下载</a>
+                  <a href="https://bitbucket.org/letsgo666/letsgogo_6/src/main/README.md" target="_blank" rel="noopener noreferrer" class="tool-link tool-link-alt" data-i18n="backup">备用</a>
+                </div>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://icon.horse/icon/goofish.com" alt="闲鱼" loading="lazy">闲鱼(国内代充)</span>
+                <a href="https://www.goofish.com" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://cdn.simpleicons.org/google/4285F4" alt="AntiGravity" loading="lazy">AntiGravity</span>
+                <a href="https://antigravity.google/" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://icon.horse/icon/nanobananaimg.com" alt="NanoBanana" loading="lazy">NanoBanana</span>
+                <a href="https://nanobananaimg.com" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="resource-card expandable">
+          <div class="resource-header">
+            <div class="resource-icon">📝</div>
+            <div class="resource-info">
+              <h3 class="resource-name" data-i18n="res_prompts">Prompt 模板</h3>
+              <p class="resource-desc" data-i18n="res_prompts_desc">视频中提到的提示词模板</p>
+            </div>
+            <span class="resource-toggle" data-i18n="expand">展开</span>
+          </div>
+          <div class="resource-content">
+            <ul class="tool-list">
+              <li class="tool-item">
+                <span class="tool-name">AI 提示词模板合集（新手友好版）</span>
+                <a href="prompt-templates.html" target="_blank" rel="noopener noreferrer" class="tool-link">查看</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name">写作审稿提示词（Dan Koe 写作体系）</span>
+                <a href="writing-review-prompt.md" target="_blank" rel="noopener noreferrer" class="tool-link">查看</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://icon.horse/icon/aivideoprompt.netlify.app" alt="AI视频提示词" loading="lazy">AI 视频提示词</span>
+                <a href="https://aivideoprompt.netlify.app/" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="resource-card expandable">
+          <div class="resource-header">
+            <div class="resource-icon">🌟</div>
+            <div class="resource-info">
+              <h3 class="resource-name">我的开源项目</h3>
+              <p class="resource-desc">我独立开发与维护的配置和代码库</p>
+            </div>
+            <span class="resource-toggle" data-i18n="expand">展开</span>
+          </div>
+          <div class="resource-content">
+            <ul class="tool-list">
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">GitHub 主页</span>
+                <a href="https://github.com/JiamanJemma" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">video-post-production-kit</span>
+                <a href="https://github.com/JiamanJemma/video-post-production-kit" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">Creator-Playbooks</span>
+                <a href="https://github.com/JiamanJemma/Creator-Playbooks" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">learning-journal</span>
+                <a href="https://github.com/JiamanJemma/learning-journal" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">video-title-generator</span>
+                <a href="https://github.com/JiamanJemma/video-title-generator" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="resource-card expandable">
+          <div class="resource-header">
+            <div class="resource-icon">💻</div>
+            <div class="resource-info">
+              <h3 class="resource-name">推荐开源库</h3>
+              <p class="resource-desc">对创作者有用的宝藏代码</p>
+            </div>
+            <span class="resource-toggle" data-i18n="expand">展开</span>
+          </div>
+          <div class="resource-content">
+            <ul class="tool-list">
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">CC Switch</span>
+                <a href="https://github.com/farion1231/cc-switch" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">allskills</span>
+                <a href="https://github.com/anthropics/courses" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">remotion</span>
+                <a href="https://github.com/remotion-dev/remotion" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">Remotion Agent Skills（AI 写动画必备）</span>
+                <a href="https://github.com/remotion-dev/skills" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">Code Hike（代码动画）</span>
+                <a href="https://github.com/code-hike/codehike" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">RVE 模板库（Remotion 动画模板）</span>
+                <a href="https://github.com/reactvideoeditor/remotion-templates" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">notebooklm-py（终端操作 NotebookLM）</span>
+                <a href="https://github.com/teng-lin/notebooklm-py" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://icon.horse/icon/immersivetranslate.com" alt="沉浸式翻译" loading="lazy">沉浸式翻译</span>
+                <a href="https://immersivetranslate.com/" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="resource-card expandable">
+          <div class="resource-header">
+            <div class="resource-icon">🔗</div>
+            <div class="resource-info">
+              <h3 class="resource-name">网页链接</h3>
+              <p class="resource-desc">实用学习资源</p>
+            </div>
+            <span class="resource-toggle" data-i18n="expand">展开</span>
+          </div>
+          <div class="resource-content">
+            <ul class="tool-list">
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/anthropic" alt="Anthropic" loading="lazy">Anthropic Academy（官方免费课程）</span>
+                <a href="https://anthropic.skilljar.com/" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/github" alt="GitHub" loading="lazy">Anthropic Courses (GitHub)</span>
+                <a href="https://github.com/anthropics/courses" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/anthropic" alt="Anthropic" loading="lazy">Anthropic Learn</span>
+                <a href="https://www.anthropic.com/learn" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://cdn.simpleicons.org/warp/01A4FF" alt="Warp" loading="lazy">Warp</span>
+                <a href="https://www.warp.dev/" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://icon.horse/icon/skills.sh" alt="skills.sh" loading="lazy">skills.sh</span>
+                <a href="https://skills.sh" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://icon.horse/icon/remotion.dev" alt="Remotion" loading="lazy">Remotion + AI 官方文档</span>
+                <a href="https://www.remotion.dev/docs/ai/" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://icon.horse/icon/vercel.com" alt="Vercel" loading="lazy">Vercel（极速部署）</span>
+                <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://icon.horse/icon/pages.cloudflare.com" alt="Cloudflare Pages" loading="lazy">Cloudflare Pages（静态部署）</span>
+                <a href="https://pages.cloudflare.com" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="resource-card expandable">
+          <div class="resource-header">
+            <div class="resource-icon">🧰</div>
+            <div class="resource-info">
+              <h3 class="resource-name">常用工具</h3>
+              <p class="resource-desc">日常高频使用的工具</p>
+            </div>
+            <span class="resource-toggle" data-i18n="expand">展开</span>
+          </div>
+          <div class="resource-content">
+            <ul class="tool-list">
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon tool-favicon-mono" width="16" height="16" src="https://cdn.simpleicons.org/excalidraw" alt="Excalidraw" loading="lazy">Excalidraw</span>
+                <a href="https://excalidraw.com/" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://icon.horse/icon/screen.studio" alt="Screen Studio" loading="lazy">Screen Studio</span>
+                <a href="https://www.screen.studio/" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://cdn.simpleicons.org/obsidian/7C3AED" alt="Obsidian" loading="lazy">Obsidian</span>
+                <a href="https://obsidian.md/" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="resource-card expandable">
+          <div class="resource-header">
+            <div class="resource-icon">💻</div>
+            <div class="resource-info">
+              <h3 class="resource-name">终端运行代码</h3>
+              <p class="resource-desc">常用终端命令速查</p>
+            </div>
+            <span class="resource-toggle" data-i18n="expand">展开</span>
+          </div>
+          <div class="resource-content">
+            <ul class="tool-list tool-list-code">
+              <li class="tool-item">
+                <div class="tool-name-block">
+                  <code class="tool-code">npm update -g @anthropic-ai/claude-code</code>
+                  <span class="tool-note">更新 Claude Code 到最新版</span>
+                </div>
+                <button class="tool-link copy-btn" onclick="copyCode(this)">复制</button>
+              </li>
+              <li class="tool-item">
+                <div class="tool-name-block">
+                  <code class="tool-code">brew install yt-dlp ffmpeg imagemagick</code>
+                  <span class="tool-note">安装视频下载、处理、图片工具</span>
+                </div>
+                <button class="tool-link copy-btn" onclick="copyCode(this)">复制</button>
+              </li>
+              <li class="tool-item">
+                <div class="tool-name-block">
+                  <code class="tool-code">pip install openai-whisper</code>
+                  <span class="tool-note">安装 AI 语音转字幕工具</span>
+                </div>
+                <button class="tool-link copy-btn" onclick="copyCode(this)">复制</button>
+              </li>
+              <li class="tool-item">
+                <div class="tool-name-block">
+                  <code class="tool-code">brew update && brew upgrade</code>
+                  <span class="tool-note">更新所有 Homebrew 软件包</span>
+                </div>
+                <button class="tool-link copy-btn" onclick="copyCode(this)">复制</button>
+              </li>
+              <li class="tool-item">
+                <div class="tool-name-block">
+                  <code class="tool-code">npm install -g gemini-cli</code>
+                  <span class="tool-note">安装 Gemini 命令行工具 (100万Token)</span>
+                </div>
+                <button class="tool-link copy-btn" onclick="copyCode(this)">复制</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+        <div class="resource-card expandable">
+          <div class="resource-header">
+            <div class="resource-icon">🎬</div>
+            <div class="resource-info">
+              <h3 class="resource-name" data-i18n="res_videos">学习视频</h3>
+              <p class="resource-desc" data-i18n="res_videos_desc">我常看的 YouTube 频道推荐</p>
+            </div>
+            <span class="resource-toggle" data-i18n="expand">展开</span>
+          </div>
+          <div class="resource-content">
+            <ul class="tool-list">
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://youtube.com&size=64" alt="YouTube" loading="lazy">Fireship</span>
+                <span class="tool-note">高效代码教程 & 科技新闻，开发者必看</span>
+                <a href="https://youtube.com/@Fireship" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://youtube.com&size=64" alt="YouTube" loading="lazy">Fireship · Remotion 教程</span>
+                <span class="tool-note">This video was made with code. But how?</span>
+                <a href="https://www.youtube.com/watch?v=deg8bOoziaE" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://youtube.com&size=64" alt="YouTube" loading="lazy">Zinho Automates</span>
+                <span class="tool-note">Claude Code + Remotion 实战，AI 自动生成视频动画</span>
+                <a href="https://youtube.com/@ZinhoAutomates" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://youtube.com&size=64" alt="YouTube" loading="lazy">The Diary Of A CEO</span>
+                <span class="tool-note">深度访谈企业家、科学家、思想家</span>
+                <a href="https://youtube.com/@TheDiaryOfACEO" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+              <li class="tool-item">
+                <span class="tool-name"><img class="tool-favicon" width="16" height="16" src="https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://youtube.com&size=64" alt="YouTube" loading="lazy">Jeff Su</span>
+                <span class="tool-note">职场效率 & AI 工具实战技巧</span>
+                <a href="https://youtube.com/@JeffSu" target="_blank" rel="noopener noreferrer" class="tool-link" data-i18n="link">&#8599;</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <p class="resources-note" data-i18n="resources_note">* 更多资源持续更新中，关注视频获取最新分享</p>
+    </div>
+  </section>
+
+  <!-- ========== 社区 ========== -->
+  <section class="section" id="community">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <img src="ip_community.png" alt="佳蔓 IP - 社区" class="section-rabbit" loading="lazy">
+          <h2 class="section-title" data-i18n="community_title">加入社区</h2>
+        </div>
+      </div>
+      <div class="community-content">
+        <p class="community-desc" data-i18n="community_desc">社区功能正在开发中，敬请期待 ✨</p>
+        <!-- <a href="https://discord.gg/z9BfdtVPJK" target="_blank" rel="noopener noreferrer" class="community-btn discord-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+          <span data-i18n="join_discord">加入 Discord 社区</span>
+        </a> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 联系 ========== -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header" style="justify-content: center; flex-direction: column; gap: 10px;">
+        <div class="section-title-wrap">
+          <img src="ip_contact.png" alt="佳蔓 IP - 联系" class="section-rabbit" loading="lazy">
+          <h2 class="section-title" data-i18n="contact_title">联系我</h2>
+        </div>
+        <p class="section-subtitle" data-i18n="contact_subtitle">期待与你交流</p>
+      </div>
+      <div class="contact-grid">
+        <a href="mailto:jiamanjemma@gmail.com" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <span data-i18n="contact_email">邮箱联系</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 全局社交链接栏 ========== -->
+  <div class="global-social-bar">
+    <div class="container">
+      <div class="social-links social-links-centered">
+        <a href="https://www.youtube.com/channel/UCSrk3Zvkt5pP2I04WfQVxsw" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="#FF0000"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          YouTube
+        </a>
+        <a href="https://b23.tv/XIVg9b7" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="#00A1D6"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.659.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373z"/></svg>
+          <span data-i18n="social_bilibili">B站</span>
+        </a>
+        <a href="https://xhslink.com/m/9QNp44sSymy" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="#FE2C55"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span data-i18n="social_xiaohongshu">小红书</span>
+        </a>
+        <button class="social-link" id="channelsQrBtn" title="点击查看二维码">
+          <svg viewBox="0 0 24 24" fill="#07C160"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05a6.127 6.127 0 0 1-.253-1.726c0-3.573 3.27-6.47 7.3-6.47.258 0 .51.013.76.034C16.543 4.97 12.945 2.188 8.691 2.188zm10.809 6.17c-3.484 0-6.3 2.504-6.3 5.593 0 3.09 2.816 5.594 6.3 5.594.652 0 1.28-.086 1.873-.242a.72.72 0 0 1 .596.08l1.266.74a.272.272 0 0 0 .14.046.217.217 0 0 0 .241-.246c0-.06-.024-.119-.04-.178l-.259-.98a.49.49 0 0 1 .177-.554C21.833 17.353 22.9 15.67 22.9 13.95c0-3.09-2.816-5.593-6.3-5.593z"/></svg>
+          <span data-i18n="social_channels">视频号</span>
+        </button>
+        <a href="https://v.douyin.com/OgGq-_UAts8/" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+          <span data-i18n="social_douyin">抖音</span>
+        </a>
+        <a href="https://x.com/JiamanJemma" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          X
+        </a>
+        <a href="https://www.instagram.com/jiamanjemma/" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="url(#ig-grad2)">
+            <defs><linearGradient id="ig-grad2" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#FFDC80"/><stop offset="25%" style="stop-color:#F77737"/><stop offset="50%" style="stop-color:#E1306C"/><stop offset="75%" style="stop-color:#C13584"/><stop offset="100%" style="stop-color:#833AB4"/></linearGradient></defs>
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          Instagram
+        </a>
+        <a href="https://github.com/JiamanJemma" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://jemma747318.substack.com" target="_blank" rel="noopener noreferrer" class="social-link">
+          <svg viewBox="0 0 24 24" fill="#FF6719"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24l9.54-5.56L20.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
+          Newsletter
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 视频号二维码弹窗 ========== -->
+  <div class="qr-modal-overlay" id="channelsQrModal">
+    <div class="qr-modal">
+      <button class="qr-modal-close" id="channelsQrClose">&times;</button>
+      <h3 data-i18n="qr_title">微信扫码关注视频号</h3>
+      <img src="weixin-channels-qr.jpg" alt="视频号二维码" class="qr-image" width="200" height="200" loading="lazy">
+      <p data-i18n="qr_hint">打开微信扫一扫</p>
+    </div>
+  </div>
+
+  <!-- ========== 公众号二维码弹窗 ========== -->
+  <div class="qr-modal-overlay" id="oaQrModal">
+    <div class="qr-modal">
+      <button class="qr-modal-close" id="oaQrClose">&times;</button>
+      <h3>微信扫码关注公众号</h3>
+      <!-- 用户稍后会放入 weixin-oa-qr.jpg 到项目里 -->
+      <img src="weixin-oa-qr.jpg" alt="公众号二维码" class="qr-image" width="200" height="200" loading="lazy">
+      <p>可以截图扫码，或长按复制名称前往微信搜索</p>
+    </div>
+  </div>
+
+  <!-- ========== 紫甲小程序预览弹窗 ========== -->
+  <div class="zijia-modal-overlay" id="zijiaModal">
+    <div class="zijia-modal">
+      <button class="zijia-modal-close" id="zijiaModalClose">&times;</button>
+      <div class="zijia-phone-frame">
+        <div class="zijia-screen">
+          <!-- 模拟小程序首页 -->
+          <div class="zijia-app-home">
+            <div class="zijia-logo-area">
+              <div class="zijia-logo-mask">
+                <img src="zijia-fish-logo.png" alt="紫甲" class="zijia-fish-logo" width="120" height="120" loading="lazy">
+              </div>
+              <span class="zijia-app-title">紫甲</span>
+              <span class="zijia-app-subtitle">倾听内心的回响</span>
+            </div>
+            <div class="zijia-turtle-area">
+              <img src="zijia-turtle-shell.png" alt="龟壳" class="zijia-turtle-shell" width="150" height="150" loading="lazy">
+              <div class="zijia-turtle-shadow"></div>
+            </div>
+            <div class="zijia-daily-tip">今日可摇甲 3 次，深度倾听 1 次</div>
+          </div>
+        </div>
+      </div>
+      <p class="zijia-modal-hint" data-i18n="zijia_preview_hint">小程序首页预览</p>
+    </div>
+  </div>
+
+  </main>
+
+  <!-- ========== Footer ========== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-left">
+        <p data-i18n="footer_copy">&copy; 2026 佳蔓 Jemma. Made with AI &amp; Love</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 脚本（顺序加载） -->
+  <script src="config.js"></script>
+  <script src="i18n.js?v=20260310"></script>
+  <script src="youtube.js"></script>
+  <script src="substack.js?v=20260310"></script>
+  <script src="script.js?v=20260314a"></script>
+</body>
+</html>
