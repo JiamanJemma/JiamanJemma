@@ -341,11 +341,28 @@
           // 兼容 Obsidian 特有的 ![[图片名.png]] 双链格式
           text = text.replace(/!\[\[(.*?)\]\]/g, '![$1]($1)');
           
-          // Add Title wrapper dynamically if starting without an H1
+          // Render markdown
           contentDiv.innerHTML = marked.parse(text);
-          // Set page title to the first H1 if exists
+
+          // === 后处理：美化标题和副标题 ===
           const h1 = contentDiv.querySelector('h1');
-          if(h1) document.title = h1.innerText + " - 佳蔓 Jemma";
+          if (h1) {
+            // 去掉 🔴 emoji 和多余空格
+            h1.innerHTML = h1.innerHTML.replace(/🔴\s*/g, '');
+            document.title = h1.innerText + " - 佳蔓 Jemma";
+          }
+
+          // 把第一个 blockquote（如果是"副标题"）转为优雅引言
+          const firstBq = contentDiv.querySelector('blockquote');
+          if (firstBq) {
+            const bqText = firstBq.textContent;
+            if (bqText.includes('副标题')) {
+              // 提取副标题正文内容（去掉"副标题："标签）
+              firstBq.innerHTML = firstBq.innerHTML.replace(/\s*<strong>副标题<\/strong>[：:]\s*/g, '');
+              // 改为引言副标题样式
+              firstBq.style.cssText = 'border-left:none; background:none; font-style:normal; font-size:1.15rem; color:var(--text-muted); line-height:1.9; padding:0; margin-top:-0.5em; margin-bottom:2.5em; letter-spacing:0.03em;';
+            }
+          }
         })
         .catch(err => {
           contentDiv.innerHTML = `<div style="text-align:center; padding: 100px 0;"><h1 style="border:none;font-size:3rem;margin-bottom:10px;">🚧 404 </h1><p>文章 ${postId} 正在火星探险，暂时无法加载。可能是链接拼错了，或者我还没来得及上传哈！</p></div>`;
