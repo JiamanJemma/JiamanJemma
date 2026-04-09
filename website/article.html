@@ -273,6 +273,10 @@
       renderer.image = function({ href, title, text }) {
         // Fix relative image paths to be relative to articles/ directory
         if (href && !href.startsWith('http') && !href.startsWith('/')) {
+          // 如果没有带 images/ 前缀，自动补齐（适配 Obsidian 的展平特性）
+          if (!href.startsWith('images/')) {
+            href = 'images/' + href;
+          }
           href = 'articles/' + href;
         }
         return `<img src="${href}" alt="${text || ''}" title="${title || ''}" loading="lazy" style="max-width:100%; border-radius:12px; margin:20px 0;">`;
@@ -288,10 +292,22 @@
           return response.text();
         })
         .then(text => {
-          // 剔除用于分发到其他平台（微信/小红书等）的尾部冗余信息和占位符
-          // 因为网站底部已经有了漂亮的原生 HTML 订阅按钮
-          text = text.replace(/---[\s\r\n]*\*\*🐰 关于我 & 更多连接\*\*[\s\S]*$/i, '');
-          
+          // 彻底暴力截断：搜索明确的分发小尾巴标志
+          const tailSymbolInfo = "🐰 关于我";
+          const tailSymbolCdn = "【公众号封面】";
+          let cutIndex = text.length;
+
+          const infoIndex = text.indexOf(tailSymbolInfo);
+          if (infoIndex !== -1) {
+            // 如果找到了，往前找最近的一条 --- 分割线
+            const hrIndex = text.lastIndexOf("---", infoIndex);
+            cutIndex = hrIndex !== -1 ? hrIndex : infoIndex;
+          } else {
+            const cdnIndex = text.indexOf(tailSymbolCdn);
+            if (cdnIndex !== -1) cutIndex = cdnIndex;
+          }
+          text = text.substring(0, cutIndex);
+
           // 兼容 Obsidian 特有的 ![[图片名.png]] 双链格式
           text = text.replace(/!\[\[(.*?)\]\]/g, '![$1]($1)');
           
