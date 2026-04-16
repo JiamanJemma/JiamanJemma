@@ -1,0 +1,404 @@
+/* ================================================================
+   项目详情页样式 — 佳蔓 Jemma
+   共用于 inspiratodo.html / zijia.html
+   亮色/暗色双主题 · 毛玻璃美学
+   ================================================================ */
+
+:root {
+  --bg-primary: #f5f0fa;
+  --bg-secondary: #ece4f5;
+  --bg-card: rgba(255, 255, 255, 0.75);
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border: rgba(0, 0, 0, 0.08);
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --radius: 20px;
+  --radius-sm: 12px;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --clay-shadow:
+    6px 6px 14px rgba(120, 80, 160, 0.12),
+    -4px -4px 10px rgba(255, 255, 255, 0.9),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.6),
+    inset -3px -3px 6px rgba(120, 80, 160, 0.06);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0c0612;
+  --bg-secondary: #1a0e24;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --text-primary: #fdf2f8;
+  --text-secondary: #e9d5ff;
+  --text-muted: #c4b5d0;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #c084fc;
+  --accent-hover: #a855f7;
+  --glass-bg: rgba(12, 6, 18, 0.85);
+  --clay-shadow:
+    6px 6px 12px rgba(0, 0, 0, 0.35),
+    -3px -3px 8px rgba(255, 255, 255, 0.04),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.08),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.25);
+}
+
+@font-face {
+  font-family: 'LemiPixel';
+  src: url('./fonts/LemiPixel.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'LemiPixel', 'Caveat', 'ZCOOL KuaiLe', 'Ma Shan Zheng', cursive;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ---- Layout ---- */
+.project-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---- Nav ---- */
+.project-nav {
+  padding: 24px 0;
+}
+
+.back-link {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 15px;
+  transition: opacity 0.2s;
+}
+
+.back-link:hover {
+  opacity: 0.7;
+}
+
+/* ---- Hero ---- */
+.project-hero {
+  text-align: center;
+  padding: 40px 0 48px;
+}
+
+.project-app-icon {
+  width: 120px;
+  height: 120px;
+  border-radius: 22%;
+  box-shadow: var(--clay-shadow);
+  margin-bottom: 24px;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spinning-logo {
+  animation: spin 10s linear infinite;
+  border-radius: 50% !important;
+}
+
+.project-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--accent), #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.project-tagline {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.project-subtitle {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin: 0 auto 24px;
+}
+
+/* ---- Badges ---- */
+.project-badges {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  backdrop-filter: blur(8px);
+}
+
+.badge-ai {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(236, 72, 153, 0.15));
+  border-color: rgba(99, 102, 241, 0.3);
+  color: var(--accent);
+}
+
+/* ---- Download Button ---- */
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+  transition: all 0.2s ease;
+}
+
+.download-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(99, 102, 241, 0.4);
+}
+
+.download-btn-disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.download-hint {
+  margin-top: 8px;
+}
+
+.download-hint-text {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.download-hint-text strong {
+  color: var(--accent);
+}
+
+/* ---- WeChat Launch Button ---- */
+.wechat-launch-area {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.wechat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, #07c160, #06ad56);
+  box-shadow: 0 4px 16px rgba(7, 193, 96, 0.3);
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.wechat-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(7, 193, 96, 0.4);
+}
+
+.wechat-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.wechat-fallback {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ---- Features ---- */
+.features-section {
+  padding: 40px 0;
+}
+
+.section-heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 520px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.feature-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.feature-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* ---- Feedback Form ---- */
+.feedback-section {
+  padding: 48px 0;
+  border-top: 1px solid var(--border);
+}
+
+.feedback-desc {
+  text-align: center;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  font-size: 15px;
+}
+
+.feedback-form {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.form-row {
+  margin-bottom: 14px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), #8b5cf6);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.form-hint {
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 12px;
+}
+
+.thanks-msg {
+  text-align: center;
+  padding: 40px;
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
+/* ---- Footer ---- */
+.project-footer {
+  padding: 32px 0;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.project-footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.project-footer a:hover {
+  text-decoration: underline;
+}

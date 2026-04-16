@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html><body><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><script>
+  let text = `
+# title
+
+---
+
+**🐰 关于我 & 更多连接**
+`;
+  const tailSymbolInfo = "🐰 关于我";
+  let cutIndex = text.length;
+  const infoIndex = text.indexOf(tailSymbolInfo);
+  if (infoIndex !== -1) {
+    const hrIndex = text.lastIndexOf("---", infoIndex);
+    cutIndex = hrIndex !== -1 ? hrIndex : infoIndex;
+  }
+  text = text.substring(0, cutIndex);
+  document.write(text);
+</script></body></html>

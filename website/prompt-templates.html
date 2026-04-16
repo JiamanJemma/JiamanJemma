@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 提示词模板合集 | 佳蔓Jemma</title>
+<style>
+  :root {
+    --lavender: #c4b5fd;
+    --lavender-light: #f5f3ff;
+    --lavender-dark: #7c3aed;
+    --text: #1e1b4b;
+    --text-secondary: #6b7280;
+    --card-bg: rgba(255,255,255,0.75);
+    --card-border: rgba(196,181,253,0.3);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(135deg, var(--lavender-light) 0%, #faf5ff 50%, #fef3c7 100%);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 24px 16px;
+    line-height: 1.7;
+  }
+  .container { max-width: 760px; margin: 0 auto; }
+  h1 {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 4px;
+    background: linear-gradient(135deg, var(--lavender-dark), #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .subtitle { text-align:center; color:var(--text-secondary); font-size:14px; margin-bottom:6px; }
+  .meta { text-align:center; color:var(--text-secondary); font-size:12px; margin-bottom:28px; }
+  .meta a { color: var(--lavender-dark); text-decoration:none; }
+  h2 {
+    font-size: 19px;
+    margin: 36px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--lavender);
+    color: var(--lavender-dark);
+  }
+  h2 .emoji { margin-right: 6px; }
+  .section-desc { color:var(--text-secondary); font-size:13px; margin-bottom:16px; }
+  .card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 14px;
+    position: relative;
+  }
+  .card h3 { font-size: 15px; margin-bottom: 6px; }
+  .card .card-desc { font-size:12px; color:var(--text-secondary); margin-bottom:10px; }
+  pre {
+    background: #1e1b4b;
+    color: #e0e7ff;
+    border-radius: 10px;
+    padding: 14px 50px 14px 16px;
+    font-size: 13px;
+    line-height: 1.65;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    position: relative;
+  }
+  pre .placeholder { color: #fbbf24; }
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(124,58,237,0.8);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    cursor: pointer;
+  }
+  .copy-btn:hover { background: rgba(124,58,237,1); }
+  .copy-btn.copied { background: #059669; }
+  .tip {
+    background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .tip strong { color: var(--lavender-dark); }
+  .keyword-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .keyword-item {
+    background: white;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .keyword-item:hover { background: var(--lavender-light); }
+  .keyword-item .kw-en { color: var(--lavender-dark); font-weight: 600; }
+  .keyword-item .kw-zh { color: var(--text-secondary); }
+  table { width:100%; border-collapse:collapse; margin:10px 0; font-size:13px; }
+  th { background:var(--lavender-light); padding:8px 10px; text-align:left; font-weight:600; border-radius:6px; }
+  td { padding:6px 10px; border-bottom:1px solid #f3f0ff; }
+  .toc { margin-bottom:28px; }
+  .toc a { color:var(--lavender-dark); text-decoration:none; font-size:14px; display:inline-block; margin:3px 8px 3px 0; padding:4px 12px; background:white; border-radius:8px; border:1px solid var(--card-border); }
+  .toc a:hover { background:var(--lavender-light); }
+  .back-link { display:inline-block; margin-bottom:20px; color:var(--lavender-dark); text-decoration:none; font-size:13px; }
+  .footer { text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--card-border); color:var(--text-secondary); font-size:13px; }
+  .footer a { color:var(--lavender-dark); text-decoration:none; }
+</style>
+</head>
+<body>
+<div class="container">
+<a href="/" class="back-link">&larr; 返回首页</a>
+<h1>AI 提示词完整手册</h1>
+<p class="subtitle">填空即用 &middot; 覆盖图片/视频/音乐/写作/编程</p>
+<p class="meta">整理：佳蔓Jemma &middot; <a href="/">jiamanjemma.com</a><br>替换 <span style="color:#fbbf24;font-weight:600">【黄色部分】</span> 为你自己的内容，直接粘贴给 AI 使用</p>
+
+<div class="toc">
+  <a href="#framework">通用框架</a>
+  <a href="#image">AI 图片</a>
+  <a href="#video">AI 视频</a>
+  <a href="#music">AI 音乐</a>
+  <a href="#writing">AI 写作</a>
+  <a href="#coding">AI 编程</a>
+  <a href="#tips">进阶技巧</a>
+</div>
+
+<!-- ==================== 通用框架 ==================== -->
+<h2 id="framework"><span class="emoji">🧠</span>通用 Prompt 框架</h2>
+<p class="section-desc">不管用什么 AI 工具，掌握这个框架就够了。</p>
+
+<div class="card">
+  <h3>CRAFT 万能框架</h3>
+  <div class="card-desc">适用于所有 AI 对话场景，5 个维度定义一个好 prompt</div>
+  <pre id="craft"><b>Context（背景）：</b>我是【你的身份】，正在做【什么事】
+<b>Role（角色）：</b>你是一位【AI扮演的角色，如：资深文案/10年产品经理/翻译专家】
+<b>Action（任务）：</b>请帮我【具体任务，如：写一篇800字文章/分析这份数据/翻译这段话】
+<b>Format（格式）：</b>输出格式为【表格/分点/长文/对话/代码】，字数约【xxx字】
+<b>Tone（语气）：</b>语气风格为【专业/轻松/口语化/正式/幽默】</pre>
+  <button class="copy-btn" onclick="copyBlock('craft',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>极简三句公式（懒人版）</h3>
+  <div class="card-desc">不想写那么多？三句话也能出好结果</div>
+  <pre id="lazy">你是【角色】。
+请帮我【任务】。
+要求：【1-3个关键要求】</pre>
+  <button class="copy-btn" onclick="copyBlock('lazy',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>追问优化公式</h3>
+  <div class="card-desc">第一次结果不满意？用这些追问</div>
+  <pre id="followup">更简洁一点，控制在【字数】以内
+换个角度，从【新角度】出发
+给我 3 个不同版本对比
+保持意思不变，语气改成【目标语气】
+这里不太对：【指出问题】，请修改这一段
+用更生活化的例子替换</pre>
+  <button class="copy-btn" onclick="copyBlock('followup',this)">复制</button>
+</div>
+
+<!-- ==================== AI 图片 ==================== -->
+<h2 id="image"><span class="emoji">🎨</span>AI 图片生成</h2>
+<p class="section-desc">适用于 Midjourney / DALL-E / 即梦 / Stable Diffusion / Nano Banana 等</p>
+
+<div class="card">
+  <h3>通用图片提示词结构</h3>
+  <div class="card-desc">所有 AI 图片工具都通用的 6 要素公式</div>
+  <pre id="img_universal"><b>主体：</b>【描述画面主体，如：一个年轻女生坐在咖啡馆里看书】
+<b>风格：</b>【art style，如：watercolor / oil painting / 3D claymation / anime / photorealistic】
+<b>构图：</b>【如：close-up / full body / aerial view / side profile / centered】
+<b>光影：</b>【如：soft natural light / golden hour / studio lighting / neon glow / backlit】
+<b>色调：</b>【如：warm tones / pastel colors / moody dark / vibrant / muted earth tones】
+<b>细节：</b>【如：4K, highly detailed, bokeh background, cinematic, sharp focus】</pre>
+  <button class="copy-btn" onclick="copyBlock('img_universal',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>人像写真</h3>
+  <pre id="img_portrait">A 【年龄/性别，如：young Asian woman】 with 【外貌特征，如：long dark hair, wearing a white linen shirt】, 【动作/表情，如：smiling softly while looking at camera】, in a 【场景，如：bright minimalist cafe with large windows】. 【光影，如：Soft natural window light, golden hour warmth】. Shot on 【相机，如：Sony A7III, 85mm f/1.4】. 【色调，如：Warm tones, film grain, lifestyle photography】. 4K, sharp focus, shallow depth of field.</pre>
+  <button class="copy-btn" onclick="copyBlock('img_portrait',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>产品展示图</h3>
+  <pre id="img_product">A 【产品，如：sleek wireless headphone in matte black】 placed on a 【表面，如：marble surface with soft fabric draping】. 【背景，如：Clean gradient background, light lavender to white】. 【光影，如：Studio lighting with soft shadows, rim light highlighting edges】. 【风格，如：Commercial product photography, minimalist, premium feel】. 4K, high detail, no text.</pre>
+  <button class="copy-btn" onclick="copyBlock('img_product',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>扁平插画 / icon</h3>
+  <pre id="img_flat">A flat illustration of 【主题，如：a person working from home with a cat on their lap】. 【风格，如：Modern flat design, geometric shapes, clean lines】. Color palette: 【颜色，如：soft purple, coral pink, mint green, cream white】. 【构图，如：Centered composition, white background, no shadows】. SVG style, minimal detail, suitable for web/app UI.</pre>
+  <button class="copy-btn" onclick="copyBlock('img_flat',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>3D 泥塑风（Claymation）</h3>
+  <pre id="img_clay">A cute claymation-style 3D illustration of 【主体，如：a young woman with long hair sitting at a desk with a laptop】. 【场景，如：Cozy home office with plants and books】. 【色调，如：Soft pastel colors — lavender, cream, mint green】. Rounded smooth shapes, subtle fingerprint texture on clay surface. 【背景，如：Pure white background with soft shadows】. Warm studio lighting from upper left. 2K resolution, highly detailed miniature feel.</pre>
+  <button class="copy-btn" onclick="copyBlock('img_clay',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>风景/场景氛围图</h3>
+  <pre id="img_scene">A 【场景类型，如：serene Japanese garden in autumn】 with 【关键元素，如：red maple trees, stone path, small wooden bridge over a koi pond】. 【时间/天气，如：Early morning, light mist, soft sunlight filtering through trees】. 【风格，如：Photorealistic / Studio Ghibli anime style / watercolor painting】. 【构图，如：Wide angle, rule of thirds, leading lines】. 【氛围，如：Peaceful, meditative, warm autumn palette】. 4K, cinematic composition.</pre>
+  <button class="copy-btn" onclick="copyBlock('img_scene',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>图片风格关键词速查</h3>
+  <div class="keyword-grid">
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">photorealistic</span><br><span class="kw-zh">照片级真实</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">watercolor</span><br><span class="kw-zh">水彩</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">oil painting</span><br><span class="kw-zh">油画</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">3D claymation</span><br><span class="kw-zh">3D 泥塑</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">anime style</span><br><span class="kw-zh">动漫风</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">flat illustration</span><br><span class="kw-zh">扁平插画</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">pencil sketch</span><br><span class="kw-zh">铅笔素描</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">isometric</span><br><span class="kw-zh">等距视角</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">pixel art</span><br><span class="kw-zh">像素风</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">cyberpunk</span><br><span class="kw-zh">赛博朋克</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">minimalist</span><br><span class="kw-zh">极简</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">cinematic</span><br><span class="kw-zh">电影感</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">bokeh</span><br><span class="kw-zh">虚化背景</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">golden hour</span><br><span class="kw-zh">黄金时刻光</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">soft pastel</span><br><span class="kw-zh">柔和粉彩</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">dramatic lighting</span><br><span class="kw-zh">戏剧光影</span></div>
+  </div>
+</div>
+
+<!-- ==================== AI 视频 ==================== -->
+<h2 id="video"><span class="emoji">🎬</span>AI 视频生成</h2>
+<p class="section-desc">适用于 Runway / Pika / Kling / Sora / 即梦视频 等</p>
+
+<div class="card">
+  <h3>通用视频提示词结构</h3>
+  <pre id="vid_universal"><b>画面主体：</b>【谁/什么在做什么，如：A woman walking through a sunlit forest path】
+<b>运镜：</b>【如：Slow dolly forward / tracking shot / static wide shot / drone ascending】
+<b>画面变化：</b>【如：Wind blowing through hair, leaves falling, light shifting through trees】
+<b>氛围/情绪：</b>【如：Peaceful, dreamy, nostalgic, cinematic】
+<b>风格：</b>【如：Cinematic 4K / anime / vintage film / documentary】
+<b>时长：</b>【如：4 seconds, smooth motion】</pre>
+  <button class="copy-btn" onclick="copyBlock('vid_universal',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>产品展示视频</h3>
+  <pre id="vid_product">A 【产品，如：minimalist white ceramic mug】 on a 【表面，如：wooden table】. Camera slowly orbits 360 degrees around the product. 【光影，如：Soft studio lighting with gentle shadows】. 【背景，如：Clean gradient background, slightly out of focus plants in background】. Smooth motion, commercial quality, 4K, 4 seconds.</pre>
+  <button class="copy-btn" onclick="copyBlock('vid_product',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>氛围/B-roll 短片</h3>
+  <pre id="vid_broll">【场景，如：Coffee being poured into a ceramic cup in slow motion】. 【细节，如：Steam rising, warm light catching the liquid surface】. 【运镜，如：Close-up, slight push-in, shallow depth of field】. 【氛围，如：Cozy, warm, morning routine feeling】. Cinematic color grading, 24fps film look, 4 seconds.</pre>
+  <button class="copy-btn" onclick="copyBlock('vid_broll',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>运镜关键词速查</h3>
+  <table>
+    <tr><th>运镜</th><th>英文</th><th>效果</th></tr>
+    <tr><td>推进</td><td>dolly in / push in</td><td>聚焦主体，制造紧张感</td></tr>
+    <tr><td>拉远</td><td>dolly out / pull back</td><td>揭示全景，结尾常用</td></tr>
+    <tr><td>环绕</td><td>orbit / revolve around</td><td>360度展示，产品常用</td></tr>
+    <tr><td>跟踪</td><td>tracking shot / follow</td><td>跟随主体移动</td></tr>
+    <tr><td>升起</td><td>crane up / tilt up</td><td>从低到高，制造宏大感</td></tr>
+    <tr><td>俯冲</td><td>drone descending</td><td>从高空俯冲到地面</td></tr>
+    <tr><td>平移</td><td>pan left/right</td><td>水平扫视场景</td></tr>
+    <tr><td>静止</td><td>static / locked-off</td><td>固定机位，稳定感</td></tr>
+    <tr><td>手持</td><td>handheld / shaky cam</td><td>真实感，纪录片风</td></tr>
+    <tr><td>慢动作</td><td>slow motion / 120fps</td><td>放大细节和情绪</td></tr>
+  </table>
+</div>
+
+<!-- ==================== AI 音乐 ==================== -->
+<h2 id="music"><span class="emoji">🎵</span>AI 音乐生成</h2>
+<p class="section-desc">适用于 Suno / Udio 等 AI 音乐工具</p>
+
+<div class="card">
+  <h3>Suno 歌曲生成</h3>
+  <div class="card-desc">Style 栏填风格标签，Lyrics 栏填歌词</div>
+  <pre id="music_suno"><b>Style（风格标签）：</b>
+【主风格，如：pop / lo-fi / jazz / rock / electronic / R&B / folk】
+【情绪，如：dreamy / upbeat / melancholic / chill / energetic】
+【乐器，如：acoustic guitar / piano / synth / strings / drums】
+【人声，如：female vocal / male vocal / soft whisper / powerful belt】
+
+<b>示例：</b>dreamy lo-fi, female vocal, soft piano, chill, bedroom pop
+
+<b>Lyrics（歌词）：</b>
+[Verse 1]
+【第一段歌词】
+
+[Chorus]
+【副歌歌词】
+
+[Verse 2]
+【第二段歌词】
+
+[Chorus]
+【副歌重复】
+
+[Outro]
+【结尾，如：humming / fade out / instrumental】</pre>
+  <button class="copy-btn" onclick="copyBlock('music_suno',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>BGM / 纯音乐</h3>
+  <pre id="music_bgm"><b>Style：</b>【风格，如：ambient, cinematic, no vocals, soft piano, gentle strings】
+<b>用途：</b>【如：YouTube视频背景音乐 / 播客片头 / vlog配乐】
+<b>情绪：</b>【如：hopeful, warm, inspiring, calm, mysterious】
+<b>节奏：</b>【如：slow tempo 70bpm / medium 110bpm / fast 140bpm】
+
+示例：cinematic ambient, no vocals, soft piano and strings, warm hopeful feeling, slow tempo, 2 minutes</pre>
+  <button class="copy-btn" onclick="copyBlock('music_bgm',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>音乐风格关键词速查</h3>
+  <div class="keyword-grid">
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">lo-fi hip hop</span><br><span class="kw-zh">低保真嘻哈</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">cinematic epic</span><br><span class="kw-zh">史诗电影感</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">acoustic folk</span><br><span class="kw-zh">民谣吉他</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">jazz piano</span><br><span class="kw-zh">爵士钢琴</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">synthwave</span><br><span class="kw-zh">合成器浪潮</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">ambient drone</span><br><span class="kw-zh">氛围音</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">bedroom pop</span><br><span class="kw-zh">卧室流行</span></div>
+    <div class="keyword-item" onclick="copyKw(this)"><span class="kw-en">orchestral</span><br><span class="kw-zh">管弦乐</span></div>
+  </div>
+</div>
+
+<!-- ==================== AI 写作 ==================== -->
+<h2 id="writing"><span class="emoji">✍️</span>AI 写作</h2>
+<p class="section-desc">各种写作场景的填空模板</p>
+
+<div class="card">
+  <h3>长文 / 公众号文章</h3>
+  <pre id="wr_article">你是一位资深内容创作者。请帮我写一篇关于【主题】的文章。
+
+目标读者：【受众，如：25-35岁想用AI提升效率的职场人】
+文章结构：问题引入 → 核心观点（3个） → 总结
+字数：【如：1500-2000字】
+风格：【如：口语化、短句为主、有个人经历穿插】
+参考语气：【如：像跟朋友聊天，不要教程腔】
+
+要求：
+- 开头用一个具体场景切入，不要用"大家好"
+- 每个观点配一个具体例子
+- 结尾不要总结和呼吁，自然收束</pre>
+  <button class="copy-btn" onclick="copyBlock('wr_article',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>小红书文案</h3>
+  <pre id="wr_xhs">帮我写一条小红书笔记：
+主题：【主题】
+类型：【教程/种草/经验分享/好物推荐】
+目标人群：【如：大学生/宝妈/职场新人】
+
+要求：
+- 标题 ≤20字，带 1-2 个 emoji，不用感叹号
+- 正文 300-500字，口语化，短句分段
+- 开头直接说结果或痛点，不要铺垫
+- 结尾不要总结，可以用一句感悟收
+- 加 5-8 个相关标签
+- 前 10 个字必须包含核心关键词（影响搜索权重）</pre>
+  <button class="copy-btn" onclick="copyBlock('wr_xhs',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>视频脚本 / 口播稿</h3>
+  <pre id="wr_script">帮我写一个【时长，如：3分钟】的口播脚本：
+主题：【主题】
+平台：【如：抖音/B站/YouTube】
+风格：【如：轻松聊天 / 干货教程 / 个人故事】
+
+结构：
+1. Hook（前 5 秒）：用【悬念/痛点/反认知】开头
+2. 正文：【2-3个要点】
+3. 结尾：引导【关注/评论/收藏】
+
+要求：
+- 口语化，像跟朋友聊天
+- 每句话不超过 20 字
+- 标注哪里需要录屏/画面切换</pre>
+  <button class="copy-btn" onclick="copyBlock('wr_script',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>起标题（多平台）</h3>
+  <pre id="wr_titles">我的内容主题是：【主题】
+目标受众：【受众】
+
+请为以下平台各生成 3 个不同风格的标题：
+
+抖音（≤30字）：好奇型 / 共鸣型 / 干货型
+小红书（≤20字）：带emoji / 前10字含核心关键词
+B站（≤25字）：疑问句 / 数字对比 / 深度向
+YouTube（≤60字）：SEO关键词前置 / 具体承诺
+公众号（≤30字）：朋友圈转发友好 / 正式语气
+
+每个标题后标注字数。</pre>
+  <button class="copy-btn" onclick="copyBlock('wr_titles',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>翻译（自然风格）</h3>
+  <pre id="wr_translate">请翻译以下内容为【目标语言】。
+
+要求：
+- 自然流畅，像母语者写的，不要翻译腔
+- 保持原文的语气和情绪
+- 文化差异处做本地化处理（如成语、梗）
+- 专有名词保留原文，括号注释
+
+【粘贴内容】</pre>
+  <button class="copy-btn" onclick="copyBlock('wr_translate',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>邮件 / 商务沟通</h3>
+  <pre id="wr_email">帮我写一封邮件：
+场景：【如：跟合作方谈合作/给老板汇报进展/回复客户投诉】
+收件人：【对方身份】
+我的诉求：【我想要达到什么目的】
+关键信息：【必须提到的内容】
+语气：【专业友好 / 简洁直接 / 礼貌委婉】
+字数：【如：200字以内】</pre>
+  <button class="copy-btn" onclick="copyBlock('wr_email',this)">复制</button>
+</div>
+
+<!-- ==================== AI 编程 ==================== -->
+<h2 id="coding"><span class="emoji">💻</span>AI 编程</h2>
+<p class="section-desc">适用于 Claude Code / Cursor / ChatGPT / Copilot 等</p>
+
+<div class="card">
+  <h3>从零开始做一个项目</h3>
+  <pre id="code_project">我想做一个【项目描述，如：个人记账 App / 博客网站 / Chrome 插件】。
+
+技术要求：
+- 语言/框架：【如：React + TypeScript / Swift / Python】
+- 平台：【如：网页 / iOS / 命令行工具】
+- 核心功能：
+  1. 【功能1】
+  2. 【功能2】
+  3. 【功能3】
+
+我的水平：【如：完全零基础 / 会写简单代码 / 有经验】
+
+请先给我一个项目结构和实现计划，然后一步步带我做。</pre>
+  <button class="copy-btn" onclick="copyBlock('code_project',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>修 Bug / 报错求助</h3>
+  <pre id="code_debug">我遇到一个报错，请帮我分析原因并修复：
+
+报错信息：
+【粘贴完整报错信息】
+
+相关代码：
+【粘贴出问题的代码】
+
+我做了什么操作导致的：【如：安装了新依赖后 / 改了某个函数后】
+运行环境：【如：macOS / Node 18 / Python 3.11】</pre>
+  <button class="copy-btn" onclick="copyBlock('code_debug',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>解释代码</h3>
+  <pre id="code_explain">请用通俗易懂的语言解释以下代码：
+- 逐行加注释
+- 用生活中的比喻解释复杂的概念
+- 最后用一段话总结这段代码在做什么
+
+【粘贴代码】</pre>
+  <button class="copy-btn" onclick="copyBlock('code_explain',this)">复制</button>
+</div>
+
+<div class="card">
+  <h3>写一个具体功能</h3>
+  <pre id="code_func">请帮我用【语言，如：Python / JavaScript / Swift】写一个【功能描述】。
+
+输入：【什么数据/参数】
+输出：【期望的结果】
+要求：
+- 【如：要有错误处理 / 要有注释 / 要兼容 xxx】
+- 给出使用示例</pre>
+  <button class="copy-btn" onclick="copyBlock('code_func',this)">复制</button>
+</div>
+
+<!-- ==================== 进阶技巧 ==================== -->
+<h2 id="tips"><span class="emoji">🚀</span>进阶技巧</h2>
+
+<div class="tip"><strong>1. 越具体越好</strong> &mdash; "帮我写文案"不如"帮我写一条 300 字的小红书文案，主题是居家办公好物，目标受众是 25-30 岁女性"</div>
+<div class="tip"><strong>2. 给 AI 一个角色</strong> &mdash; "你是一位有 10 年经验的 XX 专家"能让回答质量提升一个档次</div>
+<div class="tip"><strong>3. 给示例（Few-shot）</strong> &mdash; "参考这个风格写：【粘贴一段示例】"效果远好于纯描述</div>
+<div class="tip"><strong>4. 分步骤来</strong> &mdash; 复杂任务拆成小步，一步步给 AI 做，比一次全丢更好</div>
+<div class="tip"><strong>5. 不满意就追问</strong> &mdash; 说"再简洁一点"、"换个角度"、"这里不对，请修改"，AI 会越改越好</div>
+<div class="tip"><strong>6. 让 AI 反思</strong> &mdash; "请检查你的回答，有没有可以改进的地方"能让 AI 自我优化</div>
+<div class="tip"><strong>7. 限制格式</strong> &mdash; 明确说"用表格/分点/JSON"，避免 AI 给你写一大段废话</div>
+<div class="tip"><strong>8. 图片提示词用英文</strong> &mdash; AI 图片工具对英文的理解更精准，中文可以先翻译再用</div>
+
+<div class="footer">
+  <p>整理：佳蔓Jemma &middot; <a href="/">jiamanjemma.com</a></p>
+  <p>持续更新中 &middot; 关注佳蔓Jemma 获取最新 AI 教程</p>
+</div>
+</div>
+
+<script>
+function copyBlock(id, btn) {
+  const el = document.getElementById(id);
+  const text = el.textContent || el.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '已复制';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '复制'; btn.classList.remove('copied'); }, 1500);
+  });
+}
+function copyKw(el) {
+  const kw = el.querySelector('.kw-en').textContent;
+  navigator.clipboard.writeText(kw).then(() => {
+    const orig = el.querySelector('.kw-zh').textContent;
+    el.querySelector('.kw-zh').textContent = '已复制!';
+    setTimeout(() => el.querySelector('.kw-zh').textContent = orig, 1000);
+  });
+}
+</script>
+</body>
+</html>

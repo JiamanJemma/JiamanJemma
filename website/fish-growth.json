@@ -1,0 +1,13 @@
+{
+  "lastScan": "2026-03-16T03:24:56Z",
+  "diaryCount": 11,
+  "fish": {
+    "youtube": { "feeds": 128, "growth": 384 },
+    "inspiratodo": { "feeds": 45, "growth": 135 },
+    "zijia": { "feeds": 16, "growth": 48 },
+    "prompts": { "feeds": 36, "growth": 108 },
+    "website": { "feeds": 34, "growth": 102 },
+    "articles": { "feeds": 81, "growth": 243 },
+    "podcast": { "feeds": 14, "growth": 42 }
+  }
+}

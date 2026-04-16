@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐟 佳蔓的鱼缸小屋 | Jemma's Fish House</title>
+  <meta name="description" content="佳蔓的鱼缸小屋 — 养鱼、喂食、看它们在房间穿梭长大！">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      overflow: hidden; width: 100vw; height: 100vh;
+      font-family: 'Noto Sans SC', sans-serif;
+      background: radial-gradient(ellipse at 50% 30%, #f3eeff 0%, #e8dff8 50%, #ddd6f0 100%);
+      display: flex; align-items: center; justify-content: center;
+      user-select: none;
+    }
+
+    /* ===== House ===== */
+    .house {
+      position: relative;
+      width: min(72vh, 80vw);
+      height: min(90vh, 100vw);
+      max-width: 620px;
+      max-height: 780px;
+    }
+    .house-bg {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      position: absolute; top: 0; left: 0;
+      z-index: 1; pointer-events: none;
+    }
+
+    /* Room zones */
+    .room-zones {
+      position: absolute;
+      top: 15%; left: 9%; width: 82%; height: 74%;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 3%;
+    }
+    .room-zone {
+      position: relative; border-radius: 6px; cursor: pointer;
+      transition: background 0.3s;
+    }
+    .room-zone:hover { background: rgba(255,255,255,0.07); }
+    .room-zone.feed-mode { cursor: crosshair; }
+    .room-zone.feed-mode:hover { background: rgba(255,220,80,0.08); }
+
+    .room-label {
+      position: absolute; top: 4px; left: 50%; transform: translateX(-50%);
+      padding: 2px 10px;
+      background: rgba(255,255,255,0.88);
+      color: #5b21b6; border-radius: 20px;
+      font-size: 10px; font-weight: 600;
+      opacity: 0; transition: opacity 0.25s; pointer-events: none;
+      white-space: nowrap; z-index: 30;
+      box-shadow: 0 2px 8px rgba(100,70,150,0.12),
+                  inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .room-zone:hover .room-label { opacity: 1; }
+
+    /* ===== Fish ===== */
+    .fish {
+      position: absolute; z-index: 10; cursor: pointer;
+      /* smooth glide */
+      transition: left 0.8s cubic-bezier(0.45,0,0.55,1),
+                  top  0.8s cubic-bezier(0.45,0,0.55,1);
+      will-change: left, top, transform;
+    }
+    .fish-body {
+      width: 100%; height: 100%;
+      animation: fish-float 4s infinite ease-in-out;
+      transform-origin: center;
+    }
+    .fish img {
+      width: 100%; height: 100%; object-fit: contain; pointer-events: none;
+      filter:
+        drop-shadow(0 12px 10px rgba(80,40,140,0.22))
+        drop-shadow(0 4px 4px rgba(80,40,140,0.12));
+      transition: filter 0.35s;
+    }
+    .fish:hover img {
+      filter:
+        drop-shadow(0 0 18px rgba(255,200,80,0.55))
+        drop-shadow(0 12px 10px rgba(80,40,140,0.22))
+        brightness(1.08);
+    }
+    .fish-eating img {
+      filter:
+        drop-shadow(0 0 22px rgba(255,200,50,0.75))
+        brightness(1.18) !important;
+    }
+
+    /* Gentle float — no rotation, no scale distortion */
+    @keyframes fish-float {
+      0%,100% { transform: translateY(0px); }
+      50%      { transform: translateY(-4px); }
+    }
+
+    /* Fish flips only horizontally based on direction */
+    .fish[data-dir="-1"] .fish-body { transform: scaleX(-1); }
+
+    /* Tooltip */
+    .fish-tooltip {
+      position: absolute; bottom: calc(100% + 10px); left: 50%;
+      transform: translateX(-50%) translateY(6px);
+      background: rgba(255,255,255,0.96); color: #4a3670;
+      padding: 9px 13px; border-radius: 14px;
+      white-space: nowrap; opacity: 0; pointer-events: none;
+      transition: all 0.28s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 4px 20px rgba(100,70,150,0.18),
+                  inset 0 1px 0 rgba(255,255,255,0.9);
+      z-index: 100;
+    }
+    .fish-tooltip::after {
+      content:''; position:absolute; top:100%; left:50%;
+      transform:translateX(-50%); border:5px solid transparent;
+      border-top-color: rgba(255,255,255,0.96);
+    }
+    .fish:hover .fish-tooltip { opacity:1; transform:translateX(-50%) translateY(0); }
+    .fish-tip-name { font-family:'ZCOOL KuaiLe',cursive; font-size:14px; display:block; }
+    .fish-tip-desc { font-size:11px; color:#7a63ac; display:block; margin-top:1px; }
+    .stat-bar { display:flex; align-items:center; gap:4px; margin-top:4px; font-size:10px; }
+    .stat-bar-track { width:55px; height:5px; background:rgba(0,0,0,0.07); border-radius:3px; overflow:hidden; }
+    .stat-bar-fill { height:100%; border-radius:3px; transition:width 0.5s; }
+    .stat-hunger .stat-bar-fill { background:linear-gradient(90deg,#fb923c,#f97316); }
+    .stat-happy  .stat-bar-fill { background:linear-gradient(90deg,#a78bfa,#7c3aed); }
+    .stat-level { font-family:'ZCOOL KuaiLe',cursive; font-size:11px; color:#d97706; }
+
+    /* Speech bubble */
+    .fish-speech {
+      position:absolute; top:-30px; left:50%; transform:translateX(-50%);
+      background:white; color:#5b21b6; padding:4px 10px; border-radius:12px;
+      font-size:12px; white-space:nowrap; z-index:50;
+      box-shadow:0 3px 12px rgba(0,0,0,0.1),
+                 inset 0 1px 0 rgba(255,255,255,0.8);
+      animation:pop 0.3s cubic-bezier(0.34,1.56,0.64,1); pointer-events:none;
+    }
+    .fish-speech::after {
+      content:''; position:absolute; top:100%; left:50%;
+      transform:translateX(-50%); border:4px solid transparent;
+      border-top-color:white;
+    }
+    @keyframes pop {
+      from { transform:translateX(-50%) scale(0.4); opacity:0; }
+      to   { transform:translateX(-50%) scale(1);   opacity:1; }
+    }
+
+    /* ===== Food particles ===== */
+    .food-particle {
+      position:absolute; border-radius:50%; z-index:8;
+      pointer-events:none;
+      box-shadow:0 2px 5px rgba(0,0,0,0.15);
+    }
+
+    /* ===== Clay UI ===== */
+    /* Back button */
+    .back-btn {
+      position:fixed; top:14px; left:14px; z-index:50;
+      display:flex; align-items:center; gap:6px; padding:8px 16px;
+      background:linear-gradient(145deg,#fefefe,#ede9fe);
+      border:none; border-radius:22px; cursor:pointer; text-decoration:none;
+      color:#5b21b6; font-size:13px; font-weight:500;
+      box-shadow:3px 3px 10px rgba(100,70,150,0.18),
+                 -2px -2px 6px rgba(255,255,255,0.85),
+                 inset 1px 1px 2px rgba(255,255,255,0.7);
+      transition:all 0.2s;
+    }
+    .back-btn:hover { transform:translateY(-1px); box-shadow:4px 4px 14px rgba(100,70,150,0.22),-2px -2px 8px rgba(255,255,255,0.9),inset 1px 1px 2px rgba(255,255,255,0.7); }
+    .back-btn svg { width:14px; height:14px; }
+
+    /* Title */
+    .title-bar {
+      position:fixed; top:14px; left:50%; transform:translateX(-50%);
+      z-index:50; text-align:center;
+      padding:6px 20px;
+      background:linear-gradient(145deg,#fefefe,#f3eeff);
+      border-radius:22px;
+      box-shadow:3px 3px 10px rgba(100,70,150,0.15),
+                 -2px -2px 6px rgba(255,255,255,0.85),
+                 inset 1px 1px 2px rgba(255,255,255,0.7);
+    }
+    .title-bar h1 { font-family:'ZCOOL KuaiLe',cursive; font-size:clamp(14px,2.5vw,20px); color:#5b21b6; line-height:1.2; }
+    .title-bar p  { font-size:10px; color:#9b8bc0; }
+
+    /* Coins */
+    .coins-display {
+      position:fixed; top:14px; right:14px; z-index:50;
+      padding:8px 16px;
+      background:linear-gradient(145deg,#fefefe,#fef3c7);
+      border-radius:22px;
+      font-size:14px; font-weight:700; color:#d97706;
+      font-family:'ZCOOL KuaiLe',cursive;
+      box-shadow:3px 3px 10px rgba(200,150,50,0.18),
+                 -2px -2px 6px rgba(255,255,255,0.85),
+                 inset 1px 1px 2px rgba(255,255,255,0.7);
+    }
+
+    /* Food menu */
+    .food-menu {
+      position:fixed; bottom:24px; right:20px; z-index:50;
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .food-btn {
+      width:52px; height:52px; border-radius:50%; border:none; cursor:pointer;
+      background:linear-gradient(145deg,#fefefe,#ede9fe);
+      box-shadow:3px 3px 10px rgba(100,70,150,0.18),
+                 -2px -2px 6px rgba(255,255,255,0.85),
+                 inset 1px 1px 3px rgba(255,255,255,0.65);
+      font-size:22px; display:flex; align-items:center; justify-content:center;
+      transition:all 0.2s; position:relative;
+    }
+    .food-btn:hover { transform:scale(1.1) translateY(-1px); box-shadow:4px 4px 14px rgba(100,70,150,0.25),-2px -2px 8px rgba(255,255,255,0.9),inset 1px 1px 3px rgba(255,255,255,0.65); }
+    .food-btn:active { transform:scale(0.95); }
+    .food-btn.selected {
+      background:linear-gradient(145deg,#c4b5fd,#a78bfa);
+      box-shadow:0 0 0 3px rgba(167,139,250,0.35),
+                 2px 2px 8px rgba(100,70,150,0.3),
+                 inset 1px 1px 3px rgba(255,255,255,0.4);
+    }
+    .food-price {
+      position:absolute; bottom:-2px; right:-2px;
+      background:linear-gradient(145deg,#fbbf24,#f59e0b);
+      color:white; font-size:9px; font-weight:700;
+      padding:1px 5px; border-radius:8px;
+      box-shadow:1px 1px 4px rgba(200,130,0,0.3);
+    }
+
+    /* Info bar */
+    .info-bar {
+      position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+      z-index:50; padding:8px 20px;
+      background:linear-gradient(145deg,#fefefe,#f3eeff);
+      border-radius:22px; color:#6b4fa0; font-size:12px;
+      box-shadow:3px 3px 10px rgba(100,70,150,0.15),
+                 -2px -2px 6px rgba(255,255,255,0.85),
+                 inset 1px 1px 2px rgba(255,255,255,0.7);
+      white-space:nowrap;
+    }
+
+    @media (max-width:768px) {
+      .house { width:95vw; max-width:none; }
+      .back-btn { top:8px; left:8px; font-size:11px; padding:6px 12px; }
+      .title-bar { top:8px; padding:5px 14px; }
+      .title-bar h1 { font-size:13px; }
+      .coins-display { top:8px; right:8px; font-size:12px; padding:6px 12px; }
+      .food-menu { bottom:14px; right:12px; gap:7px; }
+      .food-btn { width:44px; height:44px; font-size:18px; }
+      .info-bar { bottom:14px; font-size:11px; padding:6px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html" class="back-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    返回
+  </a>
+  <div class="title-bar">
+    <h1>🐟 佳蔓的鱼缸小屋</h1>
+    <p>喂小鱼 · 看它们长大</p>
+  </div>
+  <div class="coins-display" id="coins">🪙 0</div>
+
+  <div class="house" id="house">
+    <img src="fishhouse-bg.png" alt="鱼缸小屋" class="house-bg">
+    <div class="room-zones" id="roomZones">
+      <div class="room-zone" data-room="studio">   <span class="room-label">🎨 画室</span></div>
+      <div class="room-zone" data-room="office">   <span class="room-label">💻 工作室</span></div>
+      <div class="room-zone" data-room="living">   <span class="room-label">🛋️ 客厅</span></div>
+      <div class="room-zone" data-room="bathroom"> <span class="room-label">🛁 浴室</span></div>
+      <div class="room-zone" data-room="garden">   <span class="room-label">🌸 花园</span></div>
+      <div class="room-zone" data-room="divination"><span class="room-label">🔮 占卜室</span></div>
+    </div>
+  </div>
+
+  <div class="food-menu">
+    <button class="food-btn" data-food="bread"  title="面包屑">🍞<span class="food-price">免费</span></button>
+    <button class="food-btn" data-food="shrimp" title="虾片">🦐<span class="food-price">5</span></button>
+    <button class="food-btn" data-food="worm"   title="红虫">🪱<span class="food-price">10</span></button>
+    <button class="food-btn" data-food="star"   title="星星零食">⭐<span class="food-price">20</span></button>
+  </div>
+  <div class="info-bar" id="infoBar"></div>
+
+  <script>
+    const ROOM_ADJ = {
+      studio:['office','living'], office:['studio','bathroom'],
+      living:['studio','garden','bathroom'], bathroom:['office','living','divination'],
+      garden:['living','divination'], divination:['garden','bathroom']
+    };
+    const FOOD_TYPES = {
+      bread: {emoji:'🍞',cost:0, nut:5, hap:2,  name:'面包屑'},
+      shrimp:{emoji:'🦐',cost:5, nut:15,hap:8,  name:'虾片'},
+      worm:  {emoji:'🪱',cost:10,nut:25,hap:5,  name:'红虫'},
+      star:  {emoji:'⭐',cost:20,nut:10,hap:25, name:'星星零食'}
+    };
+    const SAYINGS = {
+      hungry: ['好饿…','肚子咕噜咕噜','想吃东西…','🥺'],
+      happy:  ['好开心！','✨','嘿嘿','💜'],
+      fed:    ['好吃！','谢谢~','😋','满足~','还要！'],
+      levelup:['我长大了！','⬆️','变强了！','✨进化✨'],
+      fav:    ['最爱的！😍','好好吃！！','这个最棒！'],
+      dislike:['不太喜欢…','嗯…','算了吧']
+    };
+    const PREFS = {
+      youtube:{fav:'shrimp',dis:'worm'}, inspiratodo:{fav:'star',dis:null},
+      zijia:{fav:'worm',dis:'bread'}, prompts:{fav:'bread',dis:null},
+      website:{fav:'star',dis:null}, articles:{fav:'shrimp',dis:'star'},
+      podcast:{fav:'bread',dis:'shrimp'}
+    };
+    const FISH_CFG = [
+      {id:'youtube',    name:'YouTube',       desc:'核心内容·每周更新', image:'clay_koi.png',       base:65,speed:0.6, home:'studio',    url:'https://www.youtube.com/channel/UCSrk3Zvkt5pP2I04WfQVxsw',ext:true},
+      {id:'inspiratodo',name:'InspiraTodo',   desc:'灵感×四象限待办',  image:'clay_angelfish.png', base:55,speed:0.7, home:'office',    url:'inspiratodo.html',ext:false},
+      {id:'zijia',      name:'紫甲',           desc:'东方美学占卜',     image:'clay_pufferfish.png',base:52,speed:0.4, home:'divination',url:'zijia.html',ext:false},
+      {id:'prompts',    name:'AI 提示词',      desc:'Prompt 合集',      image:'clay_clownfish.png', base:40,speed:0.8, home:'office',    url:'prompt-templates.html',ext:false},
+      {id:'website',    name:'jiamanjemma',   desc:'个人网站',          image:'clay_seahorse.png',  base:45,speed:0.55,home:'living',    url:'index.html',ext:false},
+      {id:'articles',   name:'长文&Newsletter',desc:'Substack·公众号',  image:'clay_betta.png',     base:58,speed:0.65,home:'studio',    url:'https://jemma747318.substack.com',ext:true},
+      {id:'podcast',    name:'播客',           desc:'声音创作',          image:'clay_jellyfish.png', base:45,speed:0.35,home:'living',    url:'#',ext:false}
+    ];
+
+    const house = document.getElementById('house');
+    const allFish = [], allFood = [];
+    let selectedFood = null;
+
+    /* ---- State ---- */
+    function loadState() {
+      const s = JSON.parse(localStorage.getItem('fishhouse')||'null') ||
+                {coins:50, fish:{}, lastVisit:null};
+      FISH_CFG.forEach(f => { if(!s.fish[f.id]) s.fish[f.id]={hunger:70,happiness:70,xp:0,level:1,feeds:0}; });
+      const today = new Date().toISOString().slice(0,10);
+      if(s.lastVisit !== today){ s.coins = (s.coins||0)+10; s.lastVisit = today; }
+      return s;
+    }
+    let GS = loadState();
+    function save(){ localStorage.setItem('fishhouse', JSON.stringify(GS)); }
+    function updateCoins(){ document.getElementById('coins').textContent = `🪙 ${GS.coins}`; }
+
+    /* ---- Room bounds ---- */
+    function roomBounds(id) {
+      const el = document.querySelector(`[data-room="${id}"]`);
+      if(!el) return null;
+      const hr = house.getBoundingClientRect(), rr = el.getBoundingClientRect();
+      return {l:rr.left-hr.left, t:rr.top-hr.top, w:rr.width, h:rr.height};
+    }
+
+    /* ---- Fish class ---- */
+    class Fish {
+      constructor(cfg) {
+        this.cfg   = cfg;
+        this.st    = GS.fish[cfg.id];
+        this.size  = cfg.base + this.st.level * 4;
+        this.room  = cfg.home;
+        this.dir   = 1;          // 1=right, -1=left
+        this.speechT = 0;
+        this.idleT   = 200 + Math.random() * 400;
+
+        /* Position */
+        const b = roomBounds(this.room);
+        this.x = b ? b.l + 8 + Math.random()*(b.w-this.size-16) : 50;
+        this.y = b ? b.t + 8 + Math.random()*(b.h-this.size-16) : 50;
+
+        /* Target-point gliding */
+        this.tx = this.x;
+        this.ty = this.y;
+        this.pauseT  = 60 + Math.random()*120; // start paused
+        this.pausing = true;
+
+        /* Build DOM */
+        this.el = document.createElement('div');
+        this.el.className = 'fish';
+        this.el.style.cssText = `width:${this.size}px;height:${this.size}px;left:${this.x}px;top:${this.y}px;`;
+        this.el.dataset.dir = '1';
+
+        this.body = document.createElement('div');
+        this.body.className = 'fish-body';
+        this.body.style.animationDelay = `-${Math.random()*4}s`;
+
+        const img = document.createElement('img');
+        img.src = cfg.image; img.alt = cfg.name;
+        this.body.appendChild(img);
+        this.el.appendChild(this.body);
+
+        /* Tooltip */
+        this.tip = document.createElement('div');
+        this.tip.className = 'fish-tooltip';
+        this.refreshTip();
+        this.el.appendChild(this.tip);
+
+        /* Click → open link */
+        this.el.addEventListener('click', e => {
+          e.stopPropagation();
+          if(selectedFood) return;
+          if(cfg.url && cfg.url !== '#') {
+            cfg.ext ? window.open(cfg.url,'_blank') : (window.location.href = cfg.url);
+          }
+        });
+
+        house.appendChild(this.el);
+      }
+
+      refreshTip() {
+        const s = this.st, p = PREFS[this.cfg.id];
+        const fav = p.fav ? FOOD_TYPES[p.fav].emoji : '';
+        this.tip.innerHTML = `
+          <span class="fish-tip-name">${this.cfg.name} <span class="stat-level">Lv.${s.level}</span></span>
+          <span class="fish-tip-desc">${this.cfg.desc}${fav?' · 最爱'+fav:''}</span>
+          <div class="stat-bar stat-hunger"><span>🍖</span>
+            <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${s.hunger}%"></div></div>
+          </div>
+          <div class="stat-bar stat-happy"><span>💜</span>
+            <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${s.happiness}%"></div></div>
+          </div>`;
+      }
+
+      say(text) {
+        if(this.speechT > 0) return;
+        const b = document.createElement('div');
+        b.className = 'fish-speech'; b.textContent = text;
+        this.el.appendChild(b);
+        this.speechT = 120;
+        setTimeout(()=>b.remove(), 2200);
+      }
+
+      feed(type) {
+        const food = FOOD_TYPES[type], p = PREFS[this.cfg.id];
+        let nm=1, hm=1;
+        if(p.fav===type){nm=2;hm=2;} if(p.dis===type){nm=0.3;hm=0;}
+        this.st.hunger    = Math.min(100, this.st.hunger    + food.nut*nm);
+        this.st.happiness = Math.min(100, this.st.happiness + food.hap*hm);
+        this.st.feeds++; this.st.xp += Math.round(food.nut*nm);
+        const needed = this.st.level * 50;
+        if(this.st.xp >= needed) {
+          this.st.xp -= needed; this.st.level++;
+          this.size = this.cfg.base + this.st.level*4;
+          this.el.style.width  = this.size+'px';
+          this.el.style.height = this.size+'px';
+          GS.coins += 5;
+          this.say(pick(SAYINGS.levelup));
+        } else {
+          this.say(p.fav===type ? pick(SAYINGS.fav) : p.dis===type ? pick(SAYINGS.dislike) : pick(SAYINGS.fed));
+        }
+        this.el.classList.add('fish-eating');
+        setTimeout(()=>this.el.classList.remove('fish-eating'), 700);
+        this.refreshTip(); save(); updateCoins();
+      }
+
+      /* Pick a new random target inside current room */
+      pickTarget() {
+        const b = roomBounds(this.room);
+        if(!b) return;
+        const pad = 8;
+        this.tx = b.l + pad + Math.random()*(b.w - this.size - pad*2);
+        this.ty = b.t + pad + Math.random()*(b.h - this.size - pad*2);
+        this.pausing = false;
+      }
+
+      /* Move to a neighbouring room */
+      changeRoom() {
+        const adj = ROOM_ADJ[this.room];
+        if(!adj) return;
+        const nr = adj[Math.floor(Math.random()*adj.length)];
+        const b  = roomBounds(nr);
+        if(!b) return;
+        this.room = nr;
+        const pad = 8;
+        this.tx = b.l + pad + Math.random()*(b.w - this.size - pad*2);
+        this.ty = b.t + pad + Math.random()*(b.h - this.size - pad*2);
+        this.pausing = false;
+        /* Longer glide transition when crossing rooms */
+        this.el.style.transition = `left 1.6s cubic-bezier(0.45,0,0.55,1), top 1.6s cubic-bezier(0.45,0,0.55,1)`;
+        setTimeout(()=>{
+          this.el.style.transition = `left 0.8s cubic-bezier(0.45,0,0.55,1), top 0.8s cubic-bezier(0.45,0,0.55,1)`;
+        }, 1700);
+      }
+
+      update(t) {
+        this.speechT = Math.max(0, this.speechT-1);
+
+        /* Slowly drain stats */
+        if(t % 700 === 0) {
+          this.st.hunger    = Math.max(0, this.st.hunger    - 0.08);
+          this.st.happiness = Math.max(0, this.st.happiness - 0.04);
+        }
+
+        /* Idle chatter */
+        this.idleT--;
+        if(this.idleT <= 0) {
+          if(this.st.hunger < 30) this.say(pick(SAYINGS.hungry));
+          else if(this.st.happiness > 70 && Math.random()<0.25) this.say(pick(SAYINGS.happy));
+          this.idleT = 500 + Math.random()*700;
+        }
+
+        /* Pause logic */
+        if(this.pausing) {
+          this.pauseT--;
+          if(this.pauseT <= 0) {
+            /* Occasionally switch rooms */
+            if(Math.random() < 0.25) this.changeRoom();
+            else this.pickTarget();
+          }
+          return;
+        }
+
+        /* Glide toward target */
+        const dx = this.tx - this.x;
+        const dy = this.ty - this.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+
+        if(dist < 4) {
+          /* Arrived — pause for a bit */
+          this.x = this.tx; this.y = this.ty;
+          this.pausing = true;
+          this.pauseT  = 80 + Math.random()*160;
+        } else {
+          /* Step toward target */
+          const spd = this.cfg.speed * (this.st.hunger < 20 ? 0.5 : 1);
+          this.x += (dx/dist) * spd;
+          this.y += (dy/dist) * spd;
+
+          /* Flip direction */
+          if(dx < -2)       { this.dir = -1; this.el.dataset.dir = '-1'; }
+          else if(dx > 2)   { this.dir =  1; this.el.dataset.dir =  '1'; }
+        }
+
+        /* Apply position */
+        this.el.style.left = this.x + 'px';
+        this.el.style.top  = this.y + 'px';
+      }
+    }
+
+    function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+    /* ---- Food selection ---- */
+    document.querySelectorAll('.food-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const id = btn.dataset.food;
+        if(selectedFood === id) {
+          selectedFood = null;
+          document.querySelectorAll('.food-btn').forEach(b=>b.classList.remove('selected'));
+          document.querySelectorAll('.room-zone').forEach(r=>r.classList.remove('feed-mode'));
+        } else {
+          selectedFood = id;
+          document.querySelectorAll('.food-btn').forEach(b=>b.classList.remove('selected'));
+          btn.classList.add('selected');
+          document.querySelectorAll('.room-zone').forEach(r=>r.classList.add('feed-mode'));
+        }
+      });
+    });
+
+    /* ---- Drop food on room click ---- */
+    document.querySelectorAll('.room-zone').forEach(zone => {
+      zone.addEventListener('click', e => {
+        if(!selectedFood) return;
+        const food = FOOD_TYPES[selectedFood];
+        if(food.cost > GS.coins) { return; }
+        GS.coins -= food.cost; updateCoins();
+        const hr = house.getBoundingClientRect();
+        const x = e.clientX - hr.left, y = e.clientY - hr.top;
+        const colors = {bread:'#daa520',shrimp:'#ff8888',worm:'#8b4513',star:'#ffd700'};
+        for(let i=0;i<3;i++) {
+          const fd = document.createElement('div');
+          fd.className = 'food-particle';
+          fd.style.background = colors[selectedFood];
+          const sz = 5+Math.random()*5;
+          fd.style.width = sz+'px'; fd.style.height = sz+'px';
+          const fx = x+(Math.random()-0.5)*20, fy = y;
+          fd.style.left = fx+'px'; fd.style.top = fy+'px';
+          house.appendChild(fd);
+          allFood.push({el:fd, x:fx, y:fy, vy:0.2+Math.random()*0.2, life:350, room:zone.dataset.room, type:selectedFood});
+        }
+        save();
+      });
+    });
+
+    /* ---- Food animation & eating ---- */
+    function updateFoods() {
+      for(let i=allFood.length-1;i>=0;i--) {
+        const f = allFood[i]; f.life--;
+        f.y += f.vy;
+        f.el.style.left = f.x+'px'; f.el.style.top = f.y+'px';
+        f.el.style.opacity = Math.min(1, f.life/30);
+        for(const fish of allFish) {
+          if(fish.room !== f.room) continue;
+          const cx = fish.x + fish.size/2, cy = fish.y + fish.size/2;
+          const dist = Math.sqrt((cx-f.x)**2 + (cy-f.y)**2);
+          /* Attract nearby fish toward food */
+          if(dist < 100) { fish.tx = f.x - fish.size/2; fish.ty = f.y - fish.size/2; fish.pausing = false; }
+          if(dist < fish.size*0.5) {
+            f.el.remove(); allFood.splice(i,1);
+            fish.feed(f.type); break;
+          }
+        }
+        if(f.life <= 0) { f.el.remove(); allFood.splice(i,1); }
+      }
+    }
+
+    /* ---- Init & loop ---- */
+    function init() {
+      updateCoins();
+      FISH_CFG.forEach(cfg => allFish.push(new Fish(cfg)));
+      const tlvl = Object.values(GS.fish).reduce((s,f)=>s+f.level, 0);
+      document.getElementById('infoBar').textContent = `🐟 ${allFish.length} 条鱼 · 总等级 ${tlvl} · 每日登录 +10🪙`;
+      loop(0);
+    }
+
+    let frame = 0;
+    function loop(t) {
+      frame++;
+      allFish.forEach(f => f.update(frame));
+      updateFoods();
+      requestAnimationFrame(loop);
+    }
+
+    init();
+  </script>
+</body>
+</html>

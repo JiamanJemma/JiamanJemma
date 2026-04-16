@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>紫甲 — 东方美学随机决定工具 | 佳蔓 Jemma</title>
+  <meta name="description" content="紫甲 — 极具东方美学的随机决定辅助工具，通过沉浸式抛掷交互，帮助你倾听内心声音。微信小程序，搜索「紫甲」即可使用。">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="canonical" href="https://jiamanjemma.com/zijia">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=ZCOOL+KuaiLe&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="project-page.css?v=2">
+</head>
+<body>
+  <div class="project-page">
+    <!-- 顶部导航 -->
+    <nav class="project-nav">
+      <a href="/" class="back-link" data-i18n="back_home">← 返回首页</a>
+    </nav>
+
+    <!-- Hero -->
+    <header class="project-hero">
+      <img src="easybu-logo.png" alt="紫甲" class="project-app-icon spinning-logo" width="120" height="120">
+      <h1 class="project-title" style="font-family:'Ma Shan Zheng','ZCOOL KuaiLe',cursive;">紫甲</h1>
+      <p class="project-tagline" data-i18n="tagline">倾听内心的回响</p>
+      <p class="project-subtitle" data-i18n="subtitle">极具东方美学的随机决定辅助工具，通过沉浸式的抛掷交互，帮助你在犹豫不决时获取灵感参考。</p>
+      <div class="project-badges">
+        <span class="badge" data-i18n="badge_miniapp">微信小程序</span>
+        <span class="badge badge-ai">AI</span>
+        <span class="badge" data-i18n="badge_yijing">易经</span>
+      </div>
+      <div class="wechat-launch-area">
+        <button class="wechat-btn" onclick="launchMiniProgram()">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .14.047c.134 0 .24-.111.24-.247 0-.06-.023-.12-.038-.177l-.327-1.233a.582.582 0 0 1-.023-.156.49.49 0 0 1 .201-.398C23.024 18.48 24 16.82 24 14.98c0-3.21-2.931-5.837-7.062-6.122zm-2.18 2.768c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.36 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982z"/></svg>
+          <span data-i18n="open_mini_program">打开紫甲小程序</span>
+        </button>
+        <p class="wechat-fallback" data-i18n="wechat_search_fallback">或在微信中搜索「紫甲」</p>
+      </div>
+    </header>
+
+    <!-- 功能特色 -->
+    <section class="features-section">
+      <h2 class="section-heading" data-i18n="features_title">功能特色</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🐢</span>
+          <h3 data-i18n="feature_1_title">沉浸抛掷</h3>
+          <p data-i18n="feature_1_desc">模拟传统龟壳占卜的仪式感，手指滑动即可起卦</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">☯️</span>
+          <h3 data-i18n="feature_2_title">东方美学</h3>
+          <p data-i18n="feature_2_desc">融合易经智慧与现代设计，视觉与内涵兼具</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🤖</span>
+          <h3 data-i18n="feature_3_title">AI 解读</h3>
+          <p data-i18n="feature_3_desc">AI 结合卦象与你的问题，给出个性化灵感参考</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎯</span>
+          <h3 data-i18n="feature_4_title">简单纯粹</h3>
+          <p data-i18n="feature_4_desc">不需注册，不收集隐私，打开即用，仅供参考</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 留言区 -->
+    <section class="feedback-section">
+      <h2 class="section-heading" data-i18n="feedback_title">💬 留言反馈</h2>
+      <p class="feedback-desc" data-i18n="feedback_desc">有任何想法、建议或问题，欢迎留言！</p>
+      <form class="feedback-form" action="https://formsubmit.co/jiamanjemma@gmail.com" method="POST" onsubmit="return validateFeedback(this)">
+        <input type="hidden" name="_subject" value="🐢 紫甲用户留言">
+        <input type="hidden" name="_next" value="https://jiamanjemma.com/zijia?thanks=1">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none">
+        <div class="form-row">
+          <input type="text" name="name" data-i18n-placeholder="name_placeholder" placeholder="你的名字（选填）" class="form-input" maxlength="50">
+        </div>
+        <div class="form-row">
+          <textarea name="message" data-i18n-placeholder="message_placeholder" placeholder="写下你的想法..." class="form-input form-textarea" required maxlength="1000" rows="4"></textarea>
+        </div>
+        <div class="form-row">
+          <button type="submit" class="submit-btn" data-i18n="submit">发送留言 ✉️</button>
+        </div>
+        <p class="form-hint" data-i18n="form_hint">留言将发送到佳蔓的邮箱，我会尽快回复 ☺️</p>
+      </form>
+      <div class="thanks-msg" id="thanksMsg" style="display:none">
+        <p data-i18n="thanks">✅ 留言已发送，谢谢你！</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+      <p><span data-i18n="footer_copy">&copy; 2026 佳蔓 Jemma</span> · <a href="/">jiamanjemma.com</a> · <a href="privacy" data-i18n="privacy">隐私政策</a></p>
+    </footer>
+  </div>
+
+  <script>
+  (function () {
+    var lang = localStorage.getItem('lang') || 'zh';
+    var dicts = {
+      zh: {
+        pageTitle: '紫甲 — 东方美学随机决定工具 | 佳蔓 Jemma',
+        pageDesc: '紫甲 — 极具东方美学的随机决定辅助工具，通过沉浸式抛掷交互，帮助你倾听内心声音。微信小程序，搜索「紫甲」即可使用。',
+        back_home: '← 返回首页',
+        tagline: '倾听内心的回响',
+        subtitle: '极具东方美学的随机决定辅助工具，通过沉浸式的抛掷交互，帮助你在犹豫不决时获取灵感参考。',
+        badge_miniapp: '微信小程序',
+        badge_yijing: '易经',
+        open_mini_program: '打开紫甲小程序',
+        wechat_search_fallback: '或在微信中搜索「紫甲」',
+        features_title: '功能特色',
+        feature_1_title: '沉浸抛掷',
+        feature_1_desc: '模拟传统龟壳占卜的仪式感，手指滑动即可起卦',
+        feature_2_title: '东方美学',
+        feature_2_desc: '融合易经智慧与现代设计，视觉与内涵兼具',
+        feature_3_title: 'AI 解读',
+        feature_3_desc: 'AI 结合卦象与你的问题，给出个性化灵感参考',
+        feature_4_title: '简单纯粹',
+        feature_4_desc: '不需注册，不收集隐私，打开即用，仅供参考',
+        feedback_title: '💬 留言反馈',
+        feedback_desc: '有任何想法、建议或问题，欢迎留言！',
+        name_placeholder: '你的名字（选填）',
+        message_placeholder: '写下你的想法...',
+        submit: '发送留言 ✉️',
+        form_hint: '留言将发送到佳蔓的邮箱，我会尽快回复 ☺️',
+        thanks: '✅ 留言已发送，谢谢你！',
+        footer_copy: '© 2026 佳蔓 Jemma',
+        privacy: '隐私政策',
+        alert_polite: '请文明留言哦～',
+        alert_search_wechat: '请在微信中搜索「紫甲」打开小程序',
+        alert_search_wechat_mobile: '请在手机微信中搜索「紫甲」即可使用'
+      },
+      en: {
+        pageTitle: 'Zijia — An Eastern Aesthetic Decision Tool | Jemma',
+        pageDesc: 'Zijia is a decision companion with an Eastern aesthetic. Through an immersive toss interaction, it helps you listen to your inner voice. Available as a WeChat Mini Program by searching "Zijia".',
+        back_home: '← Back Home',
+        tagline: 'Listen to the echo within',
+        subtitle: 'An East-inspired decision companion with an immersive tossing interaction, designed to offer a moment of reflection when you feel undecided.',
+        badge_miniapp: 'WeChat Mini Program',
+        badge_yijing: 'I Ching',
+        open_mini_program: 'Open Zijia in WeChat',
+        wechat_search_fallback: 'Or search "Zijia" in WeChat',
+        features_title: 'Features',
+        feature_1_title: 'Immersive Tossing',
+        feature_1_desc: 'Inspired by the ritual feeling of traditional divination, with a simple finger gesture to begin.',
+        feature_2_title: 'Eastern Aesthetics',
+        feature_2_desc: 'Blends the wisdom of the I Ching with modern design in both look and meaning.',
+        feature_3_title: 'AI Interpretation',
+        feature_3_desc: 'AI reads the hexagram together with your question and offers a personalized reflection.',
+        feature_4_title: 'Simple and Pure',
+        feature_4_desc: 'No registration, no personal data collection, open and use immediately, for inspiration only.',
+        feedback_title: '💬 Feedback',
+        feedback_desc: 'If you have ideas, suggestions, or questions, leave me a note.',
+        name_placeholder: 'Your name (optional)',
+        message_placeholder: 'Write your thoughts here...',
+        submit: 'Send Message ✉️',
+        form_hint: 'Your message will be sent to Jemma by email, and I will reply as soon as I can ☺️',
+        thanks: '✅ Message sent. Thank you!',
+        footer_copy: '© 2026 Jemma',
+        privacy: 'Privacy Policy',
+        alert_polite: 'Please keep your message respectful.',
+        alert_search_wechat: 'Please search for "Zijia" in WeChat to open the mini program.',
+        alert_search_wechat_mobile: 'Please open WeChat on your phone and search for "Zijia".'
+      },
+      'zh-TW': {
+        pageTitle: '紫甲 — 東方美學隨機決定工具 | 佳蔓 Jemma',
+        pageDesc: '紫甲 — 極具東方美學的隨機決定輔助工具，透過沉浸式拋擲互動，幫助你傾聽內心聲音。微信小程式搜尋「紫甲」即可使用。',
+        back_home: '← 返回首頁',
+        tagline: '傾聽內心的回響',
+        subtitle: '極具東方美學的隨機決定輔助工具，透過沉浸式拋擲互動，幫助你在猶豫不決時獲得靈感參考。',
+        badge_miniapp: '微信小程式',
+        badge_yijing: '易經',
+        open_mini_program: '打開紫甲小程式',
+        wechat_search_fallback: '或在微信中搜尋「紫甲」',
+        features_title: '功能特色',
+        feature_1_title: '沉浸拋擲',
+        feature_1_desc: '模擬傳統龜殼占卜的儀式感，手指滑動即可起卦',
+        feature_2_title: '東方美學',
+        feature_2_desc: '融合易經智慧與現代設計，兼具視覺與內涵',
+        feature_3_title: 'AI 解讀',
+        feature_3_desc: 'AI 結合卦象與你的問題，給出個人化靈感參考',
+        feature_4_title: '簡單純粹',
+        feature_4_desc: '不需註冊、不蒐集隱私，打開即用，僅供參考',
+        feedback_title: '💬 留言回饋',
+        feedback_desc: '有任何想法、建議或問題，歡迎留言！',
+        name_placeholder: '你的名字（選填）',
+        message_placeholder: '寫下你的想法...',
+        submit: '送出留言 ✉️',
+        form_hint: '留言會寄到佳蔓的信箱，我會盡快回覆 ☺️',
+        thanks: '✅ 留言已送出，謝謝你！',
+        footer_copy: '© 2026 佳蔓 Jemma',
+        privacy: '隱私政策',
+        alert_polite: '請文明留言喔～',
+        alert_search_wechat: '請在微信中搜尋「紫甲」打開小程式',
+        alert_search_wechat_mobile: '請在手機微信中搜尋「紫甲」即可使用'
+      },
+      ja: {
+        pageTitle: '紫甲 — 東洋美学の決断ツール | 佳蔓 Jemma',
+        pageDesc: '紫甲は、東洋美学を取り入れた決断サポートツールです。没入感のある投擲体験を通じて、自分の内なる声に耳を傾けるきっかけを与えます。WeChat ミニプログラムで「紫甲」を検索して使えます。',
+        back_home: '← ホームへ戻る',
+        tagline: '心の響きに耳を澄ます',
+        subtitle: '東洋美学をまとった決断サポートツール。没入感のある投擲体験で、迷ったときのひらめきの手がかりを与えます。',
+        badge_miniapp: 'WeChat ミニプログラム',
+        badge_yijing: '易経',
+        open_mini_program: '紫甲を開く',
+        wechat_search_fallback: 'または WeChat で「紫甲」を検索',
+        features_title: '機能紹介',
+        feature_1_title: '没入型トス',
+        feature_1_desc: '伝統的な占いの儀式感を、指先のスワイプで体験できます。',
+        feature_2_title: '東洋美学',
+        feature_2_desc: '易経の知恵と現代的なデザインを融合し、見た目と意味の両方を大切にしています。',
+        feature_3_title: 'AI 解釈',
+        feature_3_desc: '卦とあなたの問いをもとに、AI がパーソナルな示唆を返します。',
+        feature_4_title: 'シンプルで純粋',
+        feature_4_desc: '登録不要、個人情報収集なし、すぐ使える、あくまで参考として使えます。',
+        feedback_title: '💬 フィードバック',
+        feedback_desc: '気づいたこと、提案、質問があればぜひ送ってください。',
+        name_placeholder: 'お名前（任意）',
+        message_placeholder: 'メッセージを書いてください...',
+        submit: '送信する ✉️',
+        form_hint: 'メッセージは佳蔓のメールに届き、できるだけ早く返信します ☺️',
+        thanks: '✅ メッセージを送信しました。ありがとうございます！',
+        footer_copy: '© 2026 佳蔓 Jemma',
+        privacy: 'プライバシーポリシー',
+        alert_polite: 'やさしい言葉でお願いします。',
+        alert_search_wechat: 'WeChat で「紫甲」を検索してミニプログラムを開いてください。',
+        alert_search_wechat_mobile: 'スマホの WeChat で「紫甲」を検索してください。'
+      }
+    };
+    var dict = dicts[lang] || dicts.zh;
+    document.title = dict.pageTitle;
+    document.documentElement.lang = ({ zh: 'zh-CN', 'zh-TW': 'zh-Hant', en: 'en', ja: 'ja' })[lang] || 'zh-CN';
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', dict.pageDesc);
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+    });
+    window.__projectI18n = dict;
+  })();
+  // 感谢页检测
+  var ZIJIA_MINI_PROGRAM_URL = '小程序://紫甲/r25pzPzMjllvKaw';
+
+  if (location.search.includes('thanks=1')) {
+    var form = document.querySelector('.feedback-form');
+    var msg = document.getElementById('thanksMsg');
+    if (form) form.style.display = 'none';
+    if (msg) msg.style.display = 'block';
+  }
+
+  // 敏感词过滤
+  var badWords = ['傻逼','操你','妈的','去死','垃圾','废物','白痴','智障','贱','滚','fuck','shit','bitch','ass','damn','dick','pussy','nigger','faggot','kill yourself'];
+
+  function validateFeedback(form) {
+    var msg = form.querySelector('textarea[name="message"]').value;
+    var name = form.querySelector('input[name="name"]').value;
+    var text = (name + ' ' + msg).toLowerCase();
+    for (var i = 0; i < badWords.length; i++) {
+      if (text.indexOf(badWords[i]) !== -1) {
+        alert((window.__projectI18n && window.__projectI18n.alert_polite) || '请文明留言哦～');
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // 打开微信小程序
+  function launchMiniProgram() {
+    function directOpen() {
+      window.location.href = ZIJIA_MINI_PROGRAM_URL;
+    }
+
+    // 微信内置浏览器直接跳转
+    if (/MicroMessenger/i.test(navigator.userAgent)) {
+      directOpen();
+      return;
+    }
+    // 手机浏览器尝试 URL Scheme
+    var isIOS = /iPhone|iPad/i.test(navigator.userAgent);
+    var isAndroid = /Android/i.test(navigator.userAgent);
+    if (isIOS || isAndroid) {
+      directOpen();
+      setTimeout(function() {
+        alert((window.__projectI18n && window.__projectI18n.alert_search_wechat) || '请在微信中搜索「紫甲」打开小程序');
+      }, 2000);
+    } else {
+      alert((window.__projectI18n && window.__projectI18n.alert_search_wechat_mobile) || '请在手机微信中搜索「紫甲」即可使用');
+    }
+  }
+
+  // 暗色模式跟随系统
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  </script>
+</body>
+</html>

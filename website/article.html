@@ -201,11 +201,11 @@
         <a href="index.html#home" class="logo paper-logo">Jemma</a>
       </div>
       <div class="nav-links paper-nav">
-        <a href="index.html#videos" class="paper-link paper-pink">视频</a>
-        <a href="index.html#articles" class="paper-link paper-yellow">文章</a>
-        <a href="index.html#projects" class="paper-link paper-blue">作品</a>
-        <a href="index.html#resources" class="paper-link paper-green">资源</a>
-        <a href="index.html#community" class="paper-link paper-purple">社区</a>
+        <a href="index.html#videos" class="paper-link paper-pink" data-i18n="nav_videos">视频</a>
+        <a href="index.html#articles" class="paper-link paper-yellow" data-i18n="nav_articles">文章</a>
+        <a href="index.html#projects" class="paper-link paper-blue" data-i18n="nav_projects">作品</a>
+        <a href="index.html#resources" class="paper-link paper-green" data-i18n="nav_resources">资源</a>
+        <a href="index.html#community" class="paper-link paper-purple" data-i18n="nav_community">社区</a>
       </div>
       <div class="nav-right">
         <!-- 订阅按钮嵌入导航 -->
@@ -218,13 +218,13 @@
             <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12" style="margin-right:4px;"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             Newsletter
           </a>
-          <div class="nav-wechat" title="微信搜一搜：佳蔓Jemma">
+          <div class="nav-wechat" title="微信搜一搜：佳蔓Jemma" data-i18n-title="wechat_title">
             <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12" style="color:#07C160;"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05a6.127 6.127 0 0 1-.253-1.726c0-3.573 3.27-6.47 7.3-6.47.258 0 .51.013.76.034C16.543 4.97 12.945 2.188 8.691 2.188zm10.809 6.17c-3.484 0-6.3 2.504-6.3 5.593 0 3.09 2.816 5.594 6.3 5.594.652 0 1.28-.086 1.873-.242a.72.72 0 0 1 .596.08l1.266.74a.272.272 0 0 0 .14.046.217.217 0 0 0 .241-.246c0-.06-.024-.119-.04-.178l-.259-.98a.49.49 0 0 1 .177-.554C21.833 17.353 22.9 15.67 22.9 13.95c0-3.09-2.816-5.593-6.3-5.593z"/></svg>
-            公众号
+            <span data-i18n="wechat_label">公众号</span>
           </div>
         </div>
         <!-- 主题切换 -->
-        <button class="icon-btn theme-toggle" id="themeToggle" aria-label="切换主题">
+        <button class="icon-btn theme-toggle" id="themeToggle" aria-label="切换主题" data-i18n-aria-label="theme_toggle">
           <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
           <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
@@ -235,14 +235,14 @@
   <main class="article-reader-wrapper">
     <a href="index.html#articles" class="back-nav">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      返回首页
+      <span data-i18n="back_home">返回首页</span>
     </a>
 
     <!-- Markdown 原生容器 -->
     <article id="markdown-content" class="md-content">
       <div style="text-align: center; padding: 100px 0; color: var(--text-muted);">
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite; opacity: 0.5; margin-bottom: 20px;"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
-        <p>正在拉取源文件...</p>
+        <p data-i18n="loading">正在拉取源文件...</p>
       </div>
     </article>
   </main>
@@ -251,14 +251,121 @@
   <div class="qr-modal-overlay" id="oaQrModal">
     <div class="qr-modal">
       <button class="qr-modal-close" id="oaQrClose">&times;</button>
-      <h3>微信扫码关注公众号</h3>
-      <img src="weixin-oa-qr.jpg" alt="公众号二维码" class="qr-image" width="200" height="200" loading="lazy">
-      <p>可以截图扫码，或长按复制名称前往微信搜索</p>
+      <h3 data-i18n="qr_title">微信扫码关注公众号</h3>
+      <img src="weixin-oa-qr.jpg" alt="公众号二维码" class="qr-image" width="200" height="200" loading="lazy" data-i18n-alt="qr_alt">
+      <p data-i18n="qr_hint">可以截图扫码，或长按复制名称前往微信搜索</p>
     </div>
   </div>
 
   <!-- 简易 JS 解析逻辑 -->
   <script>
+    var articleLang = localStorage.getItem('lang') || 'zh';
+    var articleI18nDicts = {
+      zh: {
+        pageTitle: '文章阅读 - 佳蔓 Jemma',
+        pageTitleSuffix: ' - 佳蔓 Jemma',
+        nav_videos: '视频',
+        nav_articles: '文章',
+        nav_projects: '作品',
+        nav_resources: '资源',
+        nav_community: '社区',
+        wechat_label: '公众号',
+        wechat_title: '微信搜一搜：佳蔓Jemma',
+        theme_toggle: '切换主题',
+        back_home: '返回首页',
+        loading: '正在拉取源文件...',
+        qr_title: '微信扫码关注公众号',
+        qr_alt: '公众号二维码',
+        qr_hint: '可以截图扫码，或长按复制名称前往微信搜索',
+        fetch_missing: '文件不存在',
+        article_not_found: '文章 {{id}} 正在火星探险，暂时无法加载。可能是链接拼错了，或者我还没来得及上传哈！',
+        article_missing_id: '⚠️ 哎呀！缺失文章 ID。请从主页文章列表重新点击进入。',
+        toast_wechat: '✅ 已复制公众号名称「佳蔓Jemma」，请前往微信搜索关注'
+      },
+      en: {
+        pageTitle: 'Article Reader - Jemma',
+        pageTitleSuffix: ' - Jemma',
+        nav_videos: 'Videos',
+        nav_articles: 'Articles',
+        nav_projects: 'Projects',
+        nav_resources: 'Resources',
+        nav_community: 'Community',
+        wechat_label: 'WeChat',
+        wechat_title: 'Search WeChat: 佳蔓Jemma',
+        theme_toggle: 'Toggle theme',
+        back_home: 'Back Home',
+        loading: 'Loading source article...',
+        qr_title: 'Scan to follow on WeChat',
+        qr_alt: 'WeChat QR code',
+        qr_hint: 'You can scan the code or copy the account name and search in WeChat.',
+        fetch_missing: 'File not found',
+        article_not_found: 'Article {{id}} is off exploring Mars right now and could not be loaded. The link may be wrong, or I have not uploaded it yet.',
+        article_missing_id: '⚠️ Missing article ID. Please reopen the article from the homepage list.',
+        toast_wechat: '✅ Copied the WeChat account name "佳蔓Jemma". Please search for it in WeChat.'
+      },
+      'zh-TW': {
+        pageTitle: '文章閱讀 - 佳蔓 Jemma',
+        pageTitleSuffix: ' - 佳蔓 Jemma',
+        nav_videos: '影片',
+        nav_articles: '文章',
+        nav_projects: '作品',
+        nav_resources: '資源',
+        nav_community: '社群',
+        wechat_label: '公眾號',
+        wechat_title: '微信搜尋：佳蔓Jemma',
+        theme_toggle: '切換主題',
+        back_home: '返回首頁',
+        loading: '正在載入原始文章...',
+        qr_title: '微信掃碼關注公眾號',
+        qr_alt: '公眾號 QR Code',
+        qr_hint: '可以截圖掃碼，或複製名稱後前往微信搜尋',
+        fetch_missing: '檔案不存在',
+        article_not_found: '文章 {{id}} 正在火星探險，暫時無法載入。可能是連結打錯，或我還沒來得及上傳。',
+        article_missing_id: '⚠️ 缺少文章 ID。請從首頁文章列表重新點擊進入。',
+        toast_wechat: '✅ 已複製公眾號名稱「佳蔓Jemma」，請前往微信搜尋關注'
+      },
+      ja: {
+        pageTitle: '記事ページ - 佳蔓 Jemma',
+        pageTitleSuffix: ' - 佳蔓 Jemma',
+        nav_videos: '動画',
+        nav_articles: '記事',
+        nav_projects: '作品',
+        nav_resources: 'リソース',
+        nav_community: 'コミュニティ',
+        wechat_label: '公式WeChat',
+        wechat_title: 'WeChatで検索: 佳蔓Jemma',
+        theme_toggle: 'テーマを切り替える',
+        back_home: 'ホームへ戻る',
+        loading: '記事を読み込み中...',
+        qr_title: 'WeChatをスキャンしてフォロー',
+        qr_alt: 'WeChat QRコード',
+        qr_hint: 'QRコードを読み取るか、名前をコピーして WeChat で検索してください。',
+        fetch_missing: 'ファイルが見つかりません',
+        article_not_found: '記事 {{id}} はいま火星を探検中で、まだ読み込めません。リンクが違うか、まだアップロードしていない可能性があります。',
+        article_missing_id: '⚠️ 記事 ID がありません。トップの一覧からもう一度開いてください。',
+        toast_wechat: '✅ WeChat アカウント名「佳蔓Jemma」をコピーしました。WeChat で検索してください。'
+      }
+    };
+    var articleI18n = articleI18nDicts[articleLang] || articleI18nDicts.zh;
+    document.title = articleI18n.pageTitle;
+    document.documentElement.lang = ({ zh: 'zh-CN', 'zh-TW': 'zh-Hant', en: 'en', ja: 'ja' })[articleLang] || 'zh-CN';
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (articleI18n[key] !== undefined) el.textContent = articleI18n[key];
+    });
+    document.querySelectorAll('[data-i18n-title]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-title');
+      if (articleI18n[key] !== undefined) el.setAttribute('title', articleI18n[key]);
+    });
+    document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-alt');
+      if (articleI18n[key] !== undefined) el.setAttribute('alt', articleI18n[key]);
+    });
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-aria-label');
+      if (articleI18n[key] !== undefined) el.setAttribute('aria-label', articleI18n[key]);
+    });
+
     // Theme setup
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
@@ -310,7 +417,7 @@
       });
       fetch(`articles/${postId}.md`)
         .then(response => {
-          if(!response.ok) throw new Error("文件不存在");
+          if(!response.ok) throw new Error(articleI18n.fetch_missing);
           return response.text();
         })
         .then(text => {
@@ -341,7 +448,7 @@
           if (h1) {
             // 去掉 🔴 emoji 和多余空格
             h1.innerHTML = h1.innerHTML.replace(/🔴\s*/g, '');
-            document.title = h1.innerText + " - 佳蔓 Jemma";
+            document.title = h1.innerText + articleI18n.pageTitleSuffix;
           }
 
           // 把第一个 blockquote（如果是"副标题"）转为优雅引言
@@ -357,10 +464,10 @@
           }
         })
         .catch(err => {
-          contentDiv.innerHTML = `<div style="text-align:center; padding: 100px 0;"><h1 style="border:none;font-size:3rem;margin-bottom:10px;">🚧 404 </h1><p>文章 ${postId} 正在火星探险，暂时无法加载。可能是链接拼错了，或者我还没来得及上传哈！</p></div>`;
+          contentDiv.innerHTML = `<div style="text-align:center; padding: 100px 0;"><h1 style="border:none;font-size:3rem;margin-bottom:10px;">🚧 404 </h1><p>${articleI18n.article_not_found.replace('{{id}}', postId)}</p></div>`;
         });
     } else {
-      contentDiv.innerHTML = `<p>⚠️ 哎呀！缺失文章 ID。请从主页文章列表重新点击进入。</p>`;
+      contentDiv.innerHTML = `<p>${articleI18n.article_missing_id}</p>`;
     }
 
     // ================================
@@ -402,7 +509,7 @@
 
     function showWechatToast() {
       var toast = document.createElement('div');
-      toast.textContent = '✅ 已复制公众号名称「佳蔓Jemma」，请前往微信搜索关注';
+      toast.textContent = articleI18n.toast_wechat;
       toast.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.85);color:#fff;padding:12px 24px;border-radius:12px;z-index:9999;font-size:14px;box-shadow:0 4px 12px rgba(0,0,0,0.15);transition:all 0.3s cubic-bezier(0.4,0,0.2,1);opacity:0;pointer-events:none;white-space:nowrap;backdrop-filter:blur(8px);';
       document.body.appendChild(toast);
       

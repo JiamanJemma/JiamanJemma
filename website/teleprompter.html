@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>📖 佳蔓提词器</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0a0a0a;
+      color: #ffffff;
+      font-family: 'Noto Sans SC', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+      cursor: none;
+    }
+
+    /* Script container */
+    .script-container {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 900px;
+      will-change: transform;
+      transition: transform 0.05s linear;
+    }
+
+    .script-text {
+      font-size: 42px;
+      line-height: 1.8;
+      font-weight: 400;
+      text-align: center;
+      padding: 50vh 0;
+      letter-spacing: 0.02em;
+    }
+
+    /* Reading guide line */
+    .guide-line {
+      position: fixed;
+      top: 38%;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba(155, 111, 224, 0.6), transparent);
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .guide-line::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(180deg, 
+        rgba(155, 111, 224, 0.08) 0%, 
+        rgba(155, 111, 224, 0.03) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Top/bottom fade */
+    .fade-top, .fade-bottom {
+      position: fixed;
+      left: 0;
+      right: 0;
+      height: 25vh;
+      pointer-events: none;
+      z-index: 50;
+    }
+
+    .fade-top {
+      top: 0;
+      background: linear-gradient(180deg, #0a0a0a 0%, transparent 100%);
+    }
+
+    .fade-bottom {
+      bottom: 0;
+      background: linear-gradient(0deg, #0a0a0a 0%, transparent 100%);
+    }
+
+    /* Controls bar */
+    .controls {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      z-index: 200;
+      background: rgba(30, 30, 30, 0.9);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.1);
+      opacity: 0;
+      transition: opacity 0.3s;
+      cursor: default;
+    }
+
+    body:hover .controls { opacity: 1; }
+
+    .controls button {
+      background: rgba(155, 111, 224, 0.3);
+      border: 1px solid rgba(155, 111, 224, 0.5);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      font-family: 'Noto Sans SC', sans-serif;
+      transition: all 0.2s;
+    }
+
+    .controls button:hover {
+      background: rgba(155, 111, 224, 0.5);
+    }
+
+    .controls button.active {
+      background: rgba(155, 111, 224, 0.7);
+    }
+
+    .speed-display {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .time-display {
+      color: rgba(255,255,255,0.4);
+      font-size: 13px;
+    }
+
+    /* Edit mode */
+    .edit-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.95);
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .edit-overlay h2 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: rgba(155, 111, 224, 0.8);
+    }
+
+    .edit-overlay p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 24px;
+    }
+
+    .edit-overlay textarea {
+      width: 80%;
+      max-width: 800px;
+      height: 50vh;
+      background: rgba(30, 30, 30, 0.8);
+      border: 1px solid rgba(155, 111, 224, 0.3);
+      border-radius: 16px;
+      color: white;
+      font-size: 18px;
+      line-height: 1.8;
+      padding: 24px;
+      resize: none;
+      font-family: 'Noto Sans SC', sans-serif;
+      outline: none;
+    }
+
+    .edit-overlay textarea:focus {
+      border-color: rgba(155, 111, 224, 0.6);
+    }
+
+    .edit-overlay .edit-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .edit-overlay button {
+      padding: 12px 32px;
+      border-radius: 24px;
+      font-size: 16px;
+      cursor: pointer;
+      font-family: 'Noto Sans SC', sans-serif;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .btn-start {
+      background: rgba(155, 111, 224, 0.8);
+      color: white;
+    }
+
+    .btn-start:hover {
+      background: rgba(155, 111, 224, 1);
+    }
+
+    .btn-paste {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2) !important;
+    }
+
+    .hidden { display: none; }
+
+    /* Keyboard hints */
+    .hints {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 200;
+      color: rgba(255,255,255,0.3);
+      font-size: 12px;
+      text-align: right;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    body:hover .hints { opacity: 1; }
+  </style>
+</head>
+<body>
+  <!-- Edit overlay -->
+  <div class="edit-overlay" id="editOverlay">
+    <h2>📖 佳蔓提词器</h2>
+    <p>粘贴口播稿 → 点开始 → 空格键暂停/继续 · ↑↓ 调速度 · F 全屏 · E 编辑</p>
+    <textarea id="scriptInput" placeholder="在这里粘贴你的口播稿...
+
+每一行会显示为一行。
+空行会作为段落间距。
+
+示例：
+用了一个月 Claude Max
+做了两个 App、一个网站、一整套创作系统
+全是在终端里完成的"></textarea>
+    <div class="edit-actions">
+      <button class="btn-paste" onclick="pasteFromClipboard()">📋 从剪贴板粘贴</button>
+      <button class="btn-start" onclick="startPrompting()">▶ 开始提词</button>
+    </div>
+  </div>
+
+  <!-- Teleprompter view -->
+  <div class="guide-line"></div>
+  <div class="fade-top"></div>
+  <div class="fade-bottom"></div>
+
+  <div class="script-container" id="scriptContainer">
+    <div class="script-text" id="scriptText"></div>
+  </div>
+
+  <div class="controls">
+    <button onclick="togglePlay()" id="playBtn">⏸ 暂停</button>
+    <button onclick="changeSpeed(-0.5)">−</button>
+    <span class="speed-display" id="speedDisplay">速度: 2.0</span>
+    <button onclick="changeSpeed(0.5)">+</button>
+    <button onclick="resetPosition()">⏮ 重头</button>
+    <button onclick="showEdit()">✏️ 编辑</button>
+    <span class="time-display" id="timeDisplay"></span>
+  </div>
+
+  <div class="hints">
+    空格 = 暂停/继续<br>
+    ↑↓ = 调速<br>
+    F = 全屏<br>
+    E = 编辑<br>
+    R = 重头
+  </div>
+
+  <script>
+    let scrollSpeed = 2.0; // pixels per frame (at 60fps)
+    let isPlaying = false;
+    let scrollY = 0;
+    let animId = null;
+    let startTime = null;
+
+    const container = document.getElementById('scriptContainer');
+    const scriptText = document.getElementById('scriptText');
+    const speedDisplay = document.getElementById('speedDisplay');
+    const playBtn = document.getElementById('playBtn');
+    const timeDisplay = document.getElementById('timeDisplay');
+    const editOverlay = document.getElementById('editOverlay');
+    const scriptInput = document.getElementById('scriptInput');
+
+    async function pasteFromClipboard() {
+      try {
+        const text = await navigator.clipboard.readText();
+        scriptInput.value = text;
+      } catch (e) {
+        alert('无法访问剪贴板，请手动粘贴');
+      }
+    }
+
+    function startPrompting() {
+      const text = scriptInput.value.trim();
+      if (!text) { alert('请先输入口播稿'); return; }
+
+      // Convert to HTML
+      const html = text.split('\n').map(line => {
+        if (line.trim() === '') return '<br><br>';
+        return `<span>${line}</span><br>`;
+      }).join('');
+
+      scriptText.innerHTML = html;
+      editOverlay.classList.add('hidden');
+      scrollY = 0;
+      container.style.transform = `translateX(-50%) translateY(0px)`;
+      isPlaying = true;
+      startTime = Date.now();
+      playBtn.textContent = '⏸ 暂停';
+      animate();
+    }
+
+    function showEdit() {
+      isPlaying = false;
+      if (animId) cancelAnimationFrame(animId);
+      editOverlay.classList.remove('hidden');
+      playBtn.textContent = '▶ 继续';
+    }
+
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      playBtn.textContent = isPlaying ? '⏸ 暂停' : '▶ 继续';
+      if (isPlaying) {
+        if (!startTime) startTime = Date.now();
+        animate();
+      }
+    }
+
+    function changeSpeed(delta) {
+      scrollSpeed = Math.max(0.5, Math.min(6, scrollSpeed + delta));
+      speedDisplay.textContent = `速度: ${scrollSpeed.toFixed(1)}`;
+    }
+
+    function resetPosition() {
+      scrollY = 0;
+      container.style.transform = `translateX(-50%) translateY(0px)`;
+      startTime = Date.now();
+    }
+
+    function animate() {
+      if (!isPlaying) return;
+
+      scrollY -= scrollSpeed;
+      container.style.transform = `translateX(-50%) translateY(${scrollY}px)`;
+
+      // Update time
+      if (startTime) {
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        const min = Math.floor(elapsed / 60);
+        const sec = elapsed % 60;
+        timeDisplay.textContent = `${min}:${sec.toString().padStart(2, '0')}`;
+      }
+
+      // Stop if scrolled past all content
+      const textHeight = scriptText.offsetHeight;
+      if (Math.abs(scrollY) > textHeight) {
+        isPlaying = false;
+        playBtn.textContent = '▶ 重播';
+        return;
+      }
+
+      animId = requestAnimationFrame(animate);
+    }
+
+    // Keyboard controls
+    document.addEventListener('keydown', (e) => {
+      if (editOverlay.classList.contains('hidden')) {
+        switch(e.code) {
+          case 'Space':
+            e.preventDefault();
+            togglePlay();
+            break;
+          case 'ArrowUp':
+            e.preventDefault();
+            changeSpeed(0.5);
+            break;
+          case 'ArrowDown':
+            e.preventDefault();
+            changeSpeed(-0.5);
+            break;
+          case 'KeyF':
+            if (!document.fullscreenElement) {
+              document.documentElement.requestFullscreen();
+            } else {
+              document.exitFullscreen();
+            }
+            break;
+          case 'KeyE':
+            showEdit();
+            break;
+          case 'KeyR':
+            resetPosition();
+            break;
+        }
+      }
+    });
+
+    // Mouse wheel to manually scroll
+    document.addEventListener('wheel', (e) => {
+      if (editOverlay.classList.contains('hidden')) {
+        scrollY -= e.deltaY * 0.5;
+        container.style.transform = `translateX(-50%) translateY(${scrollY}px)`;
+      }
+    });
+  </script>
+</body>
+</html>

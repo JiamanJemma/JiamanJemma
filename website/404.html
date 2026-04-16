@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - 页面未找到 | 佳蔓 Jemma</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0612;
+      --text: #f0edf5;
+      --text-sec: #a09aae;
+      --accent: #a855f7;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .wrap { padding: 2rem; max-width: 480px; }
+    .code {
+      font-size: 8rem;
+      font-weight: 700;
+      line-height: 1;
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    h1 { font-size: 1.5rem; margin: 1rem 0 0.5rem; font-weight: 600; }
+    p { color: var(--text-sec); line-height: 1.6; margin-bottom: 2rem; }
+    a {
+      display: inline-block;
+      padding: 12px 32px;
+      background: linear-gradient(135deg, #a855f7, #ec4899);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+    a:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="code">404</div>
+    <h1 data-i18n="title">页面走丢了</h1>
+    <p data-i18n="desc">你访问的页面不存在，可能已被移动或删除。</p>
+    <a href="/" data-i18n="back">回到首页</a>
+  </div>
+  <script>
+    (function () {
+      var lang = localStorage.getItem('lang') || 'zh';
+      var dicts = {
+        zh: {
+          pageTitle: '404 - 页面未找到 | 佳蔓 Jemma',
+          title: '页面走丢了',
+          desc: '你访问的页面不存在，可能已被移动或删除。',
+          back: '回到首页'
+        },
+        en: {
+          pageTitle: '404 - Page Not Found | Jemma',
+          title: 'This page wandered off',
+          desc: 'The page you requested does not exist, or it may have been moved.',
+          back: 'Back to Home'
+        },
+        'zh-TW': {
+          pageTitle: '404 - 找不到頁面 | 佳蔓 Jemma',
+          title: '頁面走丟了',
+          desc: '你造訪的頁面不存在，可能已被移動或刪除。',
+          back: '回到首頁'
+        },
+        ja: {
+          pageTitle: '404 - ページが見つかりません | 佳蔓 Jemma',
+          title: 'ページが迷子になりました',
+          desc: 'アクセスしたページは存在しないか、移動または削除された可能性があります。',
+          back: 'ホームへ戻る'
+        }
+      };
+      var dict = dicts[lang] || dicts.zh;
+      document.title = dict.pageTitle;
+      document.documentElement.lang = ({ zh: 'zh-CN', 'zh-TW': 'zh-Hant', en: 'en', ja: 'ja' })[lang] || 'zh-CN';
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (dict[key]) el.textContent = dict[key];
+      });
+    })();
+  </script>
+</body>
+</html>

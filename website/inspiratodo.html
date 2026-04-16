@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InspiraTodo — 灵感捕捉 × 四象限待办 | 佳蔓 Jemma</title>
+  <meta name="description" content="InspiraTodo — 语音随手记，AI 自动分类，四象限管理灵感与待办。iOS App，即将上架 App Store。">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="canonical" href="https://jiamanjemma.com/inspiratodo">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="project-page.css?v=2">
+</head>
+<body>
+  <div class="project-page">
+    <!-- 顶部导航 -->
+    <nav class="project-nav">
+      <a href="/" class="back-link" data-i18n="back_home">← 返回首页</a>
+    </nav>
+
+    <!-- Hero -->
+    <header class="project-hero">
+      <img src="inspiratodo-icon.png" alt="InspiraTodo" class="project-app-icon" width="120" height="120" style="border-radius:0;">
+      <h1 class="project-title">InspiraTodo</h1>
+      <p class="project-tagline" data-i18n="tagline">灵感捕捉 × 四象限待办</p>
+      <p class="project-subtitle" data-i18n="subtitle">语音随手记，AI 自动分类，让每一个闪念都不被辜负。</p>
+      <div class="project-badges">
+        <span class="badge">iOS</span>
+        <span class="badge">macOS</span>
+        <span class="badge">watchOS</span>
+        <span class="badge badge-ai">AI</span>
+      </div>
+      <a href="#" class="download-btn download-btn-disabled">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2H7a5 5 0 0 0-5 5v10a5 5 0 0 0 5 5h10a5 5 0 0 0 5-5V7a5 5 0 0 0-5-5Z"/><path d="M12 8v8m-4-4 4 4 4-4"/></svg>
+        <span data-i18n="coming_soon">即将上架 App Store</span>
+      </a>
+    </header>
+
+    <!-- 功能特色 -->
+    <section class="features-section">
+      <h2 class="section-heading" data-i18n="features_title">功能特色</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🎤</span>
+          <h3 data-i18n="feature_1_title">语音快录</h3>
+          <p data-i18n="feature_1_desc">长按即录，AI 自动转文字，灵感不等人</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🧠</span>
+          <h3 data-i18n="feature_2_title">AI 四象限</h3>
+          <p data-i18n="feature_2_desc">自动识别紧急/重要程度，智能归类到四象限</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📱</span>
+          <h3 data-i18n="feature_3_title">桌面小组件</h3>
+          <p data-i18n="feature_3_desc">三种尺寸 Widget，锁屏就能看到今日待办</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">⌚</span>
+          <h3 data-i18n="feature_4_title">全平台同步</h3>
+          <p data-i18n="feature_4_desc">iPhone · Mac · Apple Watch，iCloud 无缝同步</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎨</span>
+          <h3 data-i18n="feature_5_title">画布涂鸦</h3>
+          <p data-i18n="feature_5_desc">PencilKit 支持手指和 Apple Pencil，画下灵感</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3 data-i18n="feature_6_title">Action Button</h3>
+          <p data-i18n="feature_6_desc">iPhone 实体按键一按即录，零打扰捕捉</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 留言区 -->
+    <section class="feedback-section">
+      <h2 class="section-heading" data-i18n="feedback_title">💬 留言反馈</h2>
+      <p class="feedback-desc" data-i18n="feedback_desc">有任何想法、建议或问题，欢迎留言！</p>
+      <form class="feedback-form" action="https://formsubmit.co/jiamanjemma@gmail.com" method="POST" onsubmit="return validateFeedback(this)">
+        <input type="hidden" name="_subject" value="💡 InspiraTodo 用户留言">
+        <input type="hidden" name="_next" value="https://jiamanjemma.com/inspiratodo?thanks=1">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none">
+        <div class="form-row">
+          <input type="text" name="name" data-i18n-placeholder="name_placeholder" placeholder="你的名字（选填）" class="form-input" maxlength="50">
+        </div>
+        <div class="form-row">
+          <textarea name="message" data-i18n-placeholder="message_placeholder" placeholder="写下你的想法..." class="form-input form-textarea" required maxlength="1000" rows="4"></textarea>
+        </div>
+        <div class="form-row">
+          <button type="submit" class="submit-btn" data-i18n="submit">发送留言 ✉️</button>
+        </div>
+        <p class="form-hint" data-i18n="form_hint">留言将发送到佳蔓的邮箱，我会尽快回复 ☺️</p>
+      </form>
+      <div class="thanks-msg" id="thanksMsg" style="display:none">
+        <p data-i18n="thanks">✅ 留言已发送，谢谢你！</p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+      <p><span data-i18n="footer_copy">&copy; 2026 佳蔓 Jemma</span> · <a href="/">jiamanjemma.com</a> · <a href="privacy" data-i18n="privacy">隐私政策</a></p>
+    </footer>
+  </div>
+
+  <script>
+  (function () {
+    var lang = localStorage.getItem('lang') || 'zh';
+    var dicts = {
+      zh: {
+        pageTitle: 'InspiraTodo — 灵感捕捉 × 四象限待办 | 佳蔓 Jemma',
+        pageDesc: 'InspiraTodo — 语音随手记，AI 自动分类，四象限管理灵感与待办。iOS App，即将上架 App Store。',
+        back_home: '← 返回首页',
+        tagline: '灵感捕捉 × 四象限待办',
+        subtitle: '语音随手记，AI 自动分类，让每一个闪念都不被辜负。',
+        coming_soon: '即将上架 App Store',
+        features_title: '功能特色',
+        feature_1_title: '语音快录',
+        feature_1_desc: '长按即录，AI 自动转文字，灵感不等人',
+        feature_2_title: 'AI 四象限',
+        feature_2_desc: '自动识别紧急/重要程度，智能归类到四象限',
+        feature_3_title: '桌面小组件',
+        feature_3_desc: '三种尺寸 Widget，锁屏就能看到今日待办',
+        feature_4_title: '全平台同步',
+        feature_4_desc: 'iPhone · Mac · Apple Watch，iCloud 无缝同步',
+        feature_5_title: '画布涂鸦',
+        feature_5_desc: 'PencilKit 支持手指和 Apple Pencil，画下灵感',
+        feature_6_title: 'Action Button',
+        feature_6_desc: 'iPhone 实体按键一按即录，零打扰捕捉',
+        feedback_title: '💬 留言反馈',
+        feedback_desc: '有任何想法、建议或问题，欢迎留言！',
+        name_placeholder: '你的名字（选填）',
+        message_placeholder: '写下你的想法...',
+        submit: '发送留言 ✉️',
+        form_hint: '留言将发送到佳蔓的邮箱，我会尽快回复 ☺️',
+        thanks: '✅ 留言已发送，谢谢你！',
+        footer_copy: '© 2026 佳蔓 Jemma',
+        privacy: '隐私政策',
+        alert_polite: '请文明留言哦～'
+      },
+      en: {
+        pageTitle: 'InspiraTodo — Capture Ideas × Quadrant Todo | Jemma',
+        pageDesc: 'InspiraTodo — Quick voice capture, AI auto-classification, and quadrant-based task management for ideas and todos. iOS app, coming soon to the App Store.',
+        back_home: '← Back Home',
+        tagline: 'Capture Ideas × Quadrant Todo',
+        subtitle: 'Capture ideas by voice, let AI sort them automatically, and never let a spark slip away.',
+        coming_soon: 'Coming to the App Store',
+        features_title: 'Features',
+        feature_1_title: 'Quick Voice Capture',
+        feature_1_desc: 'Hold to record, AI turns it into text automatically, and your ideas do not have to wait.',
+        feature_2_title: 'AI Quadrants',
+        feature_2_desc: 'AI detects urgency and importance, then sorts everything into the right quadrant.',
+        feature_3_title: 'Home Widgets',
+        feature_3_desc: 'Three widget sizes so you can see today’s tasks right from the lock screen.',
+        feature_4_title: 'Cross-Device Sync',
+        feature_4_desc: 'iPhone, Mac, and Apple Watch stay in sync seamlessly through iCloud.',
+        feature_5_title: 'Canvas Sketching',
+        feature_5_desc: 'Use PencilKit with your finger or Apple Pencil to draw ideas as they happen.',
+        feature_6_title: 'Action Button',
+        feature_6_desc: 'Press the iPhone hardware button once and start recording instantly, with zero friction.',
+        feedback_title: '💬 Feedback',
+        feedback_desc: 'If you have ideas, suggestions, or questions, leave me a note.',
+        name_placeholder: 'Your name (optional)',
+        message_placeholder: 'Write your thoughts here...',
+        submit: 'Send Message ✉️',
+        form_hint: 'Your message will be sent to Jemma by email, and I will reply as soon as I can ☺️',
+        thanks: '✅ Message sent. Thank you!',
+        footer_copy: '© 2026 Jemma',
+        privacy: 'Privacy Policy',
+        alert_polite: 'Please keep your message respectful.'
+      },
+      'zh-TW': {
+        pageTitle: 'InspiraTodo — 靈感捕捉 × 四象限待辦 | 佳蔓 Jemma',
+        pageDesc: 'InspiraTodo — 語音隨手記，AI 自動分類，用四象限管理靈感與待辦。iOS App，即將上架 App Store。',
+        back_home: '← 返回首頁',
+        tagline: '靈感捕捉 × 四象限待辦',
+        subtitle: '語音隨手記，AI 自動分類，讓每一個閃念都不被辜負。',
+        coming_soon: '即將上架 App Store',
+        features_title: '功能特色',
+        feature_1_title: '語音快錄',
+        feature_1_desc: '長按即錄，AI 自動轉文字，靈感不等人',
+        feature_2_title: 'AI 四象限',
+        feature_2_desc: '自動識別緊急 / 重要程度，智慧歸類到四象限',
+        feature_3_title: '桌面小工具',
+        feature_3_desc: '三種尺寸 Widget，鎖屏就能看到今日待辦',
+        feature_4_title: '全平台同步',
+        feature_4_desc: 'iPhone · Mac · Apple Watch，透過 iCloud 無縫同步',
+        feature_5_title: '畫布塗鴉',
+        feature_5_desc: 'PencilKit 支援手指與 Apple Pencil，把靈感直接畫下來',
+        feature_6_title: 'Action Button',
+        feature_6_desc: 'iPhone 實體按鍵一按即錄，零打擾捕捉靈感',
+        feedback_title: '💬 留言回饋',
+        feedback_desc: '有任何想法、建議或問題，歡迎留言！',
+        name_placeholder: '你的名字（選填）',
+        message_placeholder: '寫下你的想法...',
+        submit: '送出留言 ✉️',
+        form_hint: '留言會寄到佳蔓的信箱，我會盡快回覆 ☺️',
+        thanks: '✅ 留言已送出，謝謝你！',
+        footer_copy: '© 2026 佳蔓 Jemma',
+        privacy: '隱私政策',
+        alert_polite: '請文明留言喔～'
+      },
+      ja: {
+        pageTitle: 'InspiraTodo — ひらめきキャプチャ × 四象限ToDo | 佳蔓 Jemma',
+        pageDesc: 'InspiraTodo — 音声ですぐ記録し、AI が自動分類。ひらめきとタスクを四象限で管理する iOS アプリです。App Store 近日公開。',
+        back_home: '← ホームへ戻る',
+        tagline: 'ひらめきキャプチャ × 四象限ToDo',
+        subtitle: '音声ですぐメモし、AI が自動で整理して、ひらめきを取りこぼさない。',
+        coming_soon: 'App Store 近日公開',
+        features_title: '機能紹介',
+        feature_1_title: '音声クイック記録',
+        feature_1_desc: '長押しですぐ録音、AI が自動で文字化して、ひらめきを逃しません。',
+        feature_2_title: 'AI 四象限',
+        feature_2_desc: '緊急度と重要度を自動で判定し、四象限へ整理します。',
+        feature_3_title: 'ホームウィジェット',
+        feature_3_desc: '3サイズの Widget で、ロック画面から今日のタスクが見られます。',
+        feature_4_title: 'マルチデバイス同期',
+        feature_4_desc: 'iPhone・Mac・Apple Watch を iCloud でシームレスに同期。',
+        feature_5_title: 'キャンバス落書き',
+        feature_5_desc: 'PencilKit で指でも Apple Pencil でも、ひらめきをそのまま描けます。',
+        feature_6_title: 'Action Button',
+        feature_6_desc: 'iPhone の物理ボタンを一度押すだけで録音開始。邪魔なく素早く記録できます。',
+        feedback_title: '💬 フィードバック',
+        feedback_desc: '気づいたこと、提案、質問があればぜひ送ってください。',
+        name_placeholder: 'お名前（任意）',
+        message_placeholder: 'メッセージを書いてください...',
+        submit: '送信する ✉️',
+        form_hint: 'メッセージは佳蔓のメールに届き、できるだけ早く返信します ☺️',
+        thanks: '✅ メッセージを送信しました。ありがとうございます！',
+        footer_copy: '© 2026 佳蔓 Jemma',
+        privacy: 'プライバシーポリシー',
+        alert_polite: 'やさしい言葉でお願いします。'
+      }
+    };
+    var dict = dicts[lang] || dicts.zh;
+    document.title = dict.pageTitle;
+    document.documentElement.lang = ({ zh: 'zh-CN', 'zh-TW': 'zh-Hant', en: 'en', ja: 'ja' })[lang] || 'zh-CN';
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', dict.pageDesc);
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+      var key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
+    });
+    window.__projectI18n = dict;
+  })();
+  // 感谢页检测
+  if (location.search.includes('thanks=1')) {
+    var form = document.querySelector('.feedback-form');
+    var msg = document.getElementById('thanksMsg');
+    if (form) form.style.display = 'none';
+    if (msg) msg.style.display = 'block';
+  }
+
+  // 敏感词过滤
+  var badWords = ['傻逼','操你','妈的','去死','垃圾','废物','白痴','智障','贱','滚','fuck','shit','bitch','ass','damn','dick','pussy','nigger','faggot','kill yourself'];
+
+  function validateFeedback(form) {
+    var msg = form.querySelector('textarea[name="message"]').value;
+    var name = form.querySelector('input[name="name"]').value;
+    var text = (name + ' ' + msg).toLowerCase();
+    for (var i = 0; i < badWords.length; i++) {
+      if (text.indexOf(badWords[i]) !== -1) {
+        alert((window.__projectI18n && window.__projectI18n.alert_polite) || '请文明留言哦～');
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // 暗色模式跟随系统
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+  </script>
+</body>
+</html>
