@@ -4900,6 +4900,52 @@ button.contact-card {
   white-space: nowrap;
 }
 
+.private-routine-card {
+  display: grid;
+  gap: 14px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 170, 196, 0.12), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+}
+
+.private-routine-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.private-routine-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: color-mix(in srgb, var(--accent-light) 78%, white);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.private-routine-item strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1.04rem;
+}
+
+.private-routine-item p {
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
 .private-note {
   margin-top: 22px;
   padding: 16px 18px;
@@ -5362,12 +5408,18 @@ button.contact-card {
   }
 
   .private-local-card,
-  .private-command-item {
+  .private-command-item,
+  .private-routine-card,
+  .private-routine-item {
     padding: 18px;
   }
 
   .private-command-item code {
     font-size: 0.84rem;
+  }
+
+  .private-routine-item {
+    grid-template-columns: 1fr;
   }
 
   .hero-proof-card,
