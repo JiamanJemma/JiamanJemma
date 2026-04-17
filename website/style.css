@@ -4946,6 +4946,60 @@ button.contact-card {
   line-height: 1.75;
 }
 
+.private-focus-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: 18px;
+}
+
+.private-focus-card {
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.08), transparent 36%),
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+}
+
+.private-focus-card-primary {
+  background:
+    radial-gradient(circle at top right, rgba(255, 165, 190, 0.16), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.03));
+}
+
+.private-focus-kicker {
+  display: inline-flex;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.private-focus-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.26rem;
+  line-height: 1.35;
+}
+
+.private-focus-card p {
+  color: var(--text-secondary);
+  line-height: 1.82;
+}
+
+.private-focus-list {
+  display: grid;
+  gap: 10px;
+  padding-left: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.private-focus-list li::marker {
+  color: color-mix(in srgb, var(--accent-light) 72%, white);
+}
+
 .private-notes-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -5446,6 +5500,7 @@ button.contact-card {
     grid-template-columns: 1fr;
   }
 
+  .private-focus-grid,
   .private-notes-grid {
     grid-template-columns: 1fr;
   }
@@ -5477,7 +5532,8 @@ button.contact-card {
   .private-shell,
   .private-card,
   .private-local-card,
-  .private-notes-card {
+  .private-notes-card,
+  .private-focus-card {
     border-radius: 22px;
   }
 
