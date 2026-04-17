@@ -17,23 +17,96 @@
         这是挂在主站下面的一条私密链路，适合放你自己的工作台入口、草稿导航、
         内部工具链接，或者任何你不想公开给所有访问者看的页面。
       </p>
-      <div class="private-grid">
-        <a class="private-card" href="https://jiamanjemma.com">
-          <span class="private-card-label">Public Site</span>
-          <strong>回到主页</strong>
-          <p>继续看公开内容、作品、文章和资源。</p>
-        </a>
-        <a class="private-card" href="https://jemma747318.substack.com/" target="_blank" rel="noopener noreferrer">
-          <span class="private-card-label">Writing</span>
-          <strong>进入 Newsletter</strong>
-          <p>继续写文章，或者处理发布与订阅反馈。</p>
-        </a>
-        <a class="private-card" href="mailto:jiamanjemma@gmail.com">
-          <span class="private-card-label">Inbox</span>
-          <strong>快速打开邮箱</strong>
-          <p>把这里当成你自己的网页起点，而不是访客入口。</p>
-        </a>
+      <div class="private-section">
+        <div class="private-section-head">
+          <span class="private-section-label">Site Shortcuts</span>
+          <h2>站内直达</h2>
+        </div>
+        <div class="private-grid">
+          <a class="private-card" href="https://jiamanjemma.com">
+            <span class="private-card-label">Public Site</span>
+            <strong>回到主页</strong>
+            <p>继续看公开内容、作品、文章和资源。</p>
+          </a>
+          <a class="private-card" href="https://jiamanjemma.com/#projects">
+            <span class="private-card-label">Projects</span>
+            <strong>直接看作品区</strong>
+            <p>跳过首页，直达作品与项目的主展示区。</p>
+          </a>
+          <a class="private-card" href="https://jiamanjemma.com/#resources">
+            <span class="private-card-label">Resources</span>
+            <strong>直接进资源区</strong>
+            <p>模板、工具、命令和参考链接都从这里拿。</p>
+          </a>
+          <a class="private-card" href="https://jiamanjemma.com/inspiratodo">
+            <span class="private-card-label">Product Page</span>
+            <strong>打开 InspiraTodo 页面</strong>
+            <p>查看产品介绍页，后续也适合继续往这里堆产品入口。</p>
+          </a>
+          <a class="private-card" href="https://jiamanjemma.com/skill-demo.html">
+            <span class="private-card-label">Workflow Demo</span>
+            <strong>打开 AI 工作流演示页</strong>
+            <p>这是你当前网站里最接近“内部方法论展示”的页面。</p>
+          </a>
+          <a class="private-card" href="https://jiamanjemma.com/teleprompter.html">
+            <span class="private-card-label">Tool</span>
+            <strong>打开提词器</strong>
+            <p>如果要录视频，这个入口比从公开页慢慢翻更直接。</p>
+          </a>
+        </div>
       </div>
+
+      <div class="private-section">
+        <div class="private-section-head">
+          <span class="private-section-label">Writing & Publishing</span>
+          <h2>写作与发布</h2>
+        </div>
+        <div class="private-grid private-grid-compact">
+          <a class="private-card" href="https://jemma747318.substack.com/" target="_blank" rel="noopener noreferrer">
+            <span class="private-card-label">Newsletter</span>
+            <strong>进入 Newsletter</strong>
+            <p>继续写文章，或者处理发布与订阅反馈。</p>
+          </a>
+          <a class="private-card" href="https://jiamanjemma.com/prompt-templates.html">
+            <span class="private-card-label">Prompt Library</span>
+            <strong>打开提示词模板</strong>
+            <p>发布或创作前，先从可复用模板进入会更快。</p>
+          </a>
+          <a class="private-card" href="mailto:jiamanjemma@gmail.com">
+            <span class="private-card-label">Inbox</span>
+            <strong>快速打开邮箱</strong>
+            <p>适合把这里当成你的私人起始页，而不是访客入口。</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="private-section">
+        <div class="private-section-head">
+          <span class="private-section-label">Local Only</span>
+          <h2>本地工作台</h2>
+        </div>
+        <div class="private-local-card">
+          <p class="private-local-copy">
+            像 <strong>Jemma 工作台</strong> 这种本地目录，不能从公开网页直接打开。
+            最稳的方式是把最短命令留在这里，你在自己电脑终端里执行。
+          </p>
+          <div class="private-command-list">
+            <div class="private-command-item">
+              <span class="private-command-label">看工作台</span>
+              <code>cd ~/Desktop/Jemma工作台 && ./jemma watch</code>
+            </div>
+            <div class="private-command-item">
+              <span class="private-command-label">看下一步任务</span>
+              <code>cd ~/Desktop/Jemma工作台 && ./jemma next</code>
+            </div>
+            <div class="private-command-item">
+              <span class="private-command-label">看任务详情</span>
+              <code>cd ~/Desktop/Jemma工作台 && ./jemma show creator-playbooks</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="private-note">
         <strong>部署后记得设置环境变量：</strong>
         <code>PRIVATE_USER</code> 和 <code>PRIVATE_PASS</code>

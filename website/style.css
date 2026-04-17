@@ -4767,10 +4767,46 @@ button.contact-card {
   line-height: 1.8;
 }
 
+.private-section + .private-section {
+  margin-top: 26px;
+}
+
+.private-section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.private-section-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.private-section-head h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 2vw, 1.8rem);
+  line-height: 1.2;
+}
+
 .private-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+}
+
+.private-grid-compact {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .private-card {
@@ -4813,6 +4849,55 @@ button.contact-card {
 .private-card p {
   color: var(--text-secondary);
   line-height: 1.7;
+}
+
+.private-local-card {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(255, 186, 120, 0.16), transparent 38%),
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  box-shadow: 0 20px 40px rgba(16, 10, 26, 0.16);
+}
+
+.private-local-copy {
+  margin-bottom: 18px;
+  color: var(--text-secondary);
+  line-height: 1.85;
+}
+
+.private-command-list {
+  display: grid;
+  gap: 14px;
+}
+
+.private-command-item {
+  display: grid;
+  gap: 8px;
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.private-command-label {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.private-command-item code {
+  display: block;
+  overflow-x: auto;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(20, 16, 28, 0.6);
+  color: color-mix(in srgb, var(--accent-light) 78%, white);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  white-space: nowrap;
 }
 
 .private-note {
@@ -5237,6 +5322,11 @@ button.contact-card {
     font-size: 0.96rem;
   }
 
+  .private-section-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
   .private-grid {
     grid-template-columns: 1fr;
   }
@@ -5263,6 +5353,21 @@ button.contact-card {
   .hero-quick-nav,
   .articles-grid {
     grid-template-columns: 1fr;
+  }
+
+  .private-shell,
+  .private-card,
+  .private-local-card {
+    border-radius: 22px;
+  }
+
+  .private-local-card,
+  .private-command-item {
+    padding: 18px;
+  }
+
+  .private-command-item code {
+    font-size: 0.84rem;
   }
 
   .hero-proof-card,
