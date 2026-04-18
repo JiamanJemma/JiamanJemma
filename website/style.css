@@ -4919,6 +4919,16 @@ button.contact-card {
   padding: 14px 16px;
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  text-decoration: none;
+  transition: transform var(--transition-base), background var(--transition-base), border-color var(--transition-base);
+}
+
+.private-routine-item:hover,
+.private-routine-item:focus-visible {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.07);
+  outline: none;
 }
 
 .private-routine-index {
@@ -5048,8 +5058,22 @@ button.contact-card {
   gap: 10px;
 }
 
+.private-snippet {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
 .private-snippet-list code {
   display: block;
+  width: 100%;
   overflow-x: auto;
   padding: 12px 14px;
   border-radius: 16px;
@@ -5058,6 +5082,13 @@ button.contact-card {
   font-size: 0.9rem;
   line-height: 1.6;
   white-space: nowrap;
+}
+
+.private-snippet span {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 .private-notes-copy {

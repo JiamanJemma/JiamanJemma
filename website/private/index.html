@@ -17,7 +17,7 @@
         这是挂在主站下面的一条私密链路，适合放你自己的工作台入口、草稿导航、
         内部工具链接，或者任何你不想公开给所有访问者看的页面。
       </p>
-      <div class="private-section">
+      <div class="private-section" id="ops-hub">
         <div class="private-section-head">
           <span class="private-section-label">Site Shortcuts</span>
           <h2>站内直达</h2>
@@ -197,33 +197,33 @@
         </div>
       </div>
 
-      <div class="private-section">
+      <div class="private-section" id="today-start">
         <div class="private-section-head">
           <span class="private-section-label">Today</span>
           <h2>今天从这里开始</h2>
         </div>
         <div class="private-routine-card">
-          <div class="private-routine-item">
+          <a class="private-routine-item" href="#local-workbench">
             <span class="private-routine-index">01</span>
             <div>
               <strong>先看工作台</strong>
               <p>确认今天最该做什么，再决定是写作、发内容还是改站。</p>
             </div>
-          </div>
-          <div class="private-routine-item">
+          </a>
+          <a class="private-routine-item" href="#ops-hub">
             <span class="private-routine-index">02</span>
             <div>
               <strong>进对应后台</strong>
               <p>内容要发就进 Studio 或 Substack，站点要调就进 GitHub 和 Cloudflare。</p>
             </div>
-          </div>
-          <div class="private-routine-item">
+          </a>
+          <a class="private-routine-item" href="https://jiamanjemma.com" target="_blank" rel="noopener noreferrer">
             <span class="private-routine-index">03</span>
             <div>
               <strong>最后回到公开页检查</strong>
               <p>从访客视角看一遍主页、实验页或产品页，确认体验没有断掉。</p>
             </div>
-          </div>
+          </a>
         </div>
       </div>
 
@@ -289,9 +289,18 @@
             <span class="private-notes-kicker">Short Commands</span>
             <h3>常用命令</h3>
             <div class="private-snippet-list">
-              <code>cd ~/Desktop/Jemma工作台 && ./jemma next</code>
-              <code>cd ~/Desktop/Jemma工作台 && ./jemma watch</code>
-              <code>git -C ~/Desktop/开发/jiamanjemma status</code>
+              <button class="private-snippet" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma next">
+                <code>cd ~/Desktop/Jemma工作台 && ./jemma next</code>
+                <span>点一下复制</span>
+              </button>
+              <button class="private-snippet" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma watch">
+                <code>cd ~/Desktop/Jemma工作台 && ./jemma watch</code>
+                <span>点一下复制</span>
+              </button>
+              <button class="private-snippet" type="button" data-copy-text="git -C ~/Desktop/开发/jiamanjemma status">
+                <code>git -C ~/Desktop/开发/jiamanjemma status</code>
+                <span>点一下复制</span>
+              </button>
             </div>
           </div>
           <div class="private-notes-card">
@@ -307,7 +316,7 @@
         </div>
       </div>
 
-      <div class="private-section">
+      <div class="private-section" id="local-workbench">
         <div class="private-section-head">
           <span class="private-section-label">Local Only</span>
           <h2>本地工作台</h2>
@@ -340,5 +349,25 @@
       </div>
     </section>
   </main>
+  <script>
+    document.querySelectorAll('.private-snippet').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const text = button.dataset.copyText || '';
+        try {
+          await navigator.clipboard.writeText(text);
+          const hint = button.querySelector('span');
+          if (hint) {
+            const original = hint.textContent;
+            hint.textContent = '已复制';
+            window.setTimeout(() => {
+              hint.textContent = original;
+            }, 1200);
+          }
+        } catch (error) {
+          window.prompt('复制这条命令', text);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
