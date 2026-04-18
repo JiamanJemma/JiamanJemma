@@ -12,10 +12,25 @@
   <link rel="stylesheet" href="style.css?v=20260314a">
   <style>
     .article-reader-wrapper {
-      max-width: 860px;
+      max-width: 980px;
       margin: 0 auto 80px;
       padding: 0 24px;
       padding-top: 100px; /* nav only */
+    }
+    .article-shell {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 28px 34px 48px;
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.54);
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      box-shadow: 0 24px 60px rgba(91, 63, 136, 0.10);
+      backdrop-filter: blur(16px);
+    }
+    [data-theme='dark'] .article-shell {
+      background: rgba(20, 10, 30, 0.58);
+      border-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
     }
 
     /* ===== 导航栏内嵌订阅按钮 ===== */
@@ -77,7 +92,7 @@
       font-size: 1.1rem;
       color: var(--text-color);
       letter-spacing: 0.015em;
-      max-width: 720px;
+      max-width: 100%;
     }
     .md-content h1, .md-content h2, .md-content h3 {
       font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif;
@@ -181,7 +196,7 @@
       font-weight: 700;
     }
     .back-nav {
-      margin-bottom: 32px;
+      margin-bottom: 20px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -194,10 +209,36 @@
     .back-nav:hover {
       color: var(--text-color);
     }
+    .article-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(155, 111, 224, 0.10);
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .article-kicker::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: currentColor;
+      box-shadow: 0 0 0 6px rgba(155, 111, 224, 0.12);
+    }
     @media (max-width: 768px) {
       .article-reader-wrapper {
         padding: 0 18px;
         padding-top: 88px;
+      }
+      .article-shell {
+        padding: 22px 20px 36px;
+        border-radius: 24px;
       }
       .md-content {
         font-size: 1.02rem;
@@ -225,16 +266,37 @@
   <nav class="nav">
     <div class="nav-content container">
       <div class="nav-left">
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="菜单">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
         <a href="index.html#home" class="logo paper-logo">Jemma</a>
       </div>
       <div class="nav-links paper-nav">
-        <a href="index.html#articles" class="paper-link paper-yellow" data-i18n="nav_articles">文章</a>
-        <a href="index.html#projects" class="paper-link paper-blue" data-i18n="nav_projects">作品</a>
-        <a href="index.html#resources" class="paper-link paper-green" data-i18n="nav_resources">资源</a>
+        <a href="index.html#articles" class="paper-link paper-link-primary paper-yellow" data-i18n="nav_articles">文章</a>
+        <a href="index.html#projects" class="paper-link paper-link-primary paper-blue" data-i18n="nav_projects">作品</a>
+        <a href="index.html#resources" class="paper-link paper-link-primary paper-green" data-i18n="nav_resources">资源</a>
         <a href="index.html#videos" class="paper-link paper-pink" data-i18n="nav_videos">视频</a>
-        <a href="index.html#community" class="paper-link paper-purple" data-i18n="nav_community">社区</a>
+        <a href="index.html#podcast" class="paper-link paper-link-secondary" data-i18n="nav_podcast">播客</a>
+        <a href="index.html#community" class="paper-link paper-link-secondary paper-purple" data-i18n="nav_community">社区</a>
+        <a href="index.html#contact" class="paper-link paper-link-secondary paper-orange" data-i18n="nav_contact">联系</a>
       </div>
       <div class="nav-right">
+        <button class="search-trigger" id="searchTrigger" type="button" aria-label="快速搜索" data-cursor-label="Find">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="20" y1="20" x2="16.65" y2="16.65"></line></svg>
+          <span>搜索</span>
+          <kbd>⌘K</kbd>
+        </button>
+        <div class="lang-switcher" id="langSwitcher">
+          <button class="icon-btn lang-btn" id="langBtn" aria-label="切换语言">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </button>
+          <div class="lang-dropdown" id="langDropdown">
+            <button class="lang-option active" data-lang="zh">简体中文</button>
+            <button class="lang-option" data-lang="zh-TW">繁體中文</button>
+            <button class="lang-option" data-lang="en">English</button>
+            <button class="lang-option" data-lang="ja">日本語</button>
+          </div>
+        </div>
         <!-- 订阅按钮嵌入导航 -->
         <div class="nav-subscribe">
           <a href="https://jemma747318.substack.com" target="_blank" class="nav-sub-btn" style="background:#FF6719;color:#fff;">
@@ -259,19 +321,89 @@
     </div>
   </nav>
 
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-header">
+      <span class="mobile-menu-title">导航</span>
+      <button class="icon-btn" id="mobileMenuClose" aria-label="关闭菜单">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu-nav">
+      <a href="index.html#home" class="mobile-menu-link">首页</a>
+      <a href="index.html#articles" class="mobile-menu-link">文章</a>
+      <a href="index.html#projects" class="mobile-menu-link">作品</a>
+      <a href="index.html#resources" class="mobile-menu-link">资源</a>
+      <a href="index.html#videos" class="mobile-menu-link">视频</a>
+      <a href="index.html#podcast" class="mobile-menu-link">播客</a>
+      <a href="index.html#community" class="mobile-menu-link">社区</a>
+      <a href="index.html#contact" class="mobile-menu-link">联系</a>
+    </div>
+  </div>
+  <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+  <div class="search-modal" id="searchModal" aria-hidden="true">
+    <div class="search-modal-panel" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
+      <div class="search-modal-header">
+        <div class="search-modal-title-group">
+          <span class="search-modal-kicker">快速搜索</span>
+          <h2 class="search-modal-title" id="searchModalTitle">文章页快捷入口</h2>
+        </div>
+        <button class="icon-btn search-modal-close" id="searchModalClose" type="button" aria-label="关闭搜索">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="search-modal-input-wrap">
+        <span class="search-modal-icon">⌕</span>
+        <input type="text" id="siteSearchInput" class="search-modal-input" placeholder="输入 文章 / 作品 / 资源 / 视频">
+      </div>
+      <div class="search-modal-meta">
+        <span>回到首页后可继续使用完整搜索</span>
+      </div>
+      <div class="search-results" id="searchResults">
+        <div class="search-result-list">
+          <button type="button" class="search-result-item is-active" data-article-href="index.html#articles">
+            <span class="search-result-type">文章</span>
+            <span class="search-result-main">
+              <span class="search-result-title">返回文章列表</span>
+              <span class="search-result-desc">回到首页文章区，继续读更多长文</span>
+            </span>
+            <span class="search-result-arrow">↗</span>
+          </button>
+          <button type="button" class="search-result-item" data-article-href="index.html#projects">
+            <span class="search-result-type">作品</span>
+            <span class="search-result-main">
+              <span class="search-result-title">去看作品</span>
+              <span class="search-result-desc">回到首页作品区</span>
+            </span>
+            <span class="search-result-arrow">↗</span>
+          </button>
+          <button type="button" class="search-result-item" data-article-href="index.html#videos">
+            <span class="search-result-type">视频</span>
+            <span class="search-result-main">
+              <span class="search-result-title">去看视频</span>
+              <span class="search-result-desc">跳到首页视频区</span>
+            </span>
+            <span class="search-result-arrow">↗</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <main class="article-reader-wrapper">
     <a href="index.html#articles" class="back-nav">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       <span data-i18n="back_home">返回首页</span>
     </a>
-
-    <!-- Markdown 原生容器 -->
-    <article id="markdown-content" class="md-content">
-      <div style="text-align: center; padding: 100px 0; color: var(--text-muted);">
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite; opacity: 0.5; margin-bottom: 20px;"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
-        <p data-i18n="loading">正在拉取源文件...</p>
-      </div>
-    </article>
+    <section class="article-shell">
+      <div class="article-kicker">Essay</div>
+      <article id="markdown-content" class="md-content">
+        <div style="text-align: center; padding: 100px 0; color: var(--text-muted);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite; opacity: 0.5; margin-bottom: 20px;"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
+          <p data-i18n="loading">正在拉取源文件...</p>
+        </div>
+      </article>
+    </section>
   </main>
 
   <!-- ========== 公众号二维码弹窗 ========== -->
@@ -503,6 +635,139 @@
     }
 
     // ================================
+    // 简化版搜索与菜单
+    var articleMenuToggle = document.getElementById('menuToggle');
+    var articleMobileMenu = document.getElementById('mobileMenu');
+    var articleMobileMenuClose = document.getElementById('mobileMenuClose');
+    var articleMobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    var articleSearchTrigger = document.getElementById('searchTrigger');
+    var articleSearchModal = document.getElementById('searchModal');
+    var articleSearchModalClose = document.getElementById('searchModalClose');
+    var articleSearchResults = document.getElementById('searchResults');
+    var articleLangBtn = document.getElementById('langBtn');
+    var articleLangDropdown = document.getElementById('langDropdown');
+
+    function openArticleMenu() {
+      if (articleMobileMenu) articleMobileMenu.classList.add('active');
+      if (articleMobileMenuOverlay) articleMobileMenuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeArticleMenu() {
+      if (articleMobileMenu) articleMobileMenu.classList.remove('active');
+      if (articleMobileMenuOverlay) articleMobileMenuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function openArticleSearch() {
+      if (!articleSearchModal) return;
+      articleSearchModal.classList.add('active');
+      articleSearchModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeArticleSearch() {
+      if (!articleSearchModal) return;
+      articleSearchModal.classList.remove('active');
+      articleSearchModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    if (articleMenuToggle) articleMenuToggle.addEventListener('click', openArticleMenu);
+    if (articleMobileMenuClose) articleMobileMenuClose.addEventListener('click', closeArticleMenu);
+    if (articleMobileMenuOverlay) articleMobileMenuOverlay.addEventListener('click', closeArticleMenu);
+    if (articleSearchTrigger) articleSearchTrigger.addEventListener('click', openArticleSearch);
+    if (articleSearchModalClose) articleSearchModalClose.addEventListener('click', closeArticleSearch);
+    if (articleSearchModal) {
+      articleSearchModal.addEventListener('click', function (e) {
+        if (e.target === articleSearchModal) closeArticleSearch();
+      });
+    }
+    if (articleSearchResults) {
+      articleSearchResults.addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-article-href]');
+        if (!btn) return;
+        window.location.href = btn.getAttribute('data-article-href');
+      });
+    }
+    document.addEventListener('keydown', function (e) {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openArticleSearch();
+      }
+      if (e.key === 'Escape') {
+        closeArticleSearch();
+        closeArticleMenu();
+        if (articleLangDropdown) articleLangDropdown.classList.remove('active');
+      }
+    });
+    if (articleLangBtn && articleLangDropdown) {
+      articleLangBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        articleLangDropdown.classList.toggle('active');
+      });
+      articleLangDropdown.querySelectorAll('.lang-option').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          articleLang = this.getAttribute('data-lang') || 'zh';
+          localStorage.setItem('lang', articleLang);
+          window.location.reload();
+        });
+      });
+      document.addEventListener('click', function () {
+        articleLangDropdown.classList.remove('active');
+      });
+    }
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      var customCursor = document.createElement('div');
+      var customCursorTrail = document.createElement('div');
+      var hoverTargets = document.querySelectorAll('a, button, .paper-link, .search-result-item, [role="button"]');
+      var cursorX = -100;
+      var cursorY = -100;
+      var trailX = -100;
+      var trailY = -100;
+
+      customCursor.className = 'custom-cursor';
+      customCursorTrail.className = 'custom-cursor-trail';
+      customCursor.setAttribute('data-label', 'J');
+      document.body.appendChild(customCursorTrail);
+      document.body.appendChild(customCursor);
+      document.body.classList.add('custom-cursor-enabled');
+
+      document.addEventListener('pointermove', function (e) {
+        cursorX = e.clientX;
+        cursorY = e.clientY;
+        customCursor.style.setProperty('--cursor-x', cursorX + 'px');
+        customCursor.style.setProperty('--cursor-y', cursorY + 'px');
+        customCursor.classList.add('is-visible');
+        trailX += (cursorX - trailX) * 0.28;
+        trailY += (cursorY - trailY) * 0.28;
+        customCursorTrail.style.setProperty('--trail-x', trailX + 'px');
+        customCursorTrail.style.setProperty('--trail-y', trailY + 'px');
+        customCursorTrail.classList.add('is-visible');
+      });
+      document.addEventListener('pointerleave', function () {
+        customCursor.classList.remove('is-visible', 'is-hover', 'is-active');
+        customCursorTrail.classList.remove('is-visible');
+      });
+      document.addEventListener('pointerdown', function () {
+        customCursor.classList.add('is-active');
+      });
+      document.addEventListener('pointerup', function () {
+        customCursor.classList.remove('is-active');
+      });
+      hoverTargets.forEach(function (item) {
+        item.addEventListener('pointerenter', function () {
+          customCursor.setAttribute('data-label', item.getAttribute('data-cursor-label') || (item.tagName === 'A' ? 'Go' : 'Tap'));
+          customCursor.classList.add('is-hover');
+        });
+        item.addEventListener('pointerleave', function () {
+          customCursor.setAttribute('data-label', 'J');
+          customCursor.classList.remove('is-hover');
+        });
+      });
+    }
+
     // 微信公众号复制与弹窗引流
     // ================================
     var oaQrModal = document.getElementById('oaQrModal');
