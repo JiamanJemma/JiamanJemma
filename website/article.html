@@ -8,11 +8,11 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=20260314a">
   <style>
     .article-reader-wrapper {
-      max-width: 760px;
+      max-width: 860px;
       margin: 0 auto 80px;
       padding: 0 24px;
       padding-top: 100px; /* nav only */
@@ -72,11 +72,12 @@
 
     /* ===== Markdown 排版 ===== */
     .md-content {
-      font-family: 'Noto Sans SC', sans-serif;
-      line-height: 2;
-      font-size: 1.08rem;
+      font-family: 'Noto Serif SC', 'Noto Sans SC', serif;
+      line-height: 2.05;
+      font-size: 1.1rem;
       color: var(--text-color);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.015em;
+      max-width: 720px;
     }
     .md-content h1, .md-content h2, .md-content h3 {
       font-family: 'ZCOOL KuaiLe', 'Noto Sans SC', sans-serif;
@@ -84,25 +85,32 @@
       line-height: 1.4;
     }
     .md-content h1 {
-      font-size: 2rem;
-      margin-top: 0.5em;
-      margin-bottom: 1em;
-      padding-bottom: 12px;
-      border-bottom: 2px solid rgba(255,255,255,0.08);
+      font-size: clamp(2.1rem, 4vw, 2.8rem);
+      margin-top: 0.2em;
+      margin-bottom: 1.1em;
+      padding-bottom: 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.12);
     }
     [data-theme='light'] .md-content h1 { border-bottom-color: rgba(0,0,0,0.08); }
     .md-content h2 {
-      font-size: 1.55rem;
-      margin-top: 2.5em;
-      margin-bottom: 0.8em;
+      font-size: 1.7rem;
+      margin-top: 3em;
+      margin-bottom: 0.95em;
     }
     .md-content h3 {
       font-size: 1.3rem;
-      margin-top: 2em;
+      margin-top: 2.2em;
       margin-bottom: 0.6em;
     }
     .md-content p {
-      margin-bottom: 1.6em;
+      margin-bottom: 1.55em;
+    }
+    .md-content > p:first-of-type,
+    .md-content .article-lead {
+      font-size: 1.22rem;
+      line-height: 2;
+      color: var(--text-primary);
+      margin-bottom: 1.9em;
     }
     .md-content a {
       color: var(--accent-color);
@@ -112,13 +120,13 @@
     }
     .md-content img {
       max-width: 100%;
-      border-radius: 14px;
-      margin: 2em 0;
+      border-radius: 18px;
+      margin: 2.4em 0;
       display: block;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+      box-shadow: 0 12px 34px rgba(0,0,0,0.14);
     }
     [data-theme='light'] .md-content img {
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.08);
     }
     .md-content blockquote {
       border-left: 4px solid var(--accent-color, #a78bfa);
@@ -156,7 +164,7 @@
       border: none;
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
-      margin: 3em 0;
+      margin: 3.4em 0;
     }
     [data-theme='light'] .md-content hr {
       background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
@@ -186,6 +194,25 @@
     .back-nav:hover {
       color: var(--text-color);
     }
+    @media (max-width: 768px) {
+      .article-reader-wrapper {
+        padding: 0 18px;
+        padding-top: 88px;
+      }
+      .md-content {
+        font-size: 1.02rem;
+      }
+      .md-content > p:first-of-type,
+      .md-content .article-lead {
+        font-size: 1.08rem;
+      }
+      .md-content h1 {
+        font-size: 1.82rem;
+      }
+      .md-content h2 {
+        font-size: 1.42rem;
+      }
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
@@ -201,10 +228,10 @@
         <a href="index.html#home" class="logo paper-logo">Jemma</a>
       </div>
       <div class="nav-links paper-nav">
-        <a href="index.html#videos" class="paper-link paper-pink" data-i18n="nav_videos">视频</a>
         <a href="index.html#articles" class="paper-link paper-yellow" data-i18n="nav_articles">文章</a>
         <a href="index.html#projects" class="paper-link paper-blue" data-i18n="nav_projects">作品</a>
         <a href="index.html#resources" class="paper-link paper-green" data-i18n="nav_resources">资源</a>
+        <a href="index.html#videos" class="paper-link paper-pink" data-i18n="nav_videos">视频</a>
         <a href="index.html#community" class="paper-link paper-purple" data-i18n="nav_community">社区</a>
       </div>
       <div class="nav-right">
@@ -449,6 +476,11 @@
             // 去掉 🔴 emoji 和多余空格
             h1.innerHTML = h1.innerHTML.replace(/🔴\s*/g, '');
             document.title = h1.innerText + articleI18n.pageTitleSuffix;
+          }
+
+          const leadParagraph = contentDiv.querySelector('h1 + p');
+          if (leadParagraph) {
+            leadParagraph.classList.add('article-lead');
           }
 
           // 把第一个 blockquote（如果是"副标题"）转为优雅引言
