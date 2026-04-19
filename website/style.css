@@ -4880,6 +4880,22 @@ button.contact-card {
   background: rgba(255, 255, 255, 0.05);
 }
 
+.private-command-copy {
+  width: 100%;
+  border: 0;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: transform var(--transition-base), background var(--transition-base);
+}
+
+.private-command-copy:hover,
+.private-command-copy:focus-visible {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+
 .private-command-label {
   color: var(--text-muted);
   font-size: 0.8rem;
@@ -4898,6 +4914,13 @@ button.contact-card {
   font-size: 0.92rem;
   line-height: 1.6;
   white-space: nowrap;
+}
+
+.private-command-hint {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 .private-routine-card {
@@ -4954,6 +4977,21 @@ button.contact-card {
 .private-routine-item p {
   color: var(--text-secondary);
   line-height: 1.75;
+}
+
+.private-routine-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  color: color-mix(in srgb, var(--accent-light) 78%, white);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.private-routine-cta::after {
+  content: '->';
 }
 
 .private-focus-grid {

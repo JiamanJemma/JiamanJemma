@@ -208,6 +208,7 @@
             <div>
               <strong>先看工作台</strong>
               <p>确认今天最该做什么，再决定是写作、发内容还是改站。</p>
+              <span class="private-routine-cta">跳到本地工作台</span>
             </div>
           </a>
           <a class="private-routine-item" href="/private/#ops-hub">
@@ -215,6 +216,7 @@
             <div>
               <strong>进对应后台</strong>
               <p>内容要发就进 Studio 或 Substack，站点要调就进 GitHub 和 Cloudflare。</p>
+              <span class="private-routine-cta">跳到后台入口</span>
             </div>
           </a>
           <a class="private-routine-item" href="https://jiamanjemma.com" target="_blank" rel="noopener noreferrer">
@@ -222,6 +224,7 @@
             <div>
               <strong>最后回到公开页检查</strong>
               <p>从访客视角看一遍主页、实验页或产品页，确认体验没有断掉。</p>
+              <span class="private-routine-cta">打开公开主页</span>
             </div>
           </a>
         </div>
@@ -327,18 +330,21 @@
             最稳的方式是把最短命令留在这里，你在自己电脑终端里执行。
           </p>
           <div class="private-command-list">
-            <div class="private-command-item">
+            <button class="private-command-item private-command-copy" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma watch">
               <span class="private-command-label">看工作台</span>
               <code>cd ~/Desktop/Jemma工作台 && ./jemma watch</code>
-            </div>
-            <div class="private-command-item">
+              <span class="private-command-hint">点一下复制</span>
+            </button>
+            <button class="private-command-item private-command-copy" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma next">
               <span class="private-command-label">看下一步任务</span>
               <code>cd ~/Desktop/Jemma工作台 && ./jemma next</code>
-            </div>
-            <div class="private-command-item">
+              <span class="private-command-hint">点一下复制</span>
+            </button>
+            <button class="private-command-item private-command-copy" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma show creator-playbooks">
               <span class="private-command-label">看任务详情</span>
               <code>cd ~/Desktop/Jemma工作台 && ./jemma show creator-playbooks</code>
-            </div>
+              <span class="private-command-hint">点一下复制</span>
+            </button>
           </div>
         </div>
       </div>
@@ -350,12 +356,13 @@
     </section>
   </main>
   <script>
-    document.querySelectorAll('.private-snippet').forEach((button) => {
+    const copyButtons = document.querySelectorAll('.private-snippet, .private-command-copy');
+    copyButtons.forEach((button) => {
       button.addEventListener('click', async () => {
         const text = button.dataset.copyText || '';
         try {
           await navigator.clipboard.writeText(text);
-          const hint = button.querySelector('span');
+          const hint = button.querySelector('.private-command-hint, .private-snippet span');
           if (hint) {
             const original = hint.textContent;
             hint.textContent = '已复制';
