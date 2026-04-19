@@ -266,90 +266,98 @@
       </div>
 
       <div class="private-section" id="quick-notes">
-        <div class="private-section-head">
-          <span class="private-section-label">Quick Notes</span>
-          <h2>固定检查项</h2>
-        </div>
-        <div class="private-notes-grid">
-          <div class="private-notes-card">
-            <span class="private-notes-kicker">Publish Checklist</span>
-            <h3>发内容前看一眼</h3>
-            <ul class="private-checklist">
-              <li>标题和封面是不是同一个叙事，不要各说各话。</li>
-              <li>公开页、简介区、置顶评论有没有放对入口。</li>
-              <li>视频、长文、站内资源三边有没有互相导流。</li>
-              <li>发完后从手机再看一遍公开呈现，不只看后台。</li>
-            </ul>
-          </div>
-          <div class="private-notes-card">
-            <span class="private-notes-kicker">Site Checks</span>
-            <h3>改站后看一眼</h3>
-            <ul class="private-checklist">
-              <li>主页首屏、作品区、资源区有没有断层。</li>
-              <li>`/private/` 认证有没有还活着，环境变量别丢。</li>
-              <li>改完样式后，手机视图和公开页按钮再点一遍。</li>
-              <li>最后回 GitHub 看 diff，别把实验改动混进正式页面。</li>
-            </ul>
-          </div>
-          <div class="private-notes-card">
-            <span class="private-notes-kicker">Short Commands</span>
-            <h3>常用命令</h3>
-            <div class="private-snippet-list">
-              <button class="private-snippet" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma next">
-                <code>cd ~/Desktop/Jemma工作台 && ./jemma next</code>
-                <span>点一下复制</span>
-              </button>
-              <button class="private-snippet" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma watch">
-                <code>cd ~/Desktop/Jemma工作台 && ./jemma watch</code>
-                <span>点一下复制</span>
-              </button>
-              <button class="private-snippet" type="button" data-copy-text="git -C ~/Desktop/开发/jiamanjemma status">
-                <code>git -C ~/Desktop/开发/jiamanjemma status</code>
-                <span>点一下复制</span>
-              </button>
+        <details class="private-disclosure" open>
+          <summary class="private-disclosure-summary">
+            <div class="private-section-head">
+              <span class="private-section-label">Quick Notes</span>
+              <h2>固定检查项</h2>
+            </div>
+          </summary>
+          <div class="private-notes-grid">
+            <div class="private-notes-card">
+              <span class="private-notes-kicker">Publish Checklist</span>
+              <h3>发内容前看一眼</h3>
+              <ul class="private-checklist">
+                <li>标题和封面是不是同一个叙事，不要各说各话。</li>
+                <li>公开页、简介区、置顶评论有没有放对入口。</li>
+                <li>视频、长文、站内资源三边有没有互相导流。</li>
+                <li>发完后从手机再看一遍公开呈现，不只看后台。</li>
+              </ul>
+            </div>
+            <div class="private-notes-card">
+              <span class="private-notes-kicker">Site Checks</span>
+              <h3>改站后看一眼</h3>
+              <ul class="private-checklist">
+                <li>主页首屏、作品区、资源区有没有断层。</li>
+                <li>`/private/` 认证有没有还活着，环境变量别丢。</li>
+                <li>改完样式后，手机视图和公开页按钮再点一遍。</li>
+                <li>最后回 GitHub 看 diff，别把实验改动混进正式页面。</li>
+              </ul>
+            </div>
+            <div class="private-notes-card">
+              <span class="private-notes-kicker">Short Commands</span>
+              <h3>常用命令</h3>
+              <div class="private-snippet-list">
+                <button class="private-snippet" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma next">
+                  <code>cd ~/Desktop/Jemma工作台 && ./jemma next</code>
+                  <span>点一下复制</span>
+                </button>
+                <button class="private-snippet" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma watch">
+                  <code>cd ~/Desktop/Jemma工作台 && ./jemma watch</code>
+                  <span>点一下复制</span>
+                </button>
+                <button class="private-snippet" type="button" data-copy-text="git -C ~/Desktop/开发/jiamanjemma status">
+                  <code>git -C ~/Desktop/开发/jiamanjemma status</code>
+                  <span>点一下复制</span>
+                </button>
+              </div>
+            </div>
+            <div class="private-notes-card">
+              <span class="private-notes-kicker">Reminder</span>
+              <h3>今天别忘了</h3>
+              <p class="private-notes-copy">
+                先决定今天这次上线是为了什么，再去改页面。不要一边想定位，一边顺手改十个地方。
+              </p>
+              <p class="private-notes-copy">
+                私密页的价值不是“藏很多链接”，而是让你每天最短路径回到真正重要的事。
+              </p>
             </div>
           </div>
-          <div class="private-notes-card">
-            <span class="private-notes-kicker">Reminder</span>
-            <h3>今天别忘了</h3>
-            <p class="private-notes-copy">
-              先决定今天这次上线是为了什么，再去改页面。不要一边想定位，一边顺手改十个地方。
-            </p>
-            <p class="private-notes-copy">
-              私密页的价值不是“藏很多链接”，而是让你每天最短路径回到真正重要的事。
-            </p>
-          </div>
-        </div>
+        </details>
       </div>
 
       <div class="private-section" id="local-workbench">
-        <div class="private-section-head">
-          <span class="private-section-label">Local Only</span>
-          <h2>本地工作台</h2>
-        </div>
-        <div class="private-local-card">
-          <p class="private-local-copy">
-            像 <strong>Jemma 工作台</strong> 这种本地目录，不能从公开网页直接打开。
-            最稳的方式是把最短命令留在这里，你在自己电脑终端里执行。
-          </p>
-          <div class="private-command-list">
-            <button class="private-command-item private-command-copy" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma watch">
-              <span class="private-command-label">看工作台</span>
-              <code>cd ~/Desktop/Jemma工作台 && ./jemma watch</code>
-              <span class="private-command-hint">点一下复制</span>
-            </button>
-            <button class="private-command-item private-command-copy" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma next">
-              <span class="private-command-label">看下一步任务</span>
-              <code>cd ~/Desktop/Jemma工作台 && ./jemma next</code>
-              <span class="private-command-hint">点一下复制</span>
-            </button>
-            <button class="private-command-item private-command-copy" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma show creator-playbooks">
-              <span class="private-command-label">看任务详情</span>
-              <code>cd ~/Desktop/Jemma工作台 && ./jemma show creator-playbooks</code>
-              <span class="private-command-hint">点一下复制</span>
-            </button>
+        <details class="private-disclosure" open>
+          <summary class="private-disclosure-summary">
+            <div class="private-section-head">
+              <span class="private-section-label">Local Only</span>
+              <h2>本地工作台</h2>
+            </div>
+          </summary>
+          <div class="private-local-card">
+            <p class="private-local-copy">
+              像 <strong>Jemma 工作台</strong> 这种本地目录，不能从公开网页直接打开。
+              最稳的方式是把最短命令留在这里，你在自己电脑终端里执行。
+            </p>
+            <div class="private-command-list">
+              <button class="private-command-item private-command-copy" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma watch">
+                <span class="private-command-label">看工作台</span>
+                <code>cd ~/Desktop/Jemma工作台 && ./jemma watch</code>
+                <span class="private-command-hint">点一下复制</span>
+              </button>
+              <button class="private-command-item private-command-copy" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma next">
+                <span class="private-command-label">看下一步任务</span>
+                <code>cd ~/Desktop/Jemma工作台 && ./jemma next</code>
+                <span class="private-command-hint">点一下复制</span>
+              </button>
+              <button class="private-command-item private-command-copy" type="button" data-copy-text="cd ~/Desktop/Jemma工作台 && ./jemma show creator-playbooks">
+                <span class="private-command-label">看任务详情</span>
+                <code>cd ~/Desktop/Jemma工作台 && ./jemma show creator-playbooks</code>
+                <span class="private-command-hint">点一下复制</span>
+              </button>
+            </div>
           </div>
-        </div>
+        </details>
       </div>
 
       <div class="private-note">
