@@ -4934,6 +4934,10 @@ button.contact-card {
     linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
 }
 
+.private-command-center .private-focus-card {
+  margin-bottom: 16px;
+}
+
 .private-routine-item {
   display: grid;
   grid-template-columns: auto 1fr;
