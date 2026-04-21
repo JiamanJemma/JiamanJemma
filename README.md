@@ -10,11 +10,11 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
+- [不用背提示词：让AI反向帮你找问题！&lpar;附实操与开源代码&rpar;#佳蔓Jemma](https://www.youtube.com/watch?v=MfqM8OtL69g)
 - [开源自媒体管线：用 Prompt 构筑护城河 | Open Source My Content Pipeline#佳蔓Jemma](https://www.youtube.com/watch?v=cJRgTOC3v1A)
 - [参加完AI黑客松，我发现5%的人和80%的人差距在哪#佳蔓Jemma](https://www.youtube.com/watch?v=_RhxVKw8jTw)
 - [痛点解决：AI Agent 老乱存文件？统一文件夹才是极简流终点佳蔓Jemma](https://www.youtube.com/shorts/rMRlkJjragE)
 - [如何在终端调用 NotebookLM？（自动生成思维导图/信息图）#佳蔓Jemma](https://www.youtube.com/watch?v=6F1NdwwEG2c)
-- [国内怎么升级Claude等大模型？支付宝直接搞定#佳蔓jemma](https://www.youtube.com/shorts/X7WU_e9qHAM)
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
