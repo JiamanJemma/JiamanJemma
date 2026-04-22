@@ -1,0 +1,11 @@
+{
+  "name": "jiamanjemma-profile",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "update-profile": "node scripts/update-profile.mjs"
+  },
+  "dependencies": {
+    "rss-parser": "^3.13.0"
+  }
+}
