@@ -10,11 +10,11 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
+- [不会代码的我，用5句白话让AI搞定Git｜AI Made Git Talk Like a Human#佳蔓Jemma](https://www.youtube.com/watch?v=sNa05MSZXFg) (2026-05-15)
 - [逛完AI硬件大会 我发现了没人说的真相｜The AI Premium Nobody Questions#佳蔓Jemma](https://www.youtube.com/shorts/4efvIjp27io) (2026-05-10)
 - [灵感总是丢？我用Obsidian搭了自己的第二大脑#佳蔓Jemma](https://www.youtube.com/shorts/BBBrTa5XFKc) (2026-04-27)
 - [不会用Git还敢做Vibe Coding？1个平行宇宙比喻，3分钟真正掌握代码时光机#佳蔓Jemma](https://www.youtube.com/watch?v=NNIeaxnEOkU) (2026-04-23)
 - [英伟达良心福利！免费领大模型 API 额度，Kimi/千问全都能用#佳蔓Jemma](https://www.youtube.com/watch?v=2lwpKSVcdks) (2026-04-21)
-- [不用背提示词：让AI反向帮你找问题！(附实操与开源代码)#佳蔓Jemma](https://www.youtube.com/watch?v=MfqM8OtL69g) (2026-04-18)
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
