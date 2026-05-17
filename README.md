@@ -10,7 +10,11 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- 暂时没有获取到视频
+- [codex 解放双手 原本要我自己去操作的页面 现在给他去操作 我自己可以做别的事情 太赞了👍 #佳蔓jemma #chatgpt #codex](https://www.youtube.com/shorts/NKxpZ0y8HEw) (2026-05-17)
+- [手机控电脑：Codex 大升级实测｜I Stayed in Bed, My Laptop Worked#佳蔓Jemma](https://www.youtube.com/watch?v=JtqqkZn8HwA) (2026-05-16)
+- [不会代码的我，用5句白话让AI搞定Git｜AI Made Git Talk Like a Human#佳蔓Jemma](https://www.youtube.com/watch?v=sNa05MSZXFg) (2026-05-15)
+- [逛完AI硬件大会 我发现了没人说的真相｜The AI Premium Nobody Questions#佳蔓Jemma](https://www.youtube.com/shorts/4efvIjp27io) (2026-05-10)
+- [灵感总是丢？我用Obsidian搭了自己的第二大脑#佳蔓Jemma](https://www.youtube.com/shorts/BBBrTa5XFKc) (2026-04-27)
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
