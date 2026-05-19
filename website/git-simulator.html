@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Git 平行宇宙模拟器 — 佳蔓Jemma</title>
+<meta name="description" content="用最直觉的方式理解 Git 分支：创建平行宇宙，写新剧情，随时切回主线。">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  :root{
+    --bg:#0a0a12;
+    --surface:#12121e;
+    --surface-hover:#1a1a2e;
+    --border:#1e1e3a;
+    --text:#e2e2f0;
+    --text-dim:#8888a8;
+    --accent:#7c5cfc;
+    --accent-glow:#7c5cfc44;
+    --green:#34d399;
+    --green-glow:#34d39944;
+    --amber:#fbbf24;
+    --amber-glow:#fbbf2444;
+    --rose:#fb7185;
+    --rose-glow:#fb718544;
+    --cyan:#22d3ee;
+    --cyan-glow:#22d3ee44;
+  }
+
+  body{
+    font-family:'Inter','Noto Sans SC',system-ui,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:2rem 1rem;
+    overflow-x:hidden;
+  }
+
+  h1{
+    font-size:1.6rem;
+    font-weight:700;
+    background:linear-gradient(135deg,var(--accent),var(--cyan));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+    margin-bottom:.4rem;
+    text-align:center;
+  }
+
+  .subtitle{
+    color:var(--text-dim);
+    font-size:.85rem;
+    margin-bottom:2rem;
+    text-align:center;
+  }
+
+  .app{
+    width:100%;
+    max-width:900px;
+  }
+
+  /* Controls */
+  .controls{
+    display:flex;
+    gap:.75rem;
+    flex-wrap:wrap;
+    margin-bottom:1.5rem;
+    justify-content:center;
+  }
+
+  .btn{
+    font-family:inherit;
+    font-size:.85rem;
+    font-weight:600;
+    padding:.65rem 1.2rem;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--surface);
+    color:var(--text);
+    cursor:pointer;
+    transition:all .2s ease;
+    display:flex;
+    align-items:center;
+    gap:.5rem;
+    user-select:none;
+  }
+
+  .btn:hover{
+    background:var(--surface-hover);
+    border-color:var(--accent);
+    box-shadow:0 0 20px var(--accent-glow);
+    transform:translateY(-1px);
+  }
+
+  .btn:active{transform:translateY(0);box-shadow:none}
+
+  .btn .icon{font-size:1.1rem}
+
+  .btn--branch{border-color:#34d39955}
+  .btn--branch:hover{border-color:var(--green);box-shadow:0 0 20px var(--green-glow)}
+
+  .btn--commit{border-color:#7c5cfc55}
+  .btn--commit:hover{border-color:var(--accent);box-shadow:0 0 20px var(--accent-glow)}
+
+  .btn--reset{border-color:#fb718555}
+  .btn--reset:hover{border-color:var(--rose);box-shadow:0 0 20px var(--rose-glow)}
+
+  /* Branch tabs */
+  .branch-tabs{
+    display:flex;
+    gap:.5rem;
+    flex-wrap:wrap;
+    margin-bottom:1.5rem;
+    justify-content:center;
+  }
+
+  .branch-tab{
+    font-family:inherit;
+    font-size:.78rem;
+    font-weight:500;
+    padding:.45rem 1rem;
+    border-radius:20px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    color:var(--text-dim);
+    cursor:pointer;
+    transition:all .25s ease;
+  }
+
+  .branch-tab:hover{
+    background:var(--surface-hover);
+    color:var(--text);
+  }
+
+  .branch-tab.active{
+    border-color:var(--green);
+    color:var(--green);
+    background:linear-gradient(135deg,#34d39910,#34d39905);
+    box-shadow:0 0 16px var(--green-glow);
+  }
+
+  /* Canvas area */
+  .canvas-wrap{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:1.5rem;
+    overflow-x:auto;
+    overflow-y:hidden;
+    position:relative;
+    min-height:350px;
+  }
+
+  .canvas-wrap::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:16px;
+    background:
+      radial-gradient(ellipse at 20% 50%,#7c5cfc08 0%,transparent 60%),
+      radial-gradient(ellipse at 80% 30%,#34d39908 0%,transparent 60%);
+    pointer-events:none;
+  }
+
+  svg{display:block}
+
+  /* Nodes */
+  .node-group{cursor:pointer}
+  .node-circle{
+    transition:all .3s ease;
+  }
+  .node-group:hover .node-circle{
+    filter:brightness(1.3);
+  }
+  .node-label{
+    font-family:'Inter','Noto Sans SC',sans-serif;
+    font-size:11px;
+    fill:var(--text-dim);
+    text-anchor:middle;
+    pointer-events:none;
+  }
+  .node-index{
+    font-family:'Inter',monospace;
+    font-size:10px;
+    fill:rgba(255,255,255,.7);
+    text-anchor:middle;
+    dominant-baseline:central;
+    pointer-events:none;
+    font-weight:600;
+  }
+
+  /* Tooltip / info bar */
+  .info-bar{
+    margin-top:1rem;
+    padding:.8rem 1rem;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    font-size:.8rem;
+    color:var(--text-dim);
+    text-align:center;
+    line-height:1.6;
+    transition:all .3s ease;
+  }
+
+  .info-bar .highlight{color:var(--green);font-weight:600}
+  .info-bar .accent{color:var(--accent);font-weight:600}
+
+  /* Footer */
+  .footer{
+    margin-top:2rem;
+    text-align:center;
+    font-size:.75rem;
+    color:var(--text-dim);
+  }
+  .footer a{color:var(--accent);text-decoration:none}
+  .footer a:hover{text-decoration:underline}
+
+  /* Animations */
+  @keyframes nodeAppear{
+    from{transform:scale(0);opacity:0}
+    to{transform:scale(1);opacity:1}
+  }
+  @keyframes pathDraw{
+    from{stroke-dashoffset:100}
+    to{stroke-dashoffset:0}
+  }
+
+  .node-appear{
+    animation:nodeAppear .4s cubic-bezier(.34,1.56,.64,1) forwards;
+  }
+
+  .path-draw{
+    stroke-dasharray:100;
+    animation:pathDraw .5s ease forwards;
+  }
+
+  /* Responsive */
+  @media(max-width:600px){
+    h1{font-size:1.2rem}
+    .controls{gap:.5rem}
+    .btn{font-size:.78rem;padding:.55rem .9rem}
+    .canvas-wrap{padding:1rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <h1>🌿 Git 平行宇宙模拟器</h1>
+  <p class="subtitle">点一点，感受"分支"的魔力——你的主线永远安全</p>
+
+  <div class="controls">
+    <button class="btn btn--commit" onclick="addCommit()" id="btn-commit">
+      <span class="icon">✏️</span> 写新剧情
+    </button>
+    <button class="btn btn--branch" onclick="createBranch()" id="btn-branch">
+      <span class="icon">🌿</span> 创建平行宇宙
+    </button>
+    <button class="btn btn--reset" onclick="resetAll()" id="btn-reset">
+      <span class="icon">🔄</span> 重新开始
+    </button>
+  </div>
+
+  <div class="branch-tabs" id="branch-tabs"></div>
+
+  <div class="canvas-wrap" id="canvas-wrap">
+    <svg id="svg"></svg>
+  </div>
+
+  <div class="info-bar" id="info-bar">
+    点击 <span class="accent">「写新剧情」</span> 在当前宇宙添加节点，或点 <span class="highlight">「创建平行宇宙」</span> 开一条新分支试试
+  </div>
+</div>
+
+<div class="footer">
+  Made by <a href="https://jiamanjemma.com" target="_blank">佳蔓 Jemma</a> · 配合 <a href="https://jiamanjemma.com" target="_blank">#10 长文</a> 食用
+</div>
+
+<script>
+const COLORS = [
+  {main:'#7c5cfc',glow:'#7c5cfc44',light:'#a78bfa'},  // purple - main
+  {main:'#34d399',glow:'#34d39944',light:'#6ee7b7'},  // green
+  {main:'#fbbf24',glow:'#fbbf2444',light:'#fcd34d'},  // amber
+  {main:'#22d3ee',glow:'#22d3ee44',light:'#67e8f9'},  // cyan
+  {main:'#fb7185',glow:'#fb718544',light:'#fda4af'},  // rose
+  {main:'#a78bfa',glow:'#a78bfa44',light:'#c4b5fd'},  // violet
+  {main:'#f472b6',glow:'#f472b644',light:'#f9a8d4'},  // pink
+];
+
+const STORY_NAMES = [
+  '故事起点','主角登场','发现魔法','踏上旅程','遇到伙伴',
+  '第一场战斗','意外转折','获得线索','深入迷宫','发现真相',
+  '最终决战','大结局','番外篇','隐藏剧情','彩蛋时刻',
+  '新的冒险','命运交叉','时空裂缝','平行相遇','宇宙合一'
+];
+
+const BRANCH_NAMES = [
+  '平行宇宙α','平行宇宙β','平行宇宙γ','平行宇宙δ',
+  '平行宇宙ε','平行宇宙ζ','平行宇宙η'
+];
+
+// State
+let state = {
+  branches: [
+    {
+      name: 'main（主线）',
+      colorIdx: 0,
+      commits: [
+        {label:'故事起点',id:1},
+        {label:'主角登场',id:2},
+        {label:'发现魔法',id:3}
+      ],
+      parentBranch: null,
+      forkAfterCommitIdx: null,
+    }
+  ],
+  activeBranch: 0,
+  nextId: 4,
+  storyIdx: 3,
+};
+
+const NODE_R = 20;
+const NODE_GAP = 100;
+const BRANCH_GAP = 80;
+const PAD_X = 50;
+const PAD_Y = 50;
+
+function getColor(idx){return COLORS[idx % COLORS.length]}
+
+function render(){
+  renderTabs();
+  renderSVG();
+  updateInfo();
+}
+
+function renderTabs(){
+  const el = document.getElementById('branch-tabs');
+  el.innerHTML = '';
+  state.branches.forEach((b,i)=>{
+    const tab = document.createElement('button');
+    tab.className = 'branch-tab' + (i===state.activeBranch?' active':'');
+    tab.textContent = (i===state.activeBranch?'● ':'○ ')+b.name;
+    tab.onclick = ()=>{state.activeBranch=i;render()};
+    el.appendChild(tab);
+  });
+}
+
+function renderSVG(){
+  const svg = document.getElementById('svg');
+  const wrap = document.getElementById('canvas-wrap');
+
+  // Calculate dimensions
+  let maxCommits = 0;
+  state.branches.forEach(b=>{
+    const offset = b.forkAfterCommitIdx!==null ? b.forkAfterCommitIdx+1 : 0;
+    const totalX = offset + b.commits.length;
+    if(totalX>maxCommits) maxCommits=totalX;
+  });
+
+  const w = PAD_X*2 + (maxCommits-1)*NODE_GAP + NODE_R*2;
+  const h = PAD_Y*2 + (state.branches.length-1)*BRANCH_GAP + NODE_R*2;
+
+  svg.setAttribute('width', Math.max(w,400));
+  svg.setAttribute('height', Math.max(h,200));
+  svg.innerHTML='';
+
+  // Defs for glows
+  const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+  COLORS.forEach((c,i)=>{
+    const filter = document.createElementNS('http://www.w3.org/2000/svg','filter');
+    filter.id = 'glow'+i;
+    filter.innerHTML = `<feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>`;
+    defs.appendChild(filter);
+  });
+  svg.appendChild(defs);
+
+  // Draw each branch
+  state.branches.forEach((branch,bIdx)=>{
+    const color = getColor(branch.colorIdx);
+    const isActive = bIdx === state.activeBranch;
+    const y = PAD_Y + bIdx * BRANCH_GAP;
+    const xOffset = branch.forkAfterCommitIdx!==null ? (branch.forkAfterCommitIdx+1) : 0;
+
+    // Draw fork connector line (from parent to first commit of this branch)
+    if(branch.parentBranch!==null && branch.forkAfterCommitIdx!==null){
+      const parentY = PAD_Y + branch.parentBranch * BRANCH_GAP;
+      const forkX = PAD_X + branch.forkAfterCommitIdx * NODE_GAP;
+      const firstX = PAD_X + xOffset * NODE_GAP;
+
+      const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+      const midY = (parentY+y)/2;
+      path.setAttribute('d',`M${forkX},${parentY} C${forkX},${midY} ${firstX},${midY} ${firstX},${y}`);
+      path.setAttribute('stroke', color.main);
+      path.setAttribute('stroke-width', isActive?2.5:1.5);
+      path.setAttribute('fill','none');
+      path.setAttribute('opacity', isActive?1:0.4);
+      path.classList.add('path-draw');
+      svg.appendChild(path);
+    }
+
+    // Draw connector lines between commits
+    branch.commits.forEach((c,cIdx)=>{
+      if(cIdx===0) return;
+      const x1 = PAD_X + (xOffset+cIdx-1)*NODE_GAP;
+      const x2 = PAD_X + (xOffset+cIdx)*NODE_GAP;
+
+      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1',x1);
+      line.setAttribute('y1',y);
+      line.setAttribute('x2',x2);
+      line.setAttribute('y2',y);
+      line.setAttribute('stroke',color.main);
+      line.setAttribute('stroke-width',isActive?2.5:1.5);
+      line.setAttribute('opacity',isActive?1:0.4);
+      svg.appendChild(line);
+    });
+
+    // Draw commit nodes
+    branch.commits.forEach((c,cIdx)=>{
+      const x = PAD_X + (xOffset+cIdx)*NODE_GAP;
+      const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+      g.classList.add('node-group');
+      g.setAttribute('transform',`translate(${x},${y})`);
+
+      // Glow ring for active branch
+      if(isActive){
+        const glow = document.createElementNS('http://www.w3.org/2000/svg','circle');
+        glow.setAttribute('r', NODE_R+6);
+        glow.setAttribute('fill','none');
+        glow.setAttribute('stroke',color.main);
+        glow.setAttribute('stroke-width','1');
+        glow.setAttribute('opacity','0.3');
+        g.appendChild(glow);
+      }
+
+      // Main circle
+      const circle = document.createElementNS('http://www.w3.org/2000/svg','circle');
+      circle.classList.add('node-circle');
+      circle.setAttribute('r', NODE_R);
+      circle.setAttribute('fill', isActive ? color.main : color.main+'66');
+      circle.setAttribute('stroke', color.light);
+      circle.setAttribute('stroke-width', isActive?2:1);
+      if(isActive) circle.setAttribute('filter',`url(#glow${branch.colorIdx%COLORS.length})`);
+      g.appendChild(circle);
+
+      // Index number
+      const idx = document.createElementNS('http://www.w3.org/2000/svg','text');
+      idx.classList.add('node-index');
+      idx.textContent = cIdx+1;
+      g.appendChild(idx);
+
+      // Label below
+      const label = document.createElementNS('http://www.w3.org/2000/svg','text');
+      label.classList.add('node-label');
+      label.setAttribute('y', NODE_R+18);
+      label.style.fill = isActive ? color.light : '#666';
+      label.textContent = c.label;
+      g.appendChild(label);
+
+      svg.appendChild(g);
+    });
+  });
+
+  // Auto-scroll to the right
+  wrap.scrollLeft = wrap.scrollWidth;
+}
+
+function updateInfo(){
+  const bar = document.getElementById('info-bar');
+  const b = state.branches[state.activeBranch];
+  const total = state.branches.length;
+  bar.innerHTML = `
+    当前宇宙：<span class="highlight">${b.name}</span>
+    · 已有 <span class="accent">${b.commits.length}</span> 个节点
+    · 共 <span class="accent">${total}</span> 条时间线
+    ${total>1?'<br>💡 主线纹丝不动——随便折腾，随时切回':''}
+  `;
+}
+
+function addCommit(){
+  const b = state.branches[state.activeBranch];
+  const name = STORY_NAMES[state.storyIdx % STORY_NAMES.length];
+  state.storyIdx++;
+  b.commits.push({label:name, id:state.nextId++});
+  render();
+}
+
+function createBranch(){
+  if(state.branches.length >= 7){
+    document.getElementById('info-bar').innerHTML =
+      '⚠️ 宇宙够多了！最多 7 条时间线，再多就要宇宙大爆炸了 💥';
+    return;
+  }
+  const parentIdx = state.activeBranch;
+  const parent = state.branches[parentIdx];
+  const forkIdx = parent.commits.length - 1;
+  const branchIdx = state.branches.length;
+  const colorIdx = branchIdx % COLORS.length;
+  const name = BRANCH_NAMES[(branchIdx-1) % BRANCH_NAMES.length];
+
+  // Calculate the actual fork commit index in absolute position
+  const parentOffset = parent.forkAfterCommitIdx!==null ? parent.forkAfterCommitIdx+1 : 0;
+  const absoluteForkIdx = parentOffset + forkIdx;
+
+  state.branches.push({
+    name,
+    colorIdx,
+    commits: [{label:'新起点 ✨', id:state.nextId++}],
+    parentBranch: parentIdx,
+    forkAfterCommitIdx: absoluteForkIdx,
+  });
+
+  state.activeBranch = branchIdx;
+  render();
+}
+
+function resetAll(){
+  state = {
+    branches:[{
+      name:'main（主线）',
+      colorIdx:0,
+      commits:[
+        {label:'故事起点',id:1},
+        {label:'主角登场',id:2},
+        {label:'发现魔法',id:3}
+      ],
+      parentBranch:null,
+      forkAfterCommitIdx:null,
+    }],
+    activeBranch:0,
+    nextId:4,
+    storyIdx:3,
+  };
+  render();
+}
+
+// Init
+render();
+</script>
+</body>
+</html>

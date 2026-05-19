@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>番茄钟 · 佳蔓 Jemma</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="description" content="佳蔓的番茄钟 —— 专注 25 分钟，支持深浅色、自定义时长、今日记录。">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── CSS 变量：深色默认 ── */
+:root {
+  --bg:          linear-gradient(145deg, #1a0a3c 0%, #2d1466 40%, #1a2060 100%);
+  --card-bg:     rgba(255,255,255,0.06);
+  --card-border: rgba(255,255,255,0.1);
+  --card-shadow: 0 24px 64px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12);
+  --title:       rgba(255,255,255,0.5);
+  --badge-bg:    rgba(255,255,255,0.08);
+  --badge-border:rgba(255,255,255,0.15);
+  --badge-color: rgba(255,255,255,0.9);
+  --ring-bg:     rgba(255,255,255,0.06);
+  --digits:      #fff;
+  --digits-shadow: rgba(167,139,250,0.5);
+  --count-color: rgba(255,255,255,0.4);
+  --count-num:   rgba(255,255,255,0.85);
+  --reset-bg:    rgba(255,255,255,0.08);
+  --reset-border:rgba(255,255,255,0.12);
+  --reset-color: rgba(255,255,255,0.6);
+  --reset-hover-bg:  rgba(255,255,255,0.14);
+  --reset-hover-color: rgba(255,255,255,0.9);
+  --set-bg:      rgba(255,255,255,0.05);
+  --set-border:  rgba(255,255,255,0.08);
+  --set-title:   rgba(255,255,255,0.35);
+  --set-label:   rgba(255,255,255,0.6);
+  --input-border:rgba(255,255,255,0.15);
+  --input-color: #e9d5ff;
+  --input-bg:    rgba(255,255,255,0.07);
+  --unit-color:  rgba(255,255,255,0.3);
+  --toggle-bg:   rgba(255,255,255,0.1);
+  --toggle-color:rgba(255,255,255,0.5);
+  --overlay-bg:  rgba(10,5,30,0.8);
+  --popup-bg:    rgba(25,12,60,0.95);
+  --popup-border:rgba(255,255,255,0.12);
+  --popup-h2:    #fff;
+  --popup-p:     rgba(255,255,255,0.4);
+  --skip-color:  rgba(255,255,255,0.3);
+  --skip-hover:  rgba(255,255,255,0.65);
+}
+
+/* 返回链接浅色适配 */
+body.light a[href="/"] {
+  color: rgba(91,33,182,0.6) !important;
+  background: rgba(139,92,246,0.08) !important;
+  border-color: rgba(139,92,246,0.2) !important;
+}
+
+/* ── 浅色模式 ── */
+body.light {
+  --bg:          linear-gradient(145deg, #f0ebff 0%, #faf6ff 50%, #edf2ff 100%);
+  --card-bg:     rgba(255,255,255,0.85);
+  --card-border: rgba(167,139,250,0.15);
+  --card-shadow: 0 16px 48px rgba(109,40,217,0.1), 0 2px 8px rgba(109,40,217,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
+  --title:       #7c3aed;
+  --badge-bg:    rgba(139,92,246,0.08);
+  --badge-border:rgba(139,92,246,0.25);
+  --badge-color: #5b21b6;
+  --ring-bg:     #ede9fe;
+  --digits:      #3b0764;
+  --digits-shadow: rgba(124,58,237,0.25);
+  --count-color: #a78bfa;
+  --count-num:   #5b21b6;
+  --reset-bg:    #f5f3ff;
+  --reset-border:#ddd6fe;
+  --reset-color: #7c3aed;
+  --reset-hover-bg:   #ede9fe;
+  --reset-hover-color:#5b21b6;
+  --set-bg:      rgba(255,255,255,0.7);
+  --set-border:  rgba(167,139,250,0.2);
+  --set-title:   #a78bfa;
+  --set-label:   #5b21b6;
+  --input-border:#ddd6fe;
+  --input-color: #4c1d95;
+  --input-bg:    #faf8ff;
+  --unit-color:  #a78bfa;
+  --toggle-bg:   rgba(139,92,246,0.1);
+  --toggle-color:#8b5cf6;
+  --overlay-bg:  rgba(230,220,255,0.8);
+  --popup-bg:    rgba(255,255,255,0.97);
+  --popup-border:rgba(167,139,250,0.2);
+  --popup-h2:    #3b0764;
+  --popup-p:     #a78bfa;
+  --skip-color:  #c4b5fd;
+  --skip-hover:  #7c3aed;
+}
+
+body {
+  font-family: 'ZCOOL KuaiLe', 'PingFang SC', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--bg);
+  transition: background 0.4s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── 标题行 ── */
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.title {
+  font-size: 22px;
+  color: var(--title);
+  letter-spacing: 4px;
+  font-weight: normal;
+  transition: color 0.3s;
+}
+.theme-btn {
+  position: absolute;
+  right: 0;
+  background: var(--toggle-bg);
+  border: none;
+  border-radius: 10px;
+  padding: 7px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--toggle-color);
+  transition: all 0.2s;
+  line-height: 1;
+}
+.theme-btn:hover { opacity: 0.75; }
+
+/* ── 状态药丸 ── */
+.state-wrap { text-align: center; }
+.state-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 20px;
+  border-radius: 99px;
+  font-size: 14px;
+  letter-spacing: 2px;
+  transition: all 0.4s ease;
+  border: 1.5px solid var(--badge-border);
+  color: var(--badge-color);
+  background: var(--badge-bg);
+}
+.state-badge.working       { border-color: rgba(139,92,246,0.6); color: #a78bfa; background: rgba(139,92,246,0.12); }
+.state-badge.paused        { border-color: rgba(251,191,36,0.5);  color: #f59e0b; background: rgba(251,191,36,0.1); }
+.state-badge.resting-short { border-color: rgba(52,211,153,0.5);  color: #10b981; background: rgba(52,211,153,0.1); }
+.state-badge.resting-long  { border-color: rgba(244,114,182,0.5); color: #ec4899; background: rgba(244,114,182,0.1); }
+
+/* ── 主卡 ── */
+.timer-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(20px);
+  border-radius: 32px;
+  padding: 40px 28px 32px;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+/* ── 进度环 ── */
+.ring-wrap {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto 28px;
+}
+.ring-wrap svg { transform: rotate(-90deg); }
+.ring-bg { fill: none; stroke: var(--ring-bg); stroke-width: 12; transition: stroke 0.3s; }
+.ring-fg {
+  fill: none;
+  stroke: url(#rg);
+  stroke-width: 12;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.8s cubic-bezier(.4,0,.2,1);
+  filter: drop-shadow(0 0 8px rgba(167,139,250,0.55));
+}
+.ring-fg.glow-green { filter: drop-shadow(0 0 8px rgba(52,211,153,0.65)); }
+.ring-fg.glow-pink  { filter: drop-shadow(0 0 8px rgba(244,114,182,0.65)); }
+
+.timer-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+.timer-digits {
+  display: block;
+  font-size: 58px;
+  color: var(--digits);
+  letter-spacing: 3px;
+  line-height: 1;
+  text-shadow: 0 0 30px var(--digits-shadow);
+  transition: color 0.4s, text-shadow 0.4s;
+}
+.timer-digits.green { color: #10b981; text-shadow: 0 0 30px rgba(16,185,129,0.4); }
+.timer-digits.pink  { color: #ec4899; text-shadow: 0 0 30px rgba(236,72,153,0.4); }
+
+@keyframes pop {
+  0%  { transform: translate(-50%,-50%) scale(1); }
+  40% { transform: translate(-50%,-50%) scale(1.1); }
+  100%{ transform: translate(-50%,-50%) scale(1); }
+}
+.timer-text.pop { animation: pop 0.5s ease; }
+
+/* ── 今日计数 ── */
+.count-row {
+  font-size: 13px;
+  color: var(--count-color);
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+.count-row span { color: var(--count-num); font-size: 16px; transition: color 0.3s; }
+
+/* ── 按钮组 ── */
+.btn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+.btn {
+  font-family: 'ZCOOL KuaiLe', 'PingFang SC', sans-serif;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 15px 10px;
+  letter-spacing: 1px;
+  transition: all 0.15s ease;
+}
+.btn:active { transform: scale(0.95); }
+.btn:disabled { opacity: 0.28; cursor: not-allowed; transform: none; }
+
+.btn-start {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 6px 20px rgba(109,40,217,0.45), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.btn-start:not(:disabled):hover { background: linear-gradient(135deg, #7c3aed,#5b21b6); box-shadow: 0 8px 28px rgba(109,40,217,0.55), inset 0 1px 0 rgba(255,255,255,0.2); }
+
+.btn-pause {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  font-size: 18px;
+  box-shadow: 0 6px 20px rgba(217,119,6,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.btn-pause:not(:disabled):hover { background: linear-gradient(135deg, #d97706,#b45309); }
+
+.btn-reset {
+  background: var(--reset-bg);
+  color: var(--reset-color);
+  border: 1px solid var(--reset-border);
+  transition: background 0.2s, color 0.2s;
+}
+.btn-reset:hover { background: var(--reset-hover-bg); color: var(--reset-hover-color); }
+
+/* ── 设置卡 ── */
+.settings-card {
+  background: var(--set-bg);
+  border: 1px solid var(--set-border);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 18px 22px;
+  transition: background 0.3s;
+}
+.settings-title {
+  font-size: 12px;
+  color: var(--set-title);
+  letter-spacing: 2px;
+  margin-bottom: 14px;
+  transition: color 0.3s;
+}
+.settings-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.settings-label { font-size: 14px; color: var(--set-label); flex: 1; transition: color 0.3s; }
+.settings-input {
+  font-family: 'ZCOOL KuaiLe', 'PingFang SC', sans-serif;
+  width: 64px;
+  padding: 6px 8px;
+  border: 1.5px solid var(--input-border);
+  border-radius: 10px;
+  font-size: 15px;
+  color: var(--input-color);
+  text-align: center;
+  background: var(--input-bg);
+  outline: none;
+  transition: border-color 0.2s, color 0.3s, background 0.3s;
+  -moz-appearance: textfield;
+}
+.settings-input::-webkit-inner-spin-button,
+.settings-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.settings-input:focus { border-color: #8b5cf6; }
+.settings-unit { font-size: 12px; color: var(--unit-color); min-width: 22px; transition: color 0.3s; }
+
+/* ── 弹层 ── */
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-bg);
+  backdrop-filter: blur(14px);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.overlay.show { display: flex; }
+
+.popup {
+  background: var(--popup-bg);
+  border: 1px solid var(--popup-border);
+  border-radius: 28px;
+  padding: 40px 32px 32px;
+  text-align: center;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.15);
+  max-width: 320px;
+  width: 100%;
+  transition: background 0.3s;
+}
+.popup .big-icon { font-size: 40px; margin-bottom: 14px; }
+.popup h2 {
+  font-size: 20px;
+  color: var(--popup-h2);
+  margin-bottom: 6px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  transition: color 0.3s;
+}
+.popup p {
+  font-size: 13px;
+  color: var(--popup-p);
+  margin-bottom: 28px;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+.break-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.bbtn {
+  font-family: 'ZCOOL KuaiLe', 'PingFang SC', sans-serif;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  padding: 18px 0;
+  width: 120px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  transition: all 0.15s;
+  line-height: 1.6;
+}
+.bbtn:active { transform: scale(0.96); }
+.bbtn-short {
+  background: linear-gradient(135deg, #059669, #34d399);
+  color: white;
+  box-shadow: 0 6px 20px rgba(5,150,105,0.35);
+}
+.bbtn-short:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(5,150,105,0.45); }
+.bbtn-long {
+  background: linear-gradient(135deg, #be185d, #f472b6);
+  color: white;
+  box-shadow: 0 6px 20px rgba(190,24,93,0.35);
+}
+.bbtn-long:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(190,24,93,0.45); }
+.bbtn-go {
+  font-family: 'ZCOOL KuaiLe', 'PingFang SC', sans-serif;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  font-size: 18px;
+  padding: 16px 52px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  box-shadow: 0 6px 20px rgba(109,40,217,0.45);
+  transition: all 0.15s;
+}
+.bbtn-go:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(109,40,217,0.55); }
+
+.skip-btn {
+  background: none;
+  border: none;
+  color: var(--skip-color);
+  font-family: 'ZCOOL KuaiLe', 'PingFang SC', sans-serif;
+  font-size: 13px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: color 0.2s;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.skip-btn:hover { color: var(--skip-hover); }
+</style>
+</head>
+<body id="body">
+
+<a href="/" style="
+  position: fixed; top: 16px; left: 16px; z-index: 200;
+  font-family: 'PingFang SC', sans-serif; font-size: 13px;
+  color: rgba(255,255,255,0.45); text-decoration: none;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  padding: 6px 12px; border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+" onmouseover="this.style.color='rgba(255,255,255,0.85)';this.style.background='rgba(255,255,255,0.14)'"
+   onmouseout="this.style.color='rgba(255,255,255,0.45)';this.style.background='rgba(255,255,255,0.08)'"
+>← 首页</a>
+
+<div class="container">
+  <div class="title-row">
+    <div class="title">番茄钟</div>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="切换深浅色">☀️</button>
+  </div>
+
+  <div class="state-wrap">
+    <div class="state-badge" id="stateBadge">准备开始</div>
+  </div>
+
+  <div class="timer-card">
+    <div class="ring-wrap">
+      <svg width="220" height="220" viewBox="0 0 220 220">
+        <defs>
+          <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop id="rg0" offset="0%"   stop-color="#a78bfa"/>
+            <stop id="rg1" offset="100%" stop-color="#7c3aed"/>
+          </linearGradient>
+        </defs>
+        <circle class="ring-bg" cx="110" cy="110" r="96"/>
+        <circle class="ring-fg" id="ringFg" cx="110" cy="110" r="96"
+          stroke-dasharray="603" stroke-dashoffset="0"/>
+      </svg>
+      <div class="timer-text" id="timerText">
+        <span class="timer-digits" id="timerDigits">25:00</span>
+      </div>
+    </div>
+    <div class="count-row">今天完成 <span id="countNum">0</span> 个番茄</div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-start" id="btnStart" onclick="startTimer()">开始</button>
+    <button class="btn btn-pause" id="btnPause" onclick="pauseTimer()" disabled>暂停</button>
+    <button class="btn btn-reset" onclick="resetTimer()">重置</button>
+  </div>
+
+  <div class="settings-card">
+    <div class="settings-title">自定义时长</div>
+    <div class="settings-row">
+      <span class="settings-label">专注时间</span>
+      <input class="settings-input" id="workMin" type="number" min="1" max="60" value="25" onchange="applySettings()">
+      <span class="settings-unit">分钟</span>
+    </div>
+  </div>
+</div>
+
+<!-- 专注结束 → 选休息 -->
+<div class="overlay" id="breakOverlay">
+  <div class="popup">
+    <div class="big-icon">🎉</div>
+    <h2>完成一个番茄</h2>
+    <p>今天已完成 <span id="overlayCount">0</span> 个，来休息一下</p>
+    <div class="break-btns">
+      <button class="bbtn bbtn-short" onclick="startBreak('short')">短休息<br><small>5 分钟</small></button>
+      <button class="bbtn bbtn-long"  onclick="startBreak('long')">长休息<br><small>15 分钟</small></button>
+    </div>
+    <button class="skip-btn" onclick="skipBreak()">跳过，继续专注</button>
+  </div>
+</div>
+
+<!-- 休息结束 → 下一轮 -->
+<div class="overlay" id="restEndOverlay">
+  <div class="popup">
+    <div class="big-icon">✨</div>
+    <h2>休息结束</h2>
+    <p>精力充沛了吗？</p>
+    <button class="bbtn-go" onclick="nextRound()">继续专注</button>
+  </div>
+</div>
+
+<script>
+const CIRC = 603;
+const SHORT_SEC = 5  * 60;
+const LONG_SEC  = 15 * 60;
+
+let WORK_SEC  = 25 * 60;
+let totalSec  = WORK_SEC;
+let remainSec = WORK_SEC;
+let running   = false;
+let tid       = null;
+let mode      = 'work';
+
+// ── 深浅色 ──
+let isLight = false;
+function toggleTheme() {
+  isLight = !isLight;
+  document.getElementById('body').className = isLight ? 'light' : '';
+  document.getElementById('themeBtn').textContent = isLight ? '🌙' : '☀️';
+  localStorage.setItem('pomo_theme', isLight ? 'light' : 'dark');
+}
+(function initTheme() {
+  isLight = localStorage.getItem('pomo_theme') === 'light';
+  document.getElementById('body').className = isLight ? 'light' : '';
+  document.getElementById('themeBtn').textContent = isLight ? '🌙' : '☀️';
+})();
+
+// ── 今日计数 ──
+const todayKey = () => 'pomo_' + new Date().toISOString().slice(0, 10);
+const getCount = () => parseInt(localStorage.getItem(todayKey()) || '0');
+const addCount = () => localStorage.setItem(todayKey(), getCount() + 1);
+
+// ── 渲染 ──
+function render() {
+  const m = String(Math.floor(remainSec / 60)).padStart(2, '0');
+  const s = String(remainSec % 60).padStart(2, '0');
+  document.getElementById('timerDigits').textContent = `${m}:${s}`;
+
+  const pct = remainSec / totalSec;
+  document.getElementById('ringFg').style.strokeDashoffset = CIRC * (1 - pct);
+
+  const d  = document.getElementById('timerDigits');
+  const fg = document.getElementById('ringFg');
+  const g0 = document.getElementById('rg0');
+  const g1 = document.getElementById('rg1');
+  if (mode === 'short') {
+    g0.setAttribute('stop-color', '#34d399'); g1.setAttribute('stop-color', '#059669');
+    d.className = 'timer-digits green'; fg.className = 'ring-fg glow-green';
+  } else if (mode === 'long') {
+    g0.setAttribute('stop-color', '#f472b6'); g1.setAttribute('stop-color', '#be185d');
+    d.className = 'timer-digits pink'; fg.className = 'ring-fg glow-pink';
+  } else {
+    g0.setAttribute('stop-color', '#a78bfa'); g1.setAttribute('stop-color', '#7c3aed');
+    d.className = 'timer-digits'; fg.className = 'ring-fg';
+  }
+
+  const badge = document.getElementById('stateBadge');
+  badge.className = 'state-badge';
+  if (mode === 'work') {
+    badge.textContent = running ? '专注中' : (remainSec < totalSec ? '已暂停' : '准备开始');
+    if (running) badge.classList.add('working');
+    else if (remainSec < totalSec) badge.classList.add('paused');
+  } else if (mode === 'short') {
+    badge.textContent = running ? '短休息中' : '短休息已暂停';
+    badge.classList.add('resting-short');
+  } else {
+    badge.textContent = running ? '长休息中' : '长休息已暂停';
+    badge.classList.add('resting-long');
+  }
+
+  document.getElementById('btnStart').disabled = running;
+  document.getElementById('btnPause').disabled = !running;
+  document.getElementById('countNum').textContent = getCount();
+}
+
+// ── 控制 ──
+function startTimer() {
+  if (running) return;
+  running = true;
+  tid = setInterval(tick, 1000);
+  render();
+}
+function pauseTimer() {
+  if (!running) return;
+  clearInterval(tid); running = false; render();
+}
+function resetTimer() {
+  clearInterval(tid); running = false;
+  mode = 'work'; totalSec = remainSec = WORK_SEC; render();
+}
+function tick() {
+  remainSec--;
+  render();
+  if (remainSec <= 0) { clearInterval(tid); running = false; onEnd(); }
+}
+function onEnd() {
+  playChime();
+  const tt = document.getElementById('timerText');
+  tt.classList.remove('pop'); void tt.offsetWidth; tt.classList.add('pop');
+  if (mode === 'work') {
+    addCount();
+    document.getElementById('overlayCount').textContent = getCount();
+    document.getElementById('breakOverlay').classList.add('show');
+    render();
+  } else {
+    document.getElementById('restEndOverlay').classList.add('show');
+  }
+}
+function startBreak(type) {
+  document.getElementById('breakOverlay').classList.remove('show');
+  mode      = type === 'short' ? 'short' : 'long';
+  totalSec  = type === 'short' ? SHORT_SEC : LONG_SEC;
+  remainSec = totalSec;
+  running = true; render();
+  tid = setInterval(tick, 1000);
+}
+function skipBreak() {
+  document.getElementById('breakOverlay').classList.remove('show');
+  mode = 'work'; totalSec = remainSec = WORK_SEC; running = false; render();
+}
+function nextRound() {
+  document.getElementById('restEndOverlay').classList.remove('show');
+  mode = 'work'; totalSec = remainSec = WORK_SEC; running = false; render();
+}
+
+// ── 设置 ──
+function applySettings() {
+  WORK_SEC = (parseInt(document.getElementById('workMin').value) || 25) * 60;
+  if (!running && mode === 'work') { totalSec = remainSec = WORK_SEC; render(); }
+}
+
+// ── 音效 ──
+function playChime() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [{f:880,t:0,d:0.9},{f:1108,t:0.22,d:0.8},{f:1320,t:0.44,d:1.4}].forEach(({f,t,d}) => {
+      const osc = ctx.createOscillator(), env = ctx.createGain(), at = ctx.currentTime + t;
+      osc.type = 'sine'; osc.frequency.value = f;
+      env.gain.setValueAtTime(0, at);
+      env.gain.linearRampToValueAtTime(0.14, at + 0.02);
+      env.gain.exponentialRampToValueAtTime(0.001, at + d);
+      osc.connect(env).connect(ctx.destination);
+      osc.start(at); osc.stop(at + d);
+    });
+  } catch(e) {}
+}
+
+render();
+</script>
+</body>
+</html>
