@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+<title>约时间 · 一起定个时间</title>
+<meta name="description" content="多人时间交叠工具：所有人勾完，自动出推荐时段。" />
+<style>
+  :root {
+    --bg: #faf9fc;
+    --card: #ffffff;
+    --ink: #1f1b2e;
+    --muted: #7a7390;
+    --line: #ece8f3;
+    --p1: #efeaff;
+    --p3: #b9a3ff;
+    --p4: #8a6dff;
+    --p5: #5b3fd6;
+    --p6: #3a248f;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px; line-height: 1.55;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 20px 16px 80px; }
+  h1 { font-size: 20px; margin: 4px 0 2px; }
+  .sub { color: var(--muted); margin-bottom: 18px; font-size: 13px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+  label { font-size: 12px; color: var(--muted); display: block; margin-bottom: 4px; }
+  input[type=text], input[type=date] {
+    width: 100%; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px;
+    font: inherit; color: inherit; background: #fff; outline: none;
+  }
+  input:focus { border-color: var(--p4); }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .row > * { flex: 1 1 160px; min-width: 0; }
+  button {
+    background: var(--p5); color: #fff; border: 0; border-radius: 8px;
+    padding: 10px 14px; font: inherit; font-weight: 600; cursor: pointer;
+  }
+  button.ghost { background: #fff; color: var(--p5); border: 1px solid var(--p3); }
+  button.small { padding: 6px 10px; font-size: 12px; }
+  button.danger { background: #fff; color: #c83a4a; border: 1px solid #f3c8cd; }
+  button:active { transform: translateY(1px); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .grid-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.grid { border-collapse: collapse; user-select: none; touch-action: none; }
+  table.grid th, table.grid td {
+    border: 1px solid var(--line); padding: 0; text-align: center;
+    font-size: 11px; min-width: 44px; height: 22px;
+  }
+  table.grid th { background: #f6f3fb; color: var(--muted); font-weight: 500; }
+  table.grid th.time, table.grid td.time { min-width: 56px; background: #faf8fd; color: var(--muted); font-size: 10px; }
+  table.grid td.cell { background: #fff; cursor: pointer; }
+  table.grid td.cell.on { background: var(--p4); }
+  table.grid td.cell.hour, table.grid td.time.hour { border-top-color: #d8d2e6; }
+  .legend { display: flex; gap: 6px; align-items: center; font-size: 12px; color: var(--muted); margin-top: 8px; flex-wrap: wrap; }
+  .sw { display: inline-block; width: 14px; height: 14px; border-radius: 3px; border: 1px solid var(--line); vertical-align: middle; }
+  .tip { font-size: 12px; color: var(--muted); margin-top: 6px; }
+  .pill { display: inline-block; background: #efeaff; color: var(--p5); padding: 2px 8px; border-radius: 999px; font-size: 12px; margin: 2px 4px 2px 0; }
+  .toprow { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  .step { font-size: 11px; background: var(--p5); color: #fff; border-radius: 999px; padding: 2px 8px; margin-right: 6px; }
+  .who { font-size: 11px; color: var(--muted); }
+  .ok { color: #2a7a3e; }
+  .warn { color: #c83a4a; }
+  .resultcell { font-weight: 600; font-size: 12px; }
+  ul.recs { padding-left: 18px; margin: 6px 0 0; }
+  ul.recs li { margin-bottom: 6px; }
+  .people-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .person-chip {
+    background: var(--p1); color: var(--p6); padding: 3px 10px; border-radius: 999px; font-size: 12px;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .person-chip .x { cursor: pointer; color: var(--p5); font-weight: 700; }
+  .person-chip.me { background: var(--p4); color: #fff; }
+  .footer { text-align: center; color: var(--muted); font-size: 11px; margin-top: 24px; }
+  .status { font-size: 11px; color: var(--muted); }
+  .status.saving { color: var(--p5); }
+  .status.saved { color: #2a7a3e; }
+  .link-box {
+    display: flex; gap: 6px; background: #f6f3fb; border-radius: 8px; padding: 6px 10px; align-items: center; font-size: 12px;
+    word-break: break-all;
+  }
+  .link-box code { flex: 1; color: var(--p6); font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  @media (max-width: 520px) {
+    .wrap { padding: 14px 10px 80px; }
+    table.grid th, table.grid td { min-width: 38px; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>约时间 · 一起定个时间</h1>
+  <div class="sub">勾你方便的时段，所有人实时看到，自动算最多人能到的时间。</div>
+
+  <!-- 没有 ?r= 时显示：新建房间 -->
+  <div class="card" id="landing" style="display:none">
+    <div class="toprow"><div><span class="step">新</span>建一个新房间</div></div>
+    <div class="row">
+      <div style="flex:2 1 200px">
+        <label>你的名字</label>
+        <input id="newName" type="text" placeholder="比如：佳蔓" maxlength="12" />
+      </div>
+      <div>
+        <label>开始日期</label>
+        <input id="newStart" type="date" />
+      </div>
+      <div>
+        <label>天数（1–14）</label>
+        <input id="newDays" type="text" value="7" />
+      </div>
+    </div>
+    <div class="tip">默认 09:00–次日 02:00，半小时一格。建好后把链接发给群里就行。</div>
+    <div style="margin-top:10px">
+      <button id="btnCreate">建房间</button>
+    </div>
+  </div>
+
+  <!-- 有 ?r= 时显示 -->
+  <div id="roomView" style="display:none">
+
+    <div class="card">
+      <div class="toprow">
+        <div><span class="step">链接</span>把这个发到群里</div>
+        <span class="status" id="status">已同步</span>
+      </div>
+      <div class="link-box">
+        <code id="roomUrl"></code>
+        <button class="ghost small" id="btnCopyUrl">复制</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="toprow">
+        <div><span class="step">1</span>填你的名字 + 勾你方便的时段</div>
+        <button class="ghost small" id="btnClear">清空我的</button>
+      </div>
+      <div class="row" style="margin-bottom:10px">
+        <div style="flex:2 1 200px">
+          <label>你的名字</label>
+          <input id="name" type="text" placeholder="比如：佳蔓" maxlength="12" />
+        </div>
+      </div>
+      <div class="grid-wrap" id="gridWrap"></div>
+      <div class="legend">
+        <span class="sw" style="background:#fff"></span> 不方便
+        <span class="sw" style="background:var(--p4)"></span> 方便
+        <span style="margin-left:8px">手机上可以按住拖动一片格子</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="toprow">
+        <div><span class="step">2</span>已填的人</div>
+        <span class="who" id="updatedAt"></span>
+      </div>
+      <div class="people-list" id="peopleList"></div>
+    </div>
+
+    <div class="card">
+      <div class="toprow">
+        <div><span class="step">3</span>推荐时段</div>
+      </div>
+      <div id="recs"><div class="tip">至少需要 2 个人勾完才能算交叠～</div></div>
+      <details style="margin-top:10px">
+        <summary class="tip">展开完整热力图（颜色越深 = 方便的人越多）</summary>
+        <div class="grid-wrap" id="heatWrap" style="margin-top:8px"></div>
+      </details>
+    </div>
+
+  </div>
+
+  <div class="footer">数据存在 Cloudflare KV · 60 天后自动清理 · jiamanjemma.com</div>
+</div>
+
+<script>
+// ---------- 配置 ----------
+const SLOT_MIN = 30;
+const START_HOUR = 9;
+const END_HOUR = 26;
+const SLOTS_PER_DAY = (END_HOUR - START_HOUR) * 60 / SLOT_MIN;  // 34
+const WEEK_CN = ['周日','周一','周二','周三','周四','周五','周六'];
+const POLL_MS = 3000;
+const SAVE_DEBOUNCE_MS = 500;
+
+// ---------- 工具 ----------
+const $ = (id) => document.getElementById(id);
+const pad = (n) => String(n).padStart(2, '0');
+function todayStr() {
+  const d = new Date();
+  return d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
+}
+function parseDate(s) { const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); }
+function addDays(date, n) { const d = new Date(date); d.setDate(d.getDate()+n); return d; }
+function fmtDate(d) { return (d.getMonth()+1) + '/' + d.getDate(); }
+function slotLabel(i) {
+  const total = START_HOUR * 60 + i * SLOT_MIN;
+  const h = Math.floor(total / 60) % 24;
+  const m = total % 60;
+  const next = total >= 24*60 ? '次日 ' : '';
+  return next + pad(h) + ':' + pad(m);
+}
+function randomId() {
+  const chars = 'abcdefghijkmnpqrstuvwxyz23456789';
+  let s = '';
+  for (let i = 0; i < 6; i++) s += chars[Math.floor(Math.random() * chars.length)];
+  return s;
+}
+function slotsToB64(arr) {
+  let s = '';
+  for (let i = 0; i < arr.length; i++) s += String.fromCharCode(arr[i]);
+  return btoa(s);
+}
+function b64ToSlots(b64, expectLen) {
+  try {
+    const s = atob(b64);
+    const arr = new Uint8Array(expectLen);
+    for (let i = 0; i < Math.min(s.length, expectLen); i++) arr[i] = s.charCodeAt(i);
+    return arr;
+  } catch { return new Uint8Array(expectLen); }
+}
+
+// ---------- 状态 ----------
+const params = new URLSearchParams(location.search);
+let roomId = params.get('r');
+let room = null;            // { config, people, updatedAt }
+let me = {
+  name: localStorage.getItem('meet:name') || '',
+  slots: null,               // Uint8Array, will be sized after config loaded
+};
+let saveTimer = null;
+let pollTimer = null;
+let lastServerStamp = 0;
+
+// ---------- API ----------
+async function apiGet(id) {
+  const r = await fetch('/api/meet/' + id, { cache: 'no-store' });
+  if (!r.ok) throw new Error('GET ' + r.status);
+  return r.json();
+}
+async function apiPost(id, body) {
+  const r = await fetch('/api/meet/' + id, {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+  if (!r.ok) {
+    const t = await r.text().catch(() => '');
+    throw new Error('POST ' + r.status + ' ' + t);
+  }
+  return r.json();
+}
+
+// ---------- 渲染：自己的网格 ----------
+function renderMyGrid() {
+  if (!room || !room.config) return;
+  const { startDate, days } = room.config;
+  const start = parseDate(startDate);
+  let html = '<table class="grid"><thead><tr><th class="time">时间</th>';
+  for (let d = 0; d < days; d++) {
+    const dt = addDays(start, d);
+    html += `<th>${fmtDate(dt)}<br><span style="color:var(--muted);font-weight:400">${WEEK_CN[dt.getDay()]}</span></th>`;
+  }
+  html += '</tr></thead><tbody>';
+  for (let s = 0; s < SLOTS_PER_DAY; s++) {
+    const isHour = (s * SLOT_MIN) % 60 === 0;
+    html += `<tr><td class="time${isHour?' hour':''}">${isHour ? slotLabel(s) : ''}</td>`;
+    for (let d = 0; d < days; d++) {
+      const idx = d * SLOTS_PER_DAY + s;
+      const on = me.slots[idx] ? ' on' : '';
+      const hr = isHour ? ' hour' : '';
+      html += `<td class="cell${on}${hr}" data-i="${idx}"></td>`;
+    }
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  $('gridWrap').innerHTML = html;
+  attachDrag($('gridWrap').querySelector('table'));
+}
+
+function attachDrag(table) {
+  let dragging = false;
+  let mode = 1;
+  const cellAt = (x, y) => {
+    const el = document.elementFromPoint(x, y);
+    return el && el.classList.contains('cell') ? el : null;
+  };
+  const setCell = (el) => {
+    const i = +el.dataset.i;
+    if (me.slots[i] !== mode) {
+      me.slots[i] = mode;
+      el.classList.toggle('on', mode === 1);
+      scheduleSave();
+    }
+  };
+  const start = (e) => {
+    const t = e.touches ? e.touches[0] : e;
+    const el = cellAt(t.clientX, t.clientY);
+    if (!el) return;
+    dragging = true;
+    mode = me.slots[+el.dataset.i] ? 0 : 1;
+    setCell(el);
+    e.preventDefault();
+  };
+  const move = (e) => {
+    if (!dragging) return;
+    const t = e.touches ? e.touches[0] : e;
+    const el = cellAt(t.clientX, t.clientY);
+    if (el) setCell(el);
+    e.preventDefault();
+  };
+  const end = () => { dragging = false; };
+  table.addEventListener('mousedown', start);
+  table.addEventListener('mousemove', move);
+  window.addEventListener('mouseup', end);
+  table.addEventListener('touchstart', start, { passive: false });
+  table.addEventListener('touchmove', move, { passive: false });
+  window.addEventListener('touchend', end);
+}
+
+// ---------- 渲染：人员 + 热力图 + 推荐 ----------
+function renderPeople() {
+  const list = $('peopleList');
+  const myOwned = new Set(JSON.parse(localStorage.getItem('meet:owned:' + roomId) || '[]'));
+  const names = Object.keys(room.people || {});
+  if (names.length === 0) {
+    list.innerHTML = '<span class="tip">还没人填，第一个来～</span>';
+  } else {
+    list.innerHTML = names.map(n => {
+      const mine = n === me.name || myOwned.has(n);
+      const x = mine ? `<span class="x" data-name="${escapeAttr(n)}" title="从房间里删除">×</span>` : '';
+      return `<span class="person-chip${mine?' me':''}">${escapeHtml(n)}${x}</span>`;
+    }).join('');
+    list.querySelectorAll('.x').forEach(el => {
+      el.onclick = async () => {
+        if (!confirm('从房间里删掉「' + el.dataset.name + '」的勾选？')) return;
+        await apiPost(roomId, { deleteName: el.dataset.name });
+        if (el.dataset.name === me.name) {
+          me.slots = new Uint8Array(SLOTS_PER_DAY * room.config.days);
+          renderMyGrid();
+        }
+        loadOnce();
+      };
+    });
+  }
+  if (room.updatedAt) {
+    const d = new Date(room.updatedAt);
+    $('updatedAt').textContent = '最后更新 ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+  }
+}
+
+function renderOverlap() {
+  if (!room || !room.config) return;
+  const { startDate, days } = room.config;
+  const total = SLOTS_PER_DAY * days;
+  const namesAll = Object.keys(room.people || {});
+
+  // 把自己（如果还没 POST 过）也算进去
+  let workingPeople = { ...room.people };
+  if (me.name && !workingPeople[me.name] && me.slots && me.slots.some(v => v)) {
+    workingPeople[me.name] = slotsToB64(me.slots);
+  }
+  const names = Object.keys(workingPeople);
+
+  const counts = new Uint8Array(total);
+  const who = Array.from({length: total}, () => []);
+  for (const n of names) {
+    const arr = b64ToSlots(workingPeople[n], total);
+    for (let i = 0; i < total; i++) {
+      if (arr[i]) { counts[i]++; who[i].push(n); }
+    }
+  }
+
+  // 推荐时段：找 ≥2 人的连续段，按人数 desc → 时长 desc
+  const start = parseDate(startDate);
+  const segs = [];
+  for (let d = 0; d < days; d++) {
+    let s = 0;
+    while (s < SLOTS_PER_DAY) {
+      const base = d * SLOTS_PER_DAY + s;
+      const c = counts[base];
+      if (c < 2) { s++; continue; }
+      let e = s;
+      while (e < SLOTS_PER_DAY && counts[d*SLOTS_PER_DAY + e] === c && sameNames(who[d*SLOTS_PER_DAY + e], who[base])) e++;
+      const dur = (e - s) * SLOT_MIN;
+      if (dur >= 30) segs.push({ d, s, e, c, names: who[base], dur });
+      s = e;
+    }
+  }
+  segs.sort((a, b) => b.c - a.c || b.dur - a.dur);
+
+  const recs = $('recs');
+  if (names.length < 2 || segs.length === 0) {
+    recs.innerHTML = `<div class="tip">${names.length < 2 ? '至少需要 2 个人勾完才能算交叠～' : '目前没有 2 人以上的重叠时段，让大家再多勾几个吧'}</div>`;
+  } else {
+    let html = `<div><b>${names.length}</b> 人已填，最多 <b>${Math.max(...counts)}</b> 人方便。推荐：</div><ul class="recs">`;
+    for (const seg of segs.slice(0, 6)) {
+      const dt = addDays(start, seg.d);
+      const label = `${fmtDate(dt)}(${WEEK_CN[dt.getDay()]}) ${slotLabel(seg.s)}–${slotLabel(seg.e)}`;
+      const allTag = seg.c === names.length ? '<span class="pill">全员可</span>' : '';
+      html += `<li>${allTag}<span class="pill">${seg.c}/${names.length} 人</span><b>${label}</b><div class="who">${seg.names.map(escapeHtml).join('、')}</div></li>`;
+    }
+    html += '</ul>';
+    recs.innerHTML = html;
+  }
+
+  // 热力图
+  const max = Math.max(1, ...counts);
+  let h = '<table class="grid"><thead><tr><th class="time">时间</th>';
+  for (let d = 0; d < days; d++) {
+    const dt = addDays(start, d);
+    h += `<th>${fmtDate(dt)}<br><span style="color:var(--muted);font-weight:400">${WEEK_CN[dt.getDay()]}</span></th>`;
+  }
+  h += '</tr></thead><tbody>';
+  for (let s = 0; s < SLOTS_PER_DAY; s++) {
+    const isHour = (s * SLOT_MIN) % 60 === 0;
+    h += `<tr><td class="time${isHour?' hour':''}">${isHour ? slotLabel(s) : ''}</td>`;
+    for (let d = 0; d < days; d++) {
+      const i = d * SLOTS_PER_DAY + s;
+      const c = counts[i];
+      const ratio = max > 0 ? c / max : 0;
+      const color = heatColor(ratio);
+      const txt = c > 0 ? c : '';
+      const title = c > 0 ? who[i].join('、') : '';
+      h += `<td class="cell resultcell${isHour?' hour':''}" style="background:${color};color:${ratio>0.55?'#fff':'inherit'}" title="${escapeAttr(title)}">${txt}</td>`;
+    }
+    h += '</tr>';
+  }
+  h += '</tbody></table>';
+  $('heatWrap').innerHTML = h;
+}
+
+function sameNames(a, b) {
+  if (a.length !== b.length) return false;
+  const sa = [...a].sort().join('|'); const sb = [...b].sort().join('|');
+  return sa === sb;
+}
+function heatColor(r) {
+  if (r === 0) return '#ffffff';
+  if (r < 0.25) return '#efeaff';
+  if (r < 0.5)  return '#d9cdff';
+  if (r < 0.75) return '#b9a3ff';
+  if (r < 1)    return '#8a6dff';
+  return '#5b3fd6';
+}
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c])); }
+function escapeAttr(s) { return escapeHtml(s); }
+
+// ---------- 同步 ----------
+function setStatus(text, cls = '') {
+  const el = $('status');
+  el.textContent = text;
+  el.className = 'status ' + cls;
+}
+
+function scheduleSave() {
+  if (!me.name) {
+    setStatus('先填名字才会保存', 'warn');
+    return;
+  }
+  clearTimeout(saveTimer);
+  setStatus('保存中…', 'saving');
+  saveTimer = setTimeout(saveNow, SAVE_DEBOUNCE_MS);
+}
+
+async function saveNow() {
+  if (!me.name || !room) return;
+  try {
+    const body = { name: me.name, slots: slotsToB64(me.slots) };
+    if (!room.config) {
+      body.config = { startDate: state_pendingConfig.startDate, days: state_pendingConfig.days };
+    }
+    const updated = await apiPost(roomId, body);
+    room = updated;
+    lastServerStamp = updated.updatedAt;
+    // 记住"我"在这个房间创建过的名字（用于显示删除按钮）
+    const owned = new Set(JSON.parse(localStorage.getItem('meet:owned:' + roomId) || '[]'));
+    owned.add(me.name);
+    localStorage.setItem('meet:owned:' + roomId, JSON.stringify([...owned]));
+    setStatus('已同步', 'saved');
+    renderPeople();
+    renderOverlap();
+  } catch (e) {
+    setStatus('同步失败：' + e.message, 'warn');
+  }
+}
+
+async function loadOnce() {
+  try {
+    const data = await apiGet(roomId);
+    if (!data) return;
+    // 如果服务器有更新（别人改了），更新视图
+    if (!room || data.updatedAt !== lastServerStamp) {
+      room = data;
+      lastServerStamp = data.updatedAt || 0;
+      // 自己的格子保留不动（别覆盖正在勾的）
+      renderPeople();
+      renderOverlap();
+    }
+  } catch (e) { /* 网络瞬断不打扰 */ }
+}
+
+function startPolling() {
+  stopPolling();
+  pollTimer = setInterval(() => {
+    if (document.visibilityState === 'visible') loadOnce();
+  }, POLL_MS);
+}
+function stopPolling() { if (pollTimer) clearInterval(pollTimer); pollTimer = null; }
+
+// ---------- 流程 ----------
+let state_pendingConfig = null;  // 第一个进来的人如果房间没 config，用这个
+
+async function enterRoom() {
+  $('landing').style.display = 'none';
+  $('roomView').style.display = '';
+  $('roomUrl').textContent = location.origin + location.pathname + '?r=' + roomId;
+
+  // 初次拉取
+  try {
+    const data = await apiGet(roomId);
+    room = data || { config: null, people: {} };
+    lastServerStamp = (data && data.updatedAt) || 0;
+  } catch (e) {
+    alert('加载房间失败：' + e.message);
+    return;
+  }
+
+  // 如果房间还没 config（链接是手动构造的、或还没人保存过），用 URL 参数或默认值
+  if (!room.config) {
+    const sd = params.get('s') || todayStr();
+    const dy = Math.max(1, Math.min(14, parseInt(params.get('d')) || 7));
+    state_pendingConfig = { startDate: sd, days: dy };
+    me.slots = new Uint8Array(SLOTS_PER_DAY * dy);
+    // 用占位 config 渲染
+    room.config = state_pendingConfig;
+  } else {
+    me.slots = new Uint8Array(SLOTS_PER_DAY * room.config.days);
+    // 如果之前在这个房间填过，回填
+    if (me.name && room.people[me.name]) {
+      me.slots = b64ToSlots(room.people[me.name], me.slots.length);
+    }
+  }
+
+  $('name').value = me.name;
+  renderMyGrid();
+  renderPeople();
+  renderOverlap();
+  startPolling();
+}
+
+// ---------- 事件 ----------
+function bindGlobal() {
+  $('name').addEventListener('input', e => {
+    const old = me.name;
+    me.name = e.target.value.trim().slice(0, 12);
+    localStorage.setItem('meet:name', me.name);
+    if (old && old !== me.name && room.people[old] && me.slots.some(v=>v)) {
+      // 改名：删旧 + 存新
+      apiPost(roomId, { deleteName: old }).catch(()=>{});
+    }
+    if (me.slots && me.slots.some(v=>v)) scheduleSave();
+  });
+  $('btnClear').onclick = () => {
+    if (!confirm('清空你自己的勾选？')) return;
+    me.slots = new Uint8Array(me.slots.length);
+    renderMyGrid();
+    if (me.name) scheduleSave();
+  };
+  $('btnCopyUrl').onclick = async () => {
+    const url = $('roomUrl').textContent;
+    try {
+      await navigator.clipboard.writeText(url);
+      $('btnCopyUrl').textContent = '已复制';
+      setTimeout(() => $('btnCopyUrl').textContent = '复制', 1500);
+    } catch {
+      prompt('复制链接：', url);
+    }
+  };
+  $('btnCreate').onclick = () => {
+    const name = $('newName').value.trim();
+    const startDate = $('newStart').value;
+    const days = Math.max(1, Math.min(14, parseInt($('newDays').value) || 7));
+    if (!name) { alert('先填你的名字'); $('newName').focus(); return; }
+    if (!startDate) { alert('选个开始日期'); $('newStart').focus(); return; }
+    me.name = name;
+    localStorage.setItem('meet:name', name);
+    roomId = randomId();
+    const u = new URL(location.href);
+    u.searchParams.set('r', roomId);
+    u.searchParams.set('s', startDate);
+    u.searchParams.set('d', String(days));
+    history.replaceState(null, '', u.toString());
+    params.set('r', roomId); params.set('s', startDate); params.set('d', String(days));
+    enterRoom();
+  };
+}
+
+// ---------- 入口 ----------
+bindGlobal();
+if (roomId && /^[a-z0-9]{4,16}$/i.test(roomId)) {
+  enterRoom();
+} else {
+  $('landing').style.display = '';
+  $('newStart').value = todayStr();
+  $('newName').value = me.name;
+}
+</script>
+</body>
+</html>
