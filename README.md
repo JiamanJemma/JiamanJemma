@@ -10,11 +10,7 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- [不写代码只动嘴，Codex 自动跑完我的内容流水线#佳蔓Jemma](https://www.youtube.com/watch?v=psGkxrWOnzU) (2026-06-02)
-- [被问爆的进度条做法｜The progress bar trick everyone asks me#佳蔓Jemma](https://www.youtube.com/shorts/PwyP5nh0J5U) (2026-05-25)
-- [全职妈妈学 AI · 一条指令救回 49 条 Claude Code 对话|One Command Saved My 49 Lost Claude Code Sessions #佳蔓Jemma](https://www.youtube.com/shorts/mr2Hr3tt2wc) (2026-05-23)
-- [告别灰底白字｜我把终端换成了 Ghostty 紫色版 · 2 步搞定 · I Made My Terminal Purple#佳蔓Jemma](https://www.youtube.com/watch?v=oFzKUHeY_MM) (2026-05-18)
-- [codex 解放双手 原本要我自己去操作的页面 现在给他去操作 我自己可以做别的事情 太赞了👍 #佳蔓jemma #chatgpt #codex](https://www.youtube.com/shorts/NKxpZ0y8HEw) (2026-05-17)
+- 暂时没有获取到视频
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
