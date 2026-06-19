@@ -55,6 +55,31 @@ async function loadFeed(url) {
   return feed.items || [];
 }
 
+// 主源：官网 jiamanjemma.com 的 /api/articles（Cloudflare Pages Function）。
+// 它在 Cloudflare 边缘节点抓 Substack，边缘 IP 不被 403，返回干净 JSON：
+//   [{ title, link, date: "2026.06.16", excerpt }]
+// 自有域名 + 已带最新内容，最稳，永不被机房 IP 拦。
+async function fetchApiArticles(url) {
+  const base = url.replace(/\/+$/, "");
+  const response = await fetch(`${base}/api/articles`, {
+    headers: BROWSER_HEADERS,
+  });
+  if (!response.ok) {
+    throw new Error(`Status code ${response.status}`);
+  }
+  const data = await response.json();
+  if (!Array.isArray(data)) return [];
+
+  return data
+    .filter((item) => item && item.title && item.link)
+    .map((item) => ({
+      title: item.title,
+      link: item.link,
+      // 日期是 2026.06.16，转成 ISO 让 formatDate 能识别。
+      isoDate: typeof item.date === "string" ? item.date.replace(/\./g, "-") : "",
+    }));
+}
+
 // Substack 取不到时的兜底：直接解析官网 jiamanjemma.com 的文章卡片。
 // 卡片结构（按从新到旧排列）：
 //   <a href="article.html?id=09" class="article-card">
@@ -99,17 +124,27 @@ async function safelyLoad(label, loader) {
 }
 
 async function main() {
-  const [videoItems, articleFeedItems, websiteArticleItems, currentReadme] =
-    await Promise.all([
-      safelyLoad("video feed", () => loadFeed(config.videoFeedUrl)),
-      safelyLoad("article feed", () => loadFeed(config.articleFeedUrl)),
-      safelyLoad("website articles", () => fetchWebsiteArticles(config.websiteUrl)),
-      fs.readFile(config.readmePath, "utf8"),
-    ]);
+  const [
+    videoItems,
+    apiArticleItems,
+    articleFeedItems,
+    websiteArticleItems,
+    currentReadme,
+  ] = await Promise.all([
+    safelyLoad("video feed", () => loadFeed(config.videoFeedUrl)),
+    safelyLoad("api articles", () => fetchApiArticles(config.websiteUrl)),
+    safelyLoad("article feed", () => loadFeed(config.articleFeedUrl)),
+    safelyLoad("website articles", () => fetchWebsiteArticles(config.websiteUrl)),
+    fs.readFile(config.readmePath, "utf8"),
+  ]);
 
-  const articleItems = articleFeedItems.length
-    ? articleFeedItems
-    : websiteArticleItems;
+  // 优先级：官网 /api/articles（最新+自有域名）> Substack feed 直取 > 官网文章卡片。
+  const articleItems =
+    apiArticleItems.length
+      ? apiArticleItems
+      : articleFeedItems.length
+      ? articleFeedItems
+      : websiteArticleItems;
 
   const latestVideos = buildList(
     videoItems.slice(0, config.videoCount),
