@@ -19,11 +19,11 @@ I'm a content creator and tech explorer.
 
 ### ✍️ 最新文章 (Latest Articles)
 <!-- BLOG-POST-LIST:START -->
-- [群里问最多的「小程序支付怎么打通」，我把坑全趟了一遍](https://jemma747318.substack.com/p/6ab) (2026-06-16)
-- [我以为我在用 AI，其实是 AI 拿捏了我](https://jemma747318.substack.com/p/ai-ai) (2026-06-07)
-- [创作者福音：一个人做 8 个平台，我把发布大半交给了 Codex](https://jemma747318.substack.com/p/8-codex) (2026-06-02)
-- [I Made My Terminal Purple — And It Changed My Mood](https://jemma747318.substack.com/p/i-made-my-terminal-purple-and-it) (2026-05-18)
-- [AI两个字，救活了一整个行业的面子](https://jemma747318.substack.com/p/ai) (2026-05-10)
+- [#09 问对问题：你不需要学会提问](https://jiamanjemma.com/article.html?id=09) (2026-04-18)
+- [#08 开源自媒体管线：用 Prompt 构筑护城河](https://jiamanjemma.com/article.html?id=08) (2026-04-08)
+- [#07 亲历厦门 AI 黑客松：一场属于超级个体的百虾大战](https://jiamanjemma.com/article.html?id=07) (2026-04-01)
+- [#06 效率尽头：我把 NotebookLM 搬进了终端](https://jiamanjemma.com/article.html?id=06) (2026-03-31)
+- [#05 从黑框到精装房，我搬家了](https://jiamanjemma.com/article.html?id=05) (2026-03-25)
 <!-- BLOG-POST-LIST:END -->
 
 ---
