@@ -2,7 +2,17 @@ import fs from "node:fs/promises";
 import Parser from "rss-parser";
 
 const README_PATH = new URL("../README.md", import.meta.url);
-const parser = new Parser();
+
+// Substack 用 Cloudflare 风控，对默认/机器人 UA + 机房 IP 直接返回 403。
+// 带上真实浏览器 UA，尽量让 GitHub Actions runner 通过。
+const BROWSER_HEADERS = {
+  "user-agent":
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+  accept:
+    "application/rss+xml, application/atom+xml, application/xml;q=0.9, text/html;q=0.8, */*;q=0.7",
+};
+
+const parser = new Parser({ headers: BROWSER_HEADERS });
 
 const config = {
   readmePath: README_PATH,
@@ -45,30 +55,35 @@ async function loadFeed(url) {
   return feed.items || [];
 }
 
+// Substack 取不到时的兜底：直接解析官网 jiamanjemma.com 的文章卡片。
+// 卡片结构（按从新到旧排列）：
+//   <a href="article.html?id=09" class="article-card">
+//     ... <span class="article-date">2026.04.18</span> ...
+//     <h3 class="article-title" ...>#09 问对问题：你不需要学会提问</h3>
 async function fetchWebsiteArticles(url) {
-  const response = await fetch(url, {
-    headers: {
-      "user-agent": "JiamanJemmaProfileBot/1.0",
-    },
-  });
+  const base = url.replace(/\/+$/, "");
+  const response = await fetch(base, { headers: BROWSER_HEADERS });
+  if (!response.ok) {
+    throw new Error(`Status code ${response.status}`);
+  }
   const html = await response.text();
-  const matches = [
-    ...html.matchAll(
-      /<a[^>]+href="(https:\/\/jemma747318\.substack\.com\/p\/[^"]+)"[^>]*>(.*?)<\/a>/g
-    ),
-  ];
+
+  const cardPattern =
+    /<a[^>]+href="(article\.html\?id=[^"]+)"[^>]*class="article-card"[\s\S]*?class="article-date">([^<]+)<\/span>[\s\S]*?class="article-title"[^>]*>([\s\S]*?)<\/h3>/g;
 
   const uniqueItems = new Map();
 
-  for (const match of matches) {
-    const link = match[1];
-    const title = match[2]
+  for (const match of html.matchAll(cardPattern)) {
+    const link = `${base}/${match[1]}`;
+    // 网站日期是 2026.04.18，转成 ISO 让 formatDate 能识别。
+    const isoDate = match[2].trim().replace(/\./g, "-");
+    const title = match[3]
       .replace(/<[^>]+>/g, " ")
       .replace(/\s+/g, " ")
       .trim();
 
     if (!title || uniqueItems.has(link)) continue;
-    uniqueItems.set(link, { title, link });
+    uniqueItems.set(link, { title, link, isoDate });
   }
 
   return [...uniqueItems.values()];
