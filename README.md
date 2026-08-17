@@ -23,7 +23,7 @@ I'm a content creator and tech explorer.
 - [群里问最多的「小程序支付怎么打通」，我把坑全趟了一遍](https://jemma747318.substack.com/p/6ab) (2026-06-16)
 - [我以为我在用 AI，其实是 AI 拿捏了我](https://jemma747318.substack.com/p/ai-ai) (2026-06-07)
 - [创作者福音：一个人做 8 个平台，我把发布大半交给了 Codex](https://jemma747318.substack.com/p/8-codex) (2026-06-02)
-- [I Made My Terminal Purple — And It Changed My Mood](https://jemma747318.substack.com/p/i-made-my-terminal-purple-and-it) (2026-05-18)
+- [AI两个字，救活了一整个行业的面子](https://jemma747318.substack.com/p/ai) (2026-05-10)
 <!-- BLOG-POST-LIST:END -->
 
 ---
