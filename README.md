@@ -10,11 +10,11 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
+- [终于搬来曼谷啦](https://www.youtube.com/shorts/BP1WMuNILHU) (2026-08-20)
 - [带孩子去曼谷上国际学校，要花多少钱？#佳蔓Jemma](https://www.youtube.com/watch?v=MbX1TYebDqQ) (2026-08-13)
 - [全职妈妈到 AI builder：半年从带娃焦虑到做出产品、开了公司 #佳蔓Jemma](https://www.youtube.com/watch?v=LXhK1kGXQMg) (2026-07-17)
 - [为app加了一套卡 好喜欢🥰#佳蔓jemma](https://www.youtube.com/shorts/MjKspc1urS4) (2026-06-29)
 - [我用 AI 给娃做了本睡前绘本(零基础,动嘴就行)#佳蔓Jemma](https://www.youtube.com/watch?v=4qjADLphnf8) (2026-06-28)
-- [不吼不叫带娃?我用AI做绘本搞定难缠的terrible two#佳蔓Jemma](https://www.youtube.com/watch?v=98_Cq22ujow) (2026-06-24)
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
