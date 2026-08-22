@@ -10,11 +10,11 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
+- [一大一小做饭还是燃气方便点 #佳蔓jemma](https://www.youtube.com/shorts/FEonqggiYp8) (2026-08-22)
 - [感觉泰国是个花钱能解决很多问题的地方￼佳蔓Jemma](https://www.youtube.com/watch?v=segrnqX2XU0) (2026-08-22)
 - [终于搬来曼谷啦](https://www.youtube.com/shorts/BP1WMuNILHU) (2026-08-20)
 - [带孩子去曼谷上国际学校，要花多少钱？#佳蔓Jemma](https://www.youtube.com/watch?v=MbX1TYebDqQ) (2026-08-13)
 - [全职妈妈到 AI builder：半年从带娃焦虑到做出产品、开了公司 #佳蔓Jemma](https://www.youtube.com/watch?v=LXhK1kGXQMg) (2026-07-17)
-- [为app加了一套卡 好喜欢🥰#佳蔓jemma](https://www.youtube.com/shorts/MjKspc1urS4) (2026-06-29)
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
