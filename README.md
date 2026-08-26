@@ -10,7 +10,11 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- 暂时没有获取到视频
+- [挑来挑去还是选了这个#佳蔓Jemma](https://www.youtube.com/watch?v=NW_BG3xf3vU) (2026-08-26)
+- [来曼谷这几天我俩鼻炎都好多了 #佳蔓jemma](https://www.youtube.com/shorts/j57Vtdq7uA0) (2026-08-23)
+- [一大一小做饭还是燃气方便点 #佳蔓jemma](https://www.youtube.com/shorts/FEonqggiYp8) (2026-08-22)
+- [感觉泰国是个花钱能解决很多问题的地方￼佳蔓Jemma](https://www.youtube.com/watch?v=segrnqX2XU0) (2026-08-22)
+- [终于搬来曼谷啦](https://www.youtube.com/shorts/BP1WMuNILHU) (2026-08-20)
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
