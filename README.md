@@ -10,11 +10,7 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- [曼谷两岁班国际幼儿园开学啦#佳蔓Jemma](https://www.youtube.com/watch?v=SjLh9AokM8g) (2026-08-28)
-- [曼谷交通没想象中难开#佳蔓Jemma](https://www.youtube.com/watch?v=sf5h4_CyvFg) (2026-08-27)
-- [挑来挑去还是选了这个#佳蔓Jemma](https://www.youtube.com/watch?v=NW_BG3xf3vU) (2026-08-26)
-- [来曼谷这几天我俩鼻炎都好多了 #佳蔓jemma](https://www.youtube.com/shorts/j57Vtdq7uA0) (2026-08-23)
-- [一大一小做饭还是燃气方便点 #佳蔓jemma](https://www.youtube.com/shorts/FEonqggiYp8) (2026-08-22)
+- 暂时没有获取到视频
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
