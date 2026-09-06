@@ -10,11 +10,7 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- [二）选学校探校时候可以看看这两点#佳蔓Jemma](https://www.youtube.com/shorts/jH1ahgfgQCQ) (2026-09-05)
-- [一）我在来曼谷学校之前是想去清迈的#佳蔓Jemma](https://www.youtube.com/watch?v=WZcZrdVlB-8) (2026-09-04)
-- [我也学着不必事事完美找到平衡](https://www.youtube.com/watch?v=FX0lrfNn9qM) (2026-09-03)
-- [还有就是给自己和孩子一个缓冲期慢慢适应曼谷的生活#佳蔓Jemma](https://www.youtube.com/watch?v=KiLV_fJ70nM) (2026-09-02)
-- [权衡利弊后我还是来了#佳蔓Jemma](https://www.youtube.com/watch?v=hHHLKuWYOjI) (2026-09-01)
+- 暂时没有获取到视频
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
