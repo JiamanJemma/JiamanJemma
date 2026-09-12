@@ -10,11 +10,7 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- [和孩子的相处过程中｜每次都是自我成长 #佳蔓jemma #旅居 #曼谷 #陪读](https://www.youtube.com/shorts/FydfWokw7eg) (2026-09-11)
-- [生活中点点滴滴都值得幸福 #佳蔓jemma #旅居 #曼谷 #陪读](https://www.youtube.com/shorts/oTkfLIOcNSQ) (2026-09-10)
-- [真的很想吐槽一下 #旅居 #佳蔓jemma #曼谷](https://www.youtube.com/shorts/vIhqCNUYkoU) (2026-09-09)
-- [最近在曼谷用得最多的竟然是Gemini #佳蔓jemma #旅居 #曼谷 #陪读](https://www.youtube.com/shorts/uhJ_6Y31Xrc) (2026-09-08)
-- [跟老师沟通解决问题也没那么难](https://www.youtube.com/shorts/4rydcUZVl1Y) (2026-09-07)
+- 暂时没有获取到视频
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
