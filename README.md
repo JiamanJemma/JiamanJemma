@@ -10,11 +10,7 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- [陪孩子来曼谷是我走出国门的一个契机 #佳蔓jemma #旅居 #曼谷 #陪读](https://www.youtube.com/shorts/J4rPWkXDRHY) (2026-09-13)
-- [学习英语是自然而然的过程 一通百通 #佳蔓jemma #旅居 #陪读 #曼谷 #英语](https://www.youtube.com/shorts/DlN1ZJhwOYQ) (2026-09-12)
-- [和孩子的相处过程中｜每次都是自我成长 #佳蔓jemma #旅居 #曼谷 #陪读](https://www.youtube.com/shorts/FydfWokw7eg) (2026-09-11)
-- [生活中点点滴滴都值得幸福 #佳蔓jemma #旅居 #曼谷 #陪读](https://www.youtube.com/shorts/oTkfLIOcNSQ) (2026-09-10)
-- [真的很想吐槽一下 #旅居 #佳蔓jemma #曼谷](https://www.youtube.com/shorts/vIhqCNUYkoU) (2026-09-09)
+- 暂时没有获取到视频
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
