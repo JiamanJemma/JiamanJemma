@@ -10,11 +10,7 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- [这样就能找到心仪的遛娃地了#遛娃好去处 #佳蔓jemma #曼谷 #旅居 #陪读](https://www.youtube.com/shorts/7P7GR770uXM) (2026-09-20)
-- [国内网购要啥有啥到的快 这边真的你就等吧 #佳蔓jemma #旅居 #曼谷](https://www.youtube.com/shorts/LInVCE1tIg4) (2026-09-19)
-- [我还不想在曼谷做中介 不是说频繁记录自己就会越来越好嘛我就做做看 试一下 #佳蔓jemma #旅居 #曼谷 #陪读](https://www.youtube.com/shorts/xDTxIfPqL2s) (2026-09-18)
-- [我们现在还只是国际PN小小班还没开始上各种兴趣班估计之后开销会更多还是做好长久打算#佳蔓Jemma#曼谷陪读](https://www.youtube.com/watch?v=PfVEPYpoGRs) (2026-09-17)
-- [2026年9月16日](https://www.youtube.com/shorts/blwTOX2kTnU) (2026-09-15)
+- 暂时没有获取到视频
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
