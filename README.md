@@ -10,11 +10,7 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- [男女本就不同 何来平等？ #佳蔓jemma #女性创业](https://www.youtube.com/shorts/b4-XclmpEhQ) (2026-09-25)
-- [多去体验生活吧 个人的经才能历铸就一生 而非片面的技能 #佳蔓jemma #旅居 #曼谷 #女性成长](https://www.youtube.com/shorts/KvruYdhyIZY) (2026-09-23)
-- [这好那好的 看条件适合哪呗 #佳蔓jemma #旅居 #曼谷](https://www.youtube.com/shorts/Yxv9t57Ug-w) (2026-09-22)
-- [择木而栖 适合自己就好 #旅居 #佳蔓jemma #曼谷 #女性成长](https://www.youtube.com/shorts/iouhWz6Lse8) (2026-09-21)
-- [这样就能找到心仪的遛娃地了#遛娃好去处 #佳蔓jemma #曼谷 #旅居 #陪读](https://www.youtube.com/shorts/7P7GR770uXM) (2026-09-20)
+- 暂时没有获取到视频
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
