@@ -10,7 +10,11 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- 暂时没有获取到视频
+- [gift card的灵感就来了 #曼谷 #佳蔓jemma #雨季 #自然美育#giftcard](https://www.youtube.com/shorts/BEFr2-IKWuE) (2026-09-28)
+- [刚来第一年就赶上曼谷被淹了#曼谷 #大雨 #淹水 #佳蔓jemma](https://www.youtube.com/shorts/gjjnOdfU6N0) (2026-09-26)
+- [男女本就不同 何来平等？ #佳蔓jemma #女性创业](https://www.youtube.com/shorts/b4-XclmpEhQ) (2026-09-25)
+- [多去体验生活吧 个人的经才能历铸就一生 而非片面的技能 #佳蔓jemma #旅居 #曼谷 #女性成长](https://www.youtube.com/shorts/KvruYdhyIZY) (2026-09-23)
+- [这好那好的 看条件适合哪呗 #佳蔓jemma #旅居 #曼谷](https://www.youtube.com/shorts/Yxv9t57Ug-w) (2026-09-22)
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
