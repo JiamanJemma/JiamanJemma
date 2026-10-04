@@ -10,11 +10,7 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- [超轻粘土还能这样用#超轻粘土 #曼谷陪读#曼谷生活 # #佳蔓jemma](https://www.youtube.com/shorts/qg5VcnS-2xs) (2026-10-01)
-- [幼儿园给小朋友准备生日礼物小时候很羡慕能在上学期间过生日的同学在学校期间就能收到祝福和礼物可是我的生日总在暑假算是补足了自己童年 #prenursery #曼谷  #佳蔓Jemma#生日礼物](https://www.youtube.com/shorts/ByPfJUrJpvU) (2026-09-30)
-- [曼谷终于放晴啦 今天去megabangna一路都很顺畅 #佳蔓jemma #曼谷 #曼谷暴雨 #曼谷陪读](https://www.youtube.com/shorts/8td_zZefbHg) (2026-09-29)
-- [gift card的灵感就来了 #曼谷 #佳蔓jemma #雨季 #自然美育#giftcard](https://www.youtube.com/shorts/BEFr2-IKWuE) (2026-09-28)
-- [刚来第一年就赶上曼谷被淹了#曼谷 #大雨 #淹水 #佳蔓jemma](https://www.youtube.com/shorts/gjjnOdfU6N0) (2026-09-26)
+- 暂时没有获取到视频
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
