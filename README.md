@@ -10,7 +10,11 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- 暂时没有获取到视频
+- [出门在外小心国人好像一句咒语 如果在外想交到国人朋友还是需要点信任纽带 纯陌生接触我的几段经历都不是太美丽 #曼谷 #陪读 #海外华人 #佳蔓jemma](https://www.youtube.com/shorts/wfKfV6cteqk) (2026-10-08)
+- [目前接触到的泰国人都很好#曼谷陪读#泰国人 #佳蔓jemma](https://www.youtube.com/shorts/Y8-O0wD8KJ0) (2026-10-07)
+- [我小时候玩蹦床怎么都玩不够 #佳蔓jemma #曼谷 #曼谷陪读#蹦床](https://www.youtube.com/shorts/nK7BTSpDPCs) (2026-10-06)
+- [曼谷今天中午只打雷没有下雨，太难得了#曼谷陪读#曼谷旅居#佳蔓Jemma #曼谷](https://www.youtube.com/shorts/LMn35Vq_-ow) (2026-10-05)
+- [国外老师和我们想法还挺不一样的 #曼谷 #陪读 #幼儿园过生日 #佳蔓jemma](https://www.youtube.com/shorts/6qD86Q89res) (2026-10-04)
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
