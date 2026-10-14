@@ -10,11 +10,7 @@ I'm a content creator and tech explorer.
 
 ### 🎥 最新视频 (Latest Videos)
 <!-- YOUTUBE:START -->
-- [泰国公假九世王纪念日 #vlog #佳蔓jemma #曼谷 #rama9](https://www.youtube.com/shorts/t6Iqql6XDco) (2026-10-13)
-- [收到正反馈就让人更有动力#自媒体#正反馈#曼谷陪读#佳蔓Jemma](https://www.youtube.com/shorts/WVR-v2i4X18) (2026-10-12)
-- [做自媒体隐形福利更珍贵#自媒体 #隐形福利#曼谷陪读#佳蔓jemma](https://www.youtube.com/shorts/DmDR6UgGj-s) (2026-10-11)
-- [曼谷harborland 室内大运动好去处#曼谷陪读#室内遛娃#体能早教#大运动#佳蔓Jemma](https://www.youtube.com/shorts/qNK_dLHRf_I) (2026-10-10)
-- [承认自己不足 仍积极拥抱善意 #佳蔓jemma #曼谷 #陪读 #陌生善意](https://www.youtube.com/shorts/1rHUv-QxG7I) (2026-10-09)
+- 暂时没有获取到视频
 <!-- YOUTUBE:END -->
 
 ### ✍️ 最新文章 (Latest Articles)
